@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const schema = 'test'
+const schema = 'demo'
 const user = 'root'
 const password = 'password'
 // Connecting to the database
@@ -18,11 +18,11 @@ db.authenticate()
 // Defining tables
 const Teams = db.define('teams', {
   team_number: {
-    type: Sequelize.INT,
+    type: Sequelize.INTEGER,
     primaryKey: true,
     allowNull: false
   }
-}, {timestemps: false})
+}, { timestemps: false })
 
 const Events = db.define('events', {
   event_name: {
@@ -30,9 +30,9 @@ const Events = db.define('events', {
     primaryKey: true,
     allowNull: false
   }
-}, {timestemps: false})
+}, { timestemps: false })
 
-module.exports{
+module.exports = {
   Events,
   Teams,
   db
