@@ -6,8 +6,9 @@ const port = 3000
 
 const {
   connection,
-  Teams,
-  Events
+  Team,
+  Match,
+  Event
 } = require('./db/model.js')
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -24,4 +25,8 @@ connection.authenticate()
     console.error('Unable to connect to the database:', err)
   })
 
-connection.sync() 
+connection.sync().then(() => {
+  Team.findOrCreate({ where: {
+    team_number: 3316
+  }})
+}).catch(err => console.error(err)) 

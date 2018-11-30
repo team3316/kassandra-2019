@@ -156,7 +156,7 @@ DROP TABLE IF EXISTS `matches`;
 CREATE TABLE `matches` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `match_type` enum('QM','QF','SF','F') NOT NULL,
-  `match_id` int(11) NOT NULL,
+  `match_id` int(11) NOT NULL, 
   `match_number` int(11) NOT NULL,
   `event` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
