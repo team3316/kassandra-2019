@@ -31,12 +31,6 @@ const Events = db.define('events', {
     allowNull: false
   }
 }, {timestemps: false})
-// Insert entries
-db
-  .sync({logging: console.log})
-  .then(() => Teams.create({
-    team_number: 3316
-}))
 
 module.exports{
   Events,
