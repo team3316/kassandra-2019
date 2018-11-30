@@ -1,40 +1,32 @@
 const Sequelize = require('sequelize')
-const schema = 'test'
+const schema = 'demo'
 const user = 'root'
 const password = 'password'
 // Connecting to the database
-const db = new Sequelize(schema, user, password, {
+const connection = new Sequelize(schema, user, password, {
   host:'localhost',
   dialect: 'mysql'
 })
-// Checking the connection
-db.authenticate()
-  .then(() => {
-    console.log('Connection established')
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err)
-  })
 // Defining tables
-const Teams = db.define('teams', {
+const Teams = connection.define('teams', {
   team_number: {
-    type: Sequelize.INT,
+    type: Sequelize.INTEGER,
     primaryKey: true,
     allowNull: false
   }
-}, {timestemps: false})
+}, { timestemps: false })
 
-const Events = db.define('events', {
+const Events = connection.define('events', {
   event_name: {
     type: Sequelize.STRING,
     primaryKey: true,
     allowNull: false
   }
-}, {timestemps: false})
+}, { timestemps: false }) 
 
-module.exports{
+module.exports = {
   Events,
   Teams,
-  db
+  connection
 }
 
