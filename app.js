@@ -1,4 +1,5 @@
 const express = require('express')
+const logger = require('morgan')
 const path = require('path')
 
 const app = express()
@@ -28,5 +29,5 @@ connection.authenticate()
 connection.sync().then(() => {
   Team.findOrCreate({ where: {
     team_number: 3316
-  }})
-}).catch(err => console.error(err)) 
+  } })
+}).catch(err => console.error(err))

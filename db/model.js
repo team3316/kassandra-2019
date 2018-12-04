@@ -4,8 +4,8 @@ const user = 'root'
 const password = 'password'
 // Connecting to the database
 const connection = new Sequelize(schema, user, password, {
-  host:'localhost',
-  dialect: 'mysql'
+  host: 'localhost',
+  dialect: 'postgres'
 })
 // Defining tables
 const Team = connection.define('teams', {
@@ -45,13 +45,32 @@ const Match = connection.define('matches', {
   },
   event: {
     type: Sequelize.STRING,
-    allowNull:false,
+    allowNull: false,
     references: {
-      model: "events",
-      key: "event_name"
+      model: 'events',
+      key: 'event_name'
     }
   }
-}, { timestamps: false }) 
+}, { timestamps: false })
+
+const EventTeam = connection.define('events_teams', {
+  team: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    references: {
+      model: 'teams',
+      key: 'team_number'
+    }
+  },
+
+  event: {
+    type: Sequelize.STRING
+  }
+})
+
+const Cycle = connection.define('cycles', {
+
+})
 // Module exports
 module.exports = {
   Event,
@@ -59,4 +78,3 @@ module.exports = {
   Match,
   connection
 }
-
