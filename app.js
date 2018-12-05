@@ -5,14 +5,19 @@ const path = require('path')
 
 const app = express()
 
-const sequelize = require('./server/models/index.js')
+const {
+  db,
+  Team,
+  Match,
+  Event
+} = require('./db/models.js')
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(logger('dev'))
 
 app.get('/', (req, res) => res.send('Kassandra'))
 
-sequelize.authenticate()
+db.authenticate()
   .then(() => {
     console.log('')
   })
@@ -20,6 +25,10 @@ sequelize.authenticate()
     console.error('Unable to connect to the database:', err)
   })
 
-sequelize.sync().catch(err => console.error(err))
+db.sync().then(() => {
+  Team.findOrCreate({ where: {
+    team_number: 3316
+  } })
+}).catch(err => console.error(err))
 
 module.exports = app
