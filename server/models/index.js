@@ -1,16 +1,15 @@
 const Sequelize = require('sequelize')
 const database = 'postgres'
-// const schema = 'kassandra_dev'
 const user = 'postgres'
 const password = 'password'
 // Connecting to the database
-const connection = new Sequelize(database, user, password, {
+const db = new Sequelize(database, user, password, {
   dialect: 'postgres',
   host: 'localhost',
   port: 5432
 })
-// Defining tables
-const Team = connection.define('teams', {
+// Table definitions
+const Team = db.define('teams', {
   team_number: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -18,7 +17,7 @@ const Team = connection.define('teams', {
   }
 }, { timestamps: false })
 
-const Event = connection.define('events', {
+const Event = db.define('events', {
   event_name: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -26,7 +25,7 @@ const Event = connection.define('events', {
   }
 }, { timestamps: false })
 
-const Match = connection.define('matches', {
+const Match = db.define('matches', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -56,7 +55,7 @@ const Match = connection.define('matches', {
   }
 }, { timestamps: false })
 
-const EventTeam = connection.define('events_teams', {
+const EventTeam = db.define('events_teams', {
   team: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -76,7 +75,7 @@ const EventTeam = connection.define('events_teams', {
   }
 }, { timestamps: false })
 
-const Cycle = connection.define('cycles', {
+const Cycle = db.define('cycles', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -130,7 +129,7 @@ const Cycle = connection.define('cycles', {
   }
 }, { timestamps: false })
 
-const Autonomous = connection.define('autonomous', {
+const Autonomous = db.define('autonomous', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -139,7 +138,7 @@ const Autonomous = connection.define('autonomous', {
   }
 }, { timestamps: false })
 
-const Teleop = connection.define('teleop', {
+const Teleop = db.define('teleop', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -151,7 +150,7 @@ const Teleop = connection.define('teleop', {
   freezeTableName: true
 })
 
-const EndGame = connection.define('end_game', {
+const EndGame = db.define('end_game', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -172,5 +171,5 @@ module.exports = {
   Autonomous,
   Teleop,
   EndGame,
-  connection
+  db
 }

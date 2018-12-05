@@ -6,25 +6,26 @@ const path = require('path')
 const app = express()
 
 const {
-  connection,
+  db,
   Team,
   Match,
   Event
 } = require('./db/models.js')
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(logger('dev'))
 
 app.get('/', (req, res) => res.send('Kassandra'))
 
-connection.authenticate()
+db.authenticate()
   .then(() => {
-    console.log('Connection established')
+    console.log('')
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err)
   })
 
-connection.sync().then(() => {
+db.sync().then(() => {
   Team.findOrCreate({ where: {
     team_number: 3316
   } })
