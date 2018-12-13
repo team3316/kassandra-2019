@@ -3,13 +3,13 @@ const database = 'postgres'
 const user = 'postgres'
 const password = 'password'
 // Connecting to the database
-const db = new Sequelize(database, user, password, {
+const sequelize = new Sequelize(database, user, password, {
   dialect: 'postgres',
   host: 'localhost',
   port: 5432
 })
 // Table definitions
-const Team = db.define('teams', {
+const Team = sequelize.define('teams', {
   team_number: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -17,7 +17,7 @@ const Team = db.define('teams', {
   }
 }, { timestamps: false })
 
-const Event = db.define('events', {
+const Event = sequelize.define('events', {
   event_name: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -25,7 +25,7 @@ const Event = db.define('events', {
   }
 }, { timestamps: false })
 
-const Match = db.define('matches', {
+const Match = sequelize.define('matches', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -53,9 +53,25 @@ const Match = db.define('matches', {
       key: 'event_name'
     }
   }
-}, { timestamps: false })
+}, {
+  timestamps: false,
+  getterMethods: {
+    match () {
+      const matchType = this.getDataValue('match_type')
+      const matchNumber = this.getDataValue('match_number')
+      const matchId = this.getDataValue('match_id')
+      const event = this.getDataValue('event')
 
-const EventTeam = db.define('events_teams', {
+      if (matchType == 'QM') {
+        return 'QM' + matchId + ' ' + event
+      } else {
+        return matchType + matchId + 'M' + matchNumber + ' ' + event
+      }
+    }
+  }
+})
+
+const EventTeam = sequelize.define('events_teams', {
   team: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -75,7 +91,7 @@ const EventTeam = db.define('events_teams', {
   }
 }, { timestamps: false })
 
-const Cycle = db.define('cycles', {
+const Cycle = sequelize.define('cycles', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -129,7 +145,7 @@ const Cycle = db.define('cycles', {
   }
 }, { timestamps: false })
 
-const Autonomous = db.define('autonomous', {
+const Autonomous = sequelize.define('autonomous', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -138,7 +154,7 @@ const Autonomous = db.define('autonomous', {
   }
 }, { timestamps: false })
 
-const Teleop = db.define('teleop', {
+const Teleop = sequelize.define('teleop', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -150,7 +166,7 @@ const Teleop = db.define('teleop', {
   freezeTableName: true
 })
 
-const EndGame = db.define('end_game', {
+const EndGame = sequelize.define('end_game', {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -171,5 +187,5 @@ module.exports = {
   Autonomous,
   Teleop,
   EndGame,
-  db
+  sequelize
 }
