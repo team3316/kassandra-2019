@@ -62,7 +62,7 @@ const Match = sequelize.define('matches', {
       const matchId = this.getDataValue('match_id')
       const event = this.getDataValue('event')
 
-      if (matchType == 'QM') {
+      if (matchType === 'QM') {
         return 'QM' + matchId + ' ' + event
       } else {
         return matchType + matchId + 'M' + matchNumber + ' ' + event
