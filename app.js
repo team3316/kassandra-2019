@@ -9,9 +9,7 @@ const app = express()
 const {
   sequelize
 } = require('./server/models/models.js')
-/*
-* Middleware use
-*/
+// Middleware usage
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
@@ -19,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', index)
 
 app.get('/', (req, res) => res.send('Kassandra'))
-
+// Establishing connection to the database
 sequelize.authenticate()
   .then(() => {
     console.log('')
@@ -27,7 +25,7 @@ sequelize.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err)
   })
-
+// Syncing changes to the database
 sequelize.sync()
 
 module.exports = app

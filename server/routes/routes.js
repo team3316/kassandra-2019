@@ -16,6 +16,7 @@ const addTeam = (req, res, next) => {
 const addTeamPost = (req, res, next) => {
   res.send()
 }
+
 module.exports = {
   addTeam,
   addTeamPost

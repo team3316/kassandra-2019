@@ -8,7 +8,11 @@ const sequelize = new Sequelize(database, user, password, {
   host: 'localhost',
   port: 5432
 })
-// Table definitions
+/* 
+* Table definitions
+*
+* Teams table
+*/
 const Team = sequelize.define('teams', {
   team_number: {
     type: Sequelize.INTEGER,
@@ -24,7 +28,9 @@ const Event = sequelize.define('events', {
     allowNull: false
   }
 }, { timestamps: false })
-
+/*
+* Matches table
+*/
 const Match = sequelize.define('matches', {
   id: {
     type: Sequelize.INTEGER,
@@ -56,6 +62,11 @@ const Match = sequelize.define('matches', {
 }, {
   timestamps: false,
   getterMethods: {
+    /*
+    * match() returns a string of the match name
+    * String format: QM<matchId> <event> or <matchType><matchId>M<matchNumber> <event>
+    * For example: 'QM45 D2', 'QF4M1 DCMP'
+    */
     match () {
       const matchType = this.getDataValue('match_type')
       const matchNumber = this.getDataValue('match_number')
@@ -70,7 +81,10 @@ const Match = sequelize.define('matches', {
     }
   }
 })
-
+/* 
+* events_teams table
+* A linking table between matches and teams
+*/
 const EventTeam = sequelize.define('events_teams', {
   team: {
     type: Sequelize.INTEGER,
