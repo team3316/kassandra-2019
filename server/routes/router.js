@@ -5,7 +5,8 @@ const router = new Router()
 
 const {
   addTeam,
-  addTeamPost
+  addTeamPost,
+  homePage
 } = require('./routes')
 
 router.get('/form', (req, res, next) => {
@@ -22,5 +23,7 @@ router.post('/form2', (req, res, next) => {
 })
 
 router.get('/team/:team', addTeam)
+
+router.get('/', homePage)
 
 module.exports = router

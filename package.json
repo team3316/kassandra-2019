@@ -4,9 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon ./bin/www",
-    "start": "node ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel public/javascripts/src -d public/javascripts/lib",
+    "test": "nodemon ./bin/www",
+    "serve": "node ./bin/www",
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +16,14 @@
     "morgan": "^1.9.1",
     "pg": "^7.7.1",
     "pg-hstore": "^2.3.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "sequelize": "^4.41.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-react": "^7.0.0",
     "standard": "^12.0.1"
   }
 }

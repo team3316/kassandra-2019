@@ -16,7 +16,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', index)
 
-app.get('/', (req, res) => res.send('Kassandra'))
 // Establishing connection to the database
 sequelize.authenticate()
   .then(() => {

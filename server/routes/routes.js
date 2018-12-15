@@ -5,6 +5,8 @@ const {
   Match,
   Cycle
 } = require('../models/models')
+
+const { join } = require('path')
 /*
 * Adds team from url to database
 */
@@ -17,7 +19,12 @@ const addTeamPost = (req, res, next) => {
   res.send()
 }
 
+const homePage = (req, res, next) => {
+  res.sendFile(join(__dirname, '../../public/index.html'))
+}
+
 module.exports = {
   addTeam,
-  addTeamPost
+  addTeamPost,
+  homePage
 }

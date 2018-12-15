@@ -8,7 +8,7 @@ const sequelize = new Sequelize(database, user, password, {
   host: 'localhost',
   port: 5432
 })
-/* 
+/*
 * Table definitions
 *
 * Teams table
@@ -81,7 +81,7 @@ const Match = sequelize.define('matches', {
     }
   }
 })
-/* 
+/*
 * events_teams table
 * A linking table between matches and teams
 */
