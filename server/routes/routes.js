@@ -1,3 +1,7 @@
+/**
+ * @todo Write docs for the routes
+ */
+
 const {
   Team,
   Event,
@@ -7,9 +11,7 @@ const {
 } = require('../models/models')
 
 const { join } = require('path')
-/*
-* Adds team from url to database
-*/
+
 const addTeam = (req, res, next) => {
   // Team.findOrCreate({ where: { team_number: req.params.team } })
   res.send(req.params.team)
@@ -20,7 +22,7 @@ const addTeamPost = (req, res, next) => {
 }
 
 const homePage = (req, res, next) => {
-  res.sendFile(join(__dirname, '../../public/index.html'))
+  res.sendFile(join(__dirname, '..', '..', 'public', 'index.html'))
 }
 
 module.exports = {

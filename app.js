@@ -5,18 +5,16 @@ const path = require('path')
 const index = require('./server/routes/router')
 
 const app = express()
+const { sequelize } = require('./server/models/models.js')
 
-const {
-  sequelize
-} = require('./server/models/models.js')
-// Middleware usage
+/** Middleware usage */
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', index)
 
-// Establishing connection to the database
+/** Establishing connection to the database */
 sequelize.authenticate()
   .then(() => {
     console.log('')
@@ -24,7 +22,9 @@ sequelize.authenticate()
   .catch(err => {
     console.error('Unable to connect to the database:', err)
   })
-// Syncing changes to the database
+
+/** Syncing changes to the database */
 sequelize.sync()
 
+/** Module exports */
 module.exports = app

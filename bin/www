@@ -1,7 +1,7 @@
 const app = require('../app')
-// Getting port from the enviorment or chosing the default port
+/** Getting port from the enviorment or using the default port */
 const port = parseInt(process.env.PORT, 10) || 3000 
-// Setting port constant
+/** Setting port constant in app */
 app.set('port', port)
-// Listening to the port
+/** Making the app listen in the port */
 app.listen(app.get('port'), console.log(`Kassandra listening on port ${port}`))

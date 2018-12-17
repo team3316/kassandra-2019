@@ -1,18 +1,22 @@
+/**
+ * In this file the database connection and its models are defined
+ * @todo Create a seperate config file for the connection arguments
+ */
 const Sequelize = require('sequelize')
 const database = 'postgres'
 const user = 'postgres'
 const password = 'password'
-// Connecting to the database
+/** Connecting to the database */
 const sequelize = new Sequelize(database, user, password, {
   dialect: 'postgres',
   host: 'localhost',
   port: 5432
 })
-/*
-* Table definitions
-*
-* Teams table
-*/
+/**
+ * Table definitions
+ *
+ * teams table in the database
+ */
 const Team = sequelize.define('teams', {
   team_number: {
     type: Sequelize.INTEGER,
@@ -28,9 +32,9 @@ const Event = sequelize.define('events', {
     allowNull: false
   }
 }, { timestamps: false })
-/*
-* Matches table
-*/
+/**
+ * matches table in the database
+ */
 const Match = sequelize.define('matches', {
   id: {
     type: Sequelize.INTEGER,
@@ -62,11 +66,9 @@ const Match = sequelize.define('matches', {
 }, {
   timestamps: false,
   getterMethods: {
-    /*
-    * match() returns a string of the match name
-    * String format: QM<matchId> <event> or <matchType><matchId>M<matchNumber> <event>
-    * For example: 'QM45 D2', 'QF4M1 DCMP'
-    */
+    /**
+     * @return {string} string with match name, for example QM4 DCMP or QF1M1 D2
+     */
     match () {
       const matchType = this.getDataValue('match_type')
       const matchNumber = this.getDataValue('match_number')
@@ -81,10 +83,10 @@ const Match = sequelize.define('matches', {
     }
   }
 })
-/*
-* events_teams table
-* A linking table between matches and teams
-*/
+/**
+ * events_teams table in the database
+ * A linking table between matches and teams
+ */
 const EventTeam = sequelize.define('events_teams', {
   team: {
     type: Sequelize.INTEGER,
@@ -104,7 +106,10 @@ const EventTeam = sequelize.define('events_teams', {
     }
   }
 }, { timestamps: false })
-
+/**
+ * cycles table in the database
+ * @type {[}
+ */
 const Cycle = sequelize.define('cycles', {
   id: {
     type: Sequelize.INTEGER,
