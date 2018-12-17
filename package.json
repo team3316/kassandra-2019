@@ -6,7 +6,7 @@
     "lint": "standard --fix",
     "build": "webpack --progress --colors -p",
     "watch": "webpack --progress --colors -p --watch",
-    "test": "nodemon ./bin/www",
+    "dev": "nodemon ./bin/www",
     "serve": "node ./bin/www"
   },
   "author": "Stav Eyal <staveyal210@gmail.com>",
