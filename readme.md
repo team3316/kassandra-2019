@@ -1,26 +1,17 @@
 # Kassandra 
-[![dependencies Status](https://img.shields.io/david/staveyal/kassandra.svg?colorB=blue&style=flat-square)](https://david-dm.org/staveyal/kassandra) 
-[![devDependencies Status](https://img.shields.io/david/dev/staveyal/kassandra.svg?colorB=blue&style=flat-square)](https://david-dm.org/staveyal/kassandra?type=dev)  
+[![dependencies Status](https://img.shields.io/david/Team3316/kassandra.svg?colorB=blue&style=flat-square)](https://david-dm.org/Team3316/kassandra) 
+[![devDependencies Status](https://img.shields.io/david/dev/Team3316/kassandra.svg?colorB=blue&style=flat-square)](https://david-dm.org/Team3316/kassandra?type=dev) 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-blue.svg?style=flat-square)](https://standardjs.com) 
 [![docstring style](https://img.shields.io/badge/docstring%20style-jsdocs-blue.svg?style=flat-square)](http://usejsdoc.org/)
 >D-Bug's generic scouting system
 
 ## Setup
-Clone the repository:
+
 ```Bash
-git clone https://github.com/staveyal/kassandra.git
-```
-Install the node dependencies:
-```Bash
-npm install
-```
-Build the code:
-```Bash
-npm run build
-```
-Start the server:
-```Bash
-npm run serve
+git clone https://github.com/Team3316/kassandra.git && cd kassandra # Clone the repository and change directory
+npm install # Install the node dependencies
+npm run build # Build the code
+npm run serve # Start the server
 ```
 
 ## Scripts
