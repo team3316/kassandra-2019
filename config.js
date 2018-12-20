@@ -4,7 +4,8 @@ const db = {
   password: 'password',
   port: 5432,
   dialect: 'postgres',
-  host: 'localhost'
+  host: 'localhost',
+  schema: 'kassandra'
 }
 
 module.exports = {

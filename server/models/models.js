@@ -10,9 +10,11 @@ const sequelize = new Sequelize(config.db.name, config.db.user, config.db.passwo
   host: config.db.host,
   port: config.db.port,
 
+  /** Default table definition options */
   define: {
     timestamps: false,
-    freezeTableName: true
+    freezeTableName: true,
+    schema: config.db.schema
   }
 })
 /**
