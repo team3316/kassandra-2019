@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const app = require('../app')
 /** Getting port from the enviorment or using the default port */
 const port = parseInt(process.env.PORT, 10) || 3000 

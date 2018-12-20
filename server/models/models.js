@@ -3,18 +3,17 @@
  * @todo Create a seperate config file for the connection arguments
  */
 const Sequelize = require('sequelize')
-const config = require('../../config')
 /** Connecting to the database */
-const sequelize = new Sequelize(config.db.name, config.db.user, config.db.password, {
-  dialect: config.db.dialect,
-  host: config.db.host,
-  port: config.db.port,
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  dialect: process.env.DB_DIALECT,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
 
   /** Default table definition options */
   define: {
     timestamps: false,
     freezeTableName: true,
-    schema: config.db.schema
+    schema: process.env.DB_SCHEMA
   }
 })
 /**
