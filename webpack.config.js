@@ -1,6 +1,8 @@
 const path = require('path')
+require('dotenv').config()
 
 module.exports = {
+  mode: process.env.NODE_ENV,
   entry: {
     app: './public/javascripts/src/main.jsx'
   },

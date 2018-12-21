@@ -3,14 +3,18 @@
  * @todo Create a seperate config file for the connection arguments
  */
 const Sequelize = require('sequelize')
-const database = 'postgres'
-const user = 'postgres'
-const password = 'password'
 /** Connecting to the database */
-const sequelize = new Sequelize(database, user, password, {
-  dialect: 'postgres',
-  host: 'localhost',
-  port: 5432
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+  dialect: process.env.DB_DIALECT,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+
+  /** Default table definition options */
+  define: {
+    timestamps: false,
+    freezeTableName: true,
+    schema: process.env.DB_SCHEMA
+  }
 })
 /**
  * Table definitions
@@ -23,7 +27,7 @@ const Team = sequelize.define('teams', {
     primaryKey: true,
     allowNull: false
   }
-}, { timestamps: false })
+})
 
 const Event = sequelize.define('events', {
   event_name: {
@@ -31,7 +35,7 @@ const Event = sequelize.define('events', {
     primaryKey: true,
     allowNull: false
   }
-}, { timestamps: false })
+})
 /**
  * matches table in the database
  */
@@ -64,7 +68,6 @@ const Match = sequelize.define('matches', {
     }
   }
 }, {
-  timestamps: false,
   getterMethods: {
     /**
      * @return {string} string with match name, for example QM4 DCMP or QF1M1 D2
@@ -105,7 +108,7 @@ const EventTeam = sequelize.define('events_teams', {
       key: 'event_name'
     }
   }
-}, { timestamps: false })
+})
 /**
  * cycles table in the database
  * @type {[}
@@ -162,7 +165,7 @@ const Cycle = sequelize.define('cycles', {
       key: 'id'
     }
   }
-}, { timestamps: false })
+})
 
 const Autonomous = sequelize.define('autonomous', {
   id: {
@@ -171,7 +174,7 @@ const Autonomous = sequelize.define('autonomous', {
     primaryKey: true,
     autoIncrement: true
   }
-}, { timestamps: false })
+})
 
 const Teleop = sequelize.define('teleop', {
   id: {
@@ -180,9 +183,6 @@ const Teleop = sequelize.define('teleop', {
     primaryKey: true,
     autoIncrement: true
   }
-}, {
-  timestamps: false,
-  freezeTableName: true
 })
 
 const EndGame = sequelize.define('end_game', {
@@ -192,9 +192,6 @@ const EndGame = sequelize.define('end_game', {
     primaryKey: true,
     autoIncrement: true
   }
-}, {
-  timestamps: false,
-  freezeTableName: true
 })
 // Module exports
 module.exports = {
