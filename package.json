@@ -4,8 +4,8 @@
   "description": "D-Bug's generic scounting system",
   "scripts": {
     "lint": "standard --fix",
-    "build": "webpack --progress --colors -p",
-    "watch": "webpack --progress --colors -p --watch",
+    "build": "webpack --progress --colors",
+    "watch": "webpack --progress --colors --watch",
     "dev": "nodemon ./bin/www",
     "serve": "node ./bin/www"
   },
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "pg": "^7.7.1",

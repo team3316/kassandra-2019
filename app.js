@@ -17,14 +17,20 @@ app.use('/', index)
 /** Establishing connection to the database */
 sequelize.authenticate()
   .then(() => {
-    console.log('')
+    console.log('Connection established')
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err)
   })
 
-/** Syncing changes to the database */
+/** Adding models to the database */
 sequelize.sync()
+  .then(() => {
+    console.log('Added models to the database')
+  })
+  .catch(err => {
+    console.error('Unable to add models to the database:', err)
+  })
 
 /** Module exports */
 module.exports = app
