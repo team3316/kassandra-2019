@@ -23,8 +23,7 @@ router.post('/form2', (req, res, next) => {
 })
 
 router.get('/test', (req, res, next) => {
-  res.send('Request handled')
-  console.log('Request handled')
+  res.send('TEST')
 })
 
 router.get('/team/:team', addTeam)

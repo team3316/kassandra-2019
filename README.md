@@ -1,7 +1,8 @@
-# Kassandra 
+# Kassandra
+
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) 
 [![docstring style](https://img.shields.io/badge/docstring%20style-jsdocs-brightgreen.svg)](http://usejsdoc.org/)
-[![dependencies Status](https://img.shields.io/david/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra) 
+[![dependencies Status](https://img.shields.io/david/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra)
 [![devDependencies Status](https://img.shields.io/david/dev/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra?type=dev) 
 >D-Bug's generic scouting system
 
@@ -38,4 +39,4 @@ npm run serve
 
 `npm run serve` - Serves using [Express](https://expressjs.com/)
 
-`npm run dev` - Starts the server in [Nodemon](https://nodemon.io/) 
+`npm run dev` - Starts the server in [Nodemon](https://nodemon.io/)

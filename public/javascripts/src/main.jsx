@@ -10,29 +10,18 @@ class TeamInsert extends Component {
   }
 
   /**
-   * Moves parameter to the Team component
-   * @param {event} e text change event
+   * Moves search value to the Team component
+   * @param {event} e search bar text change event
    */
   handleTextChange (e) {
     this.props.onTextChange(e.target.value)
-  }
-
-  /**
-   * Failed attempt at logging a response from the server
-   */
-  onClick () {
-    console.log('TeamInsert.onClick')
-    axios({
-      method: 'get',
-      url: '/test'
-    }).then(res => res.txt()).then(text => console.log(text))
   }
 
   render () {
     return (
       <form>
         <input type='text' onChange={this.handleTextChange} placeholder='Enter team name' />
-        <button onClick={this.onClick}>Submit</button>
+        <button>Submit</button>
       </form>
     )
   }
@@ -75,11 +64,23 @@ class Team extends Component {
     console.log(searchValue)
   }
 
+  /**
+   * Makes a simple get request with no parameters, displays the value in the console
+   */
+  onClick () {
+    console.log('Team.onClick')
+    axios({
+      method: 'get',
+      url: '/test'
+    }).then(res => res.data).then(text => console.log(text))
+  }
+
   render () {
     return (
       <div>
         <TeamInsert onTextChange={this.handleTextChange} />
         <TeamShow team={this.state.value} />
+        <button onClick={this.onClick}>Press me</button>
       </div>
     )
   }
