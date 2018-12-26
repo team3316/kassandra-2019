@@ -1,11 +1,11 @@
 # Dependencies 
-node_modules
+node_modules/
 
 # Logs
 *.log
 
 # Babel compiled files
-public/javascripts/lib
+public/javascripts/lib/
 
 # Config
-*.env
+.env

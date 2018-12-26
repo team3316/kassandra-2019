@@ -22,7 +22,7 @@ const addTeamPost = (req, res, next) => {
 }
 
 const homePage = (req, res, next) => {
-  res.sendFile(join(__dirname, '..', '..', 'public', 'index.html'))
+  res.sendFile(join(process.cwd(), 'public', 'index.html'))
 }
 
 module.exports = {
