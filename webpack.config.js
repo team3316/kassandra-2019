@@ -1,15 +1,22 @@
 const path = require('path')
+const srcPath = path.join(__dirname, 'public', 'javascripts', 'src')
+
+const Dotenv = require('dotenv-webpack')
 require('dotenv').config()
 
 module.exports = {
   mode: process.env.NODE_ENV,
   entry: {
-    app: './public/javascripts/src/main.jsx'
+    main: path.join(srcPath, 'main.jsx'),
+    matchlist: path.join(srcPath, 'matchlist.jsx')
   },
   output: {
     path: path.resolve(__dirname, 'public', 'javascripts', 'lib'),
-    filename: 'main.js'
+    filename: '[name].js'
   },
+  plugins: [
+    new Dotenv()
+  ],
   module: {
     rules: [{
       test: /\.(js|jsx)/,

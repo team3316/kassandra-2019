@@ -5,11 +5,17 @@ const router = new Router()
 
 const {
   addTeam,
-  homePage
+  homePage,
+  addEvent,
+  matchList
 } = require('./routes')
 
 router.get('/', homePage)
 
 router.post('/team', addTeam)
+
+router.post('/event', addEvent)
+
+router.get('/matchlist', matchList)
 
 module.exports = router
