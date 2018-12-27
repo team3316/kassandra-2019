@@ -1,6 +1,5 @@
 /**
  * In this file the database connection and its models are defined
- * @todo Create a seperate config file for the connection arguments
  */
 const Sequelize = require('sequelize')
 /** Connecting to the database */
@@ -16,6 +15,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     schema: process.env.DB_SCHEMA
   }
 })
+
 /**
  * Table definitions
  *

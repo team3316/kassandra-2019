@@ -13,12 +13,8 @@ const {
 const { join } = require('path')
 
 const addTeam = (req, res, next) => {
-  // Team.findOrCreate({ where: { team_number: req.params.team } })
-  res.send(req.params.team)
-}
-
-const addTeamPost = (req, res, next) => {
-  res.send()
+  console.log(req.body.teamNumber)
+  Team.findOrCreate({ where: { team_number: Number(req.body.teamNumber) } })
 }
 
 const homePage = (req, res, next) => {
@@ -27,6 +23,5 @@ const homePage = (req, res, next) => {
 
 module.exports = {
   addTeam,
-  addTeamPost,
   homePage
 }
