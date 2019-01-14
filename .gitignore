@@ -9,3 +9,6 @@ public/dist/
 
 # Config
 .env
+
+# MacOS folder files
+.DS_Store
