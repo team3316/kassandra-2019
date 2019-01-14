@@ -1,17 +1,16 @@
 const path = require('path')
-const srcPath = path.join(__dirname, 'public', 'javascripts', 'src')
+const srcPath = path.join(__dirname, 'public', 'src')
 
 const Dotenv = require('dotenv-webpack')
 require('dotenv').config()
 
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV || 'development',
   entry: {
-    main: path.join(srcPath, 'main.jsx'),
-    matchlist: path.join(srcPath, 'matchlist.jsx')
+    app: path.join(srcPath, 'app.jsx')
   },
   output: {
-    path: path.resolve(__dirname, 'public', 'javascripts', 'lib'),
+    path: path.resolve(__dirname, 'public', 'dist'),
     filename: '[name].js'
   },
   plugins: [
@@ -21,9 +20,18 @@ module.exports = {
     rules: [{
       test: /\.(js|jsx)/,
       loader: 'babel-loader',
+      exclude: /node_modules/,
       query: {
-        presets: ['@babel/preset-react', '@babel/preset-env']
+        presets: ['@babel/preset-env', '@babel/preset-react']
       }
     }]
+  },
+  resolve: {
+    alias: {
+      components: `${srcPath}/components`,
+      reducers: `${srcPath}/reducers`,
+      containers: `${srcPath}/containers`,
+      actions: `${srcPath}/actions`
+    }
   }
 }

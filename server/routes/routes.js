@@ -24,13 +24,8 @@ const addEvent = (req, res, next) => {
   Event.findOrCreate({ where: { event_name: req.body.eventName } })
 }
 
-const matchList = (req, res, next) => {
-  res.sendFile(join(process.cwd(), 'public', 'views', 'matchlist.html'))
-}
-
 module.exports = {
   addTeam,
   homePage,
-  addEvent,
-  matchList
+  addEvent
 }

@@ -32,6 +32,11 @@ const Team = sequelize.define('teams', {
 const Event = sequelize.define('events', {
   event_name: {
     type: Sequelize.STRING,
+    allowNull: false
+  },
+
+  event_key: {
+    type: Sequelize.STRING,
     primaryKey: true,
     allowNull: false
   }

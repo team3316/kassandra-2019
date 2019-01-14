@@ -1,0 +1,11 @@
+{
+  "scouting": {
+    "selectedTeam": 0,
+  },
+  "admin": {
+    "isFetchingEvents": false,
+    "districtKey": "",
+    "events": [],
+    "selectedEvent": "",
+  }
+}
