@@ -1,11 +1,61 @@
 {
   "scouting": {
+    "selectedEvent": "",
+    "selectedMatch": "",
     "selectedTeam": 0,
+    "selectTeamName": "",
+    "selectedTeamColor": "",
+
+    "auto": {
+      "habLine": false,
+      "hatchPanels": {
+        "rocket": {
+          "level1": 0,
+          "level2": 0,
+          "level3": 0
+        },
+        "cargoShip": 0
+      },
+
+      "cargo": {
+        "rocket": {
+          "level1": 0,
+          "level2": 0,
+          "level3": 0
+        },
+        "cargoShip": 0
+      }
+    },
+    "teleop": {
+      "hatchPanels": {
+        "rocket": {
+          "level1": 0,
+          "level2": 0,
+          "level3": 0
+        },
+        "cargoShip": 0
+      },
+
+      "cargo": {
+        "rocket": {
+          "level1": 0,
+          "level2": 0,
+          "level3": 0
+        },
+        "cargoShip": 0
+      }
+    },
+    "endgame": {
+      "climb": "" // Didn't try, Failed, Climbed level 2, Climbed level 3
+    },
+    "comments": ""
   },
   "admin": {
     "isFetchingEvents": false,
+    "isFetchingMatches": false,
     "districtKey": "",
     "events": [],
-    "selectedEvent": "",
+    "eventKey": "",
+    "matchlist": []
   }
 }

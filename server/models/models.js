@@ -51,12 +51,12 @@ const Match = sequelize.define('matches', {
     allowNull: false,
     autoIncrement: true
   },
-  match_type: {
+  comp_level: {
     type: Sequelize.ENUM,
     values: ['QM', 'QF', 'SF', 'F'],
     allowNull: false
   },
-  match_id: {
+  set_number: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
@@ -78,15 +78,15 @@ const Match = sequelize.define('matches', {
      * @return {string} string with match name, for example QM4 DCMP or QF1M1 D2
      */
     match () {
-      const matchType = this.getDataValue('match_type')
+      const compLevel = this.getDataValue('comp_level')
+      const setNumber = this.getDataValue('set_number')
       const matchNumber = this.getDataValue('match_number')
-      const matchId = this.getDataValue('match_id')
       const event = this.getDataValue('event')
 
-      if (matchType === 'QM') {
-        return 'QM' + matchId + ' ' + event
+      if (compLevel === 'QM') {
+        return 'QM' + matchNumber + ' ' + event
       } else {
-        return matchType + matchId + 'M' + matchNumber + ' ' + event
+        return compLevel + matchNumber + 'M' + setNumber + ' ' + event
       }
     }
   }

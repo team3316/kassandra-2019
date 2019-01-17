@@ -1,43 +1,65 @@
 import { connect } from 'react-redux'
-import Filter from '../components/Filter.jsx'
+import Events from '../components/EventDropdown.jsx'
+import Matchlist from '../components/Matchlist.jsx'
 import React, { Component } from 'react'
-import { getEvents } from '../actions/actions.js'
+import { getEvents, getMatches } from '../actions/actions.js'
+import Loading from 'react-loading'
 
 class App extends Component {
   componentDidMount () {
+    document.title = 'Match List'
+
     const { getEvents, districtKey } = this.props
     getEvents(districtKey)
   }
 
   render () {
-    const { isFetching, events } = this.props
-    console.log(events)
-    console.log(isFetching)
+    const { isFetchingEvents, isFetchingMatches, events, matches, getMatches } = this.props
 
     return (
       <div>
         {
-          isFetching || events ? <h2>Now Loading...</h2> : <Filter eventList={events} />
+          isFetchingEvents || events.length === 0
+            ? <Loading
+              color={'#ff9933'}
+              type={'spin'}
+            />
+            : <div>
+              <Events
+                events={events}
+                getMatches={eventKey => getMatches(eventKey)}
+              />
+
+              {
+                isFetchingMatches || matches.length === 0
+                  ? <Loading
+                    color={'#ff9933'}
+                    type={'spin'}
+                  />
+                  : <Matchlist matches={matches} />
+              }
+
+            </div>
         }
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  console.log(state.events)
-
+const mapStateToProps = ({ admin }) => {
   return {
-    isFetchingEvents: state.events.isFetching,
-    events: state.events.events
+    isFetchingEvents: admin.isFetchingEvents,
+    isFetchingMatches: admin.isFetchingMatches,
+    matches: admin.matches,
+    events: admin.events,
+    districtKey: admin.districtKey
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getEvents: districtKey => {
-      dispatch(getEvents(districtKey))
-    }
+    getEvents: districtKey => dispatch(getEvents(districtKey)),
+    getMatches: eventKey => dispatch(getMatches(eventKey))
   }
 }
 
