@@ -4,8 +4,11 @@ node_modules/
 # Logs
 *.log
 
-# Babel compiled files
-public/javascripts/lib/
+# Webpack bundled files
+public/dist/
 
 # Config
 .env
+
+# MacOS folder files
+.DS_Store

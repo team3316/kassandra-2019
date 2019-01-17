@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
 import axios from 'axios'
 
-class Form extends Component {
+class Example extends Component {
   constructor (props) {
     super(props)
 
@@ -38,4 +37,4 @@ class Form extends Component {
   }
 }
 
-ReactDOM.render(<Form />, document.querySelector('#root'))
+export default Example

@@ -4,15 +4,15 @@
 [![docstring style](https://img.shields.io/badge/docstring%20style-jsdocs-brightgreen.svg)](http://usejsdoc.org/)
 [![dependencies Status](https://img.shields.io/david/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra)
 [![devDependencies Status](https://img.shields.io/david/dev/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra?type=dev) 
->D-Bug's generic scouting system
+>D-Bug's scouting system, built using React, Redux, Express and Sequelize
 
 ## Setup
 
-Kassandra is built in **Node.js**, and uses a **PostgreSQL** server as a database.
+Kassandra is built using **Node.js**, and uses a **PostgreSQL** server as a database.
 
 If you want to use a different SQL-based database you need to install the corresponding node module and configure Sequelize accordingly.
 
-### Config
+### Configuration
 
 Make a `.env` file at the root folder with the same fields as `template.env` and fill the fields according to your enviorment.
 

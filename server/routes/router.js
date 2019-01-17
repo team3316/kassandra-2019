@@ -1,15 +1,17 @@
 const { Router } = require('express')
-const { join } = require('path')
 
 const router = new Router()
 
 const {
   addTeam,
-  homePage
+  homePage,
+  addEvent
 } = require('./routes')
 
-router.get('/', homePage)
+router.get('/*', homePage)
 
 router.post('/team', addTeam)
+
+router.post('/event', addEvent)
 
 module.exports = router
