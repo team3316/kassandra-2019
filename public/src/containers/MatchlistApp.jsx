@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Filter from '../components/MatchlistFilter.jsx'
 import Matchlist from '../components/Matchlist.jsx'
 import React, { Component } from 'react'
 import { getEvents, getMatches, selectTeam } from '../actions/actions.js'
+
 import Loading from 'react-loading'
 
 class App extends Component {
@@ -15,6 +15,7 @@ class App extends Component {
   }
 
   render () {
+
     const {
       isFetchingEvents,
       isFetchingMatches,

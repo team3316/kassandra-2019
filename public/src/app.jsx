@@ -12,6 +12,7 @@ import Container from './containers/MatchlistApp.jsx'
 import reducers from './reducers/reducers.js'
 
 const districtKey = process.env.DISTRICT_KEY
+
 const currentEventKey = process.env.CURRENT_EVENT
 
 const store = createStore(

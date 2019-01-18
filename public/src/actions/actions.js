@@ -58,6 +58,7 @@ export const getMatches = eventKey => dispatch => {
         matches[i].comp_level = matches[i].comp_level.toUpperCase()
 
         // Removes 'frc' from team_keys
+
         matches[i].alliances.red.team_keys = matches[i].alliances.red.team_keys
           .map(teamKey => teamKey.replace('frc', ''))
         matches[i].alliances.blue.team_keys = matches[i].alliances.blue.team_keys
