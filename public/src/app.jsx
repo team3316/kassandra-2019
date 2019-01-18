@@ -13,6 +13,8 @@ import reducers from './reducers/reducers.js'
 
 const districtKey = process.env.DISTRICT_KEY
 
+const currentEventKey = process.env.CURRENT_EVENT
+
 const store = createStore(
   reducers,
   applyMiddleware(thunk, logger)
@@ -21,6 +23,11 @@ const store = createStore(
 store.dispatch({
   type: 'DISTRICT_KEY',
   districtKey
+})
+
+store.dispatch({
+  type: 'CURRENT_EVENT',
+  currentEventKey
 })
 
 render(

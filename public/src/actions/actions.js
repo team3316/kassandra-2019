@@ -58,8 +58,11 @@ export const getMatches = eventKey => dispatch => {
         matches[i].comp_level = matches[i].comp_level.toUpperCase()
 
         // Removes 'frc' from team_keys
-        matches[i].alliances.red.team_keys = matches[i].alliances.red.team_keys.map(teamKey => parseInt(teamKey.replace('frc', ''), 10))
-        matches[i].alliances.blue.team_keys = matches[i].alliances.blue.team_keys.map(teamKey => parseInt(teamKey.replace('frc', ''), 10))
+
+        matches[i].alliances.red.team_keys = matches[i].alliances.red.team_keys
+          .map(teamKey => teamKey.replace('frc', ''))
+        matches[i].alliances.blue.team_keys = matches[i].alliances.blue.team_keys
+          .map(teamKey => teamKey.replace('frc', ''))
       }
 
       // Sort matches
@@ -90,3 +93,8 @@ export const getEvents = districtKey => dispatch => {
       dispatch(recieveEvents(districtKey, events))
     })
 }
+
+export const selectTeam = teamNumber => ({
+  type: 'SELECT_TEAM',
+  team: teamNumber
+})
