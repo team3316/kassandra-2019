@@ -1,18 +1,10 @@
 {
   "scouting": {
-<<<<<<< HEAD
-    "selectedEvent": "",
-    "selectedMatch": "",
-    "selectedTeam": 0,
-    "selectTeamName": "",
-    "selectedTeamColor": "",
-=======
     "eventKey": "",
     "match": "",
     "team": 0,
     "teamName": "",
     "teamColor": "",
->>>>>>> match-list
 
     "auto": {
       "habLine": false,
@@ -65,11 +57,17 @@
     "events": [],
     "eventKey": "",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "matchlist": []
 =======
     "currentEventKey": "",
     "matchlist": [],
     "team": 0
 >>>>>>> match-list
+=======
+    "currentEventKey": "",
+    "matchlist": [],
+    "team": 0
+>>>>>>> 6ac2331a15fe73cfc5b2401659ad9bb7891da904
   }
 }
