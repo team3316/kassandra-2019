@@ -56,11 +56,7 @@ export default (state = {
         ...state,
         team: action.team
       }
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> 6ac2331a15fe73cfc5b2401659ad9bb7891da904
     default:
       return state
   }
