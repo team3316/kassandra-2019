@@ -1,10 +1,18 @@
 {
   "scouting": {
+<<<<<<< HEAD
     "selectedEvent": "",
     "selectedMatch": "",
     "selectedTeam": 0,
     "selectTeamName": "",
     "selectedTeamColor": "",
+=======
+    "eventKey": "",
+    "match": "",
+    "team": 0,
+    "teamName": "",
+    "teamColor": "",
+>>>>>>> match-list
 
     "auto": {
       "habLine": false,
@@ -56,6 +64,12 @@
     "districtKey": "",
     "events": [],
     "eventKey": "",
+<<<<<<< HEAD
     "matchlist": []
+=======
+    "currentEventKey": "",
+    "matchlist": [],
+    "team": 0
+>>>>>>> match-list
   }
 }

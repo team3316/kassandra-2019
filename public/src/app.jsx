@@ -12,6 +12,7 @@ import Container from './containers/MatchlistApp.jsx'
 import reducers from './reducers/reducers.js'
 
 const districtKey = process.env.DISTRICT_KEY
+const currentEventKey = process.env.CURRENT_EVENT
 
 const store = createStore(
   reducers,
@@ -21,6 +22,11 @@ const store = createStore(
 store.dispatch({
   type: 'DISTRICT_KEY',
   districtKey
+})
+
+store.dispatch({
+  type: 'CURRENT_EVENT',
+  currentEventKey
 })
 
 render(
