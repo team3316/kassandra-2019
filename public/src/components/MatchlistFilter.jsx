@@ -11,15 +11,17 @@ export default class EventDropdown extends Component {
   }
 
   render () {
-    const { events, getMatches } = this.props
+    const { events, getMatches, selectTeam } = this.props
 
     return (
-      <div>
+      <div className='filter'>
         <select onChange={e => getMatches(e.target.value)} >
           {events.map(event => (
             <option value={event.key} key={event.key}> {event.name} </option>
           ))}
         </select>
+        <br />
+        <input type='number' placeholder='Team Number' maxLength='4' onChange={e => selectTeam(e.target.value)} />
       </div>
     )
   }

@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Events from '../components/EventDropdown.jsx'
+import Filter from '../components/MatchlistFilter.jsx'
 import Matchlist from '../components/Matchlist.jsx'
 import React, { Component } from 'react'
-import { getEvents, getMatches } from '../actions/actions.js'
+import { getEvents, getMatches, selectTeam } from '../actions/actions.js'
 import Loading from 'react-loading'
 
 class App extends Component {
@@ -14,7 +15,15 @@ class App extends Component {
   }
 
   render () {
-    const { isFetchingEvents, isFetchingMatches, events, matches, getMatches } = this.props
+    const {
+      isFetchingEvents,
+      isFetchingMatches,
+      events,
+      matches,
+      team,
+      getMatches,
+      selectTeam
+    } = this.props
 
     return (
       <div>
@@ -25,9 +34,10 @@ class App extends Component {
               type={'spin'}
             />
             : <div>
-              <Events
+              <Filter
                 events={events}
                 getMatches={eventKey => getMatches(eventKey)}
+                selectTeam={team => selectTeam(team)}
               />
 
               {
@@ -36,7 +46,10 @@ class App extends Component {
                     color={'#ff9933'}
                     type={'spin'}
                   />
-                  : <Matchlist matches={matches} />
+                  : <Matchlist
+                    matches={matches}
+                    selectedTeam={team}
+                  />
               }
 
             </div>
@@ -52,14 +65,16 @@ const mapStateToProps = ({ admin }) => {
     isFetchingMatches: admin.isFetchingMatches,
     matches: admin.matches,
     events: admin.events,
-    districtKey: admin.districtKey
+    districtKey: admin.districtKey,
+    team: admin.team
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getEvents: districtKey => dispatch(getEvents(districtKey)),
-    getMatches: eventKey => dispatch(getMatches(eventKey))
+    getMatches: eventKey => dispatch(getMatches(eventKey)),
+    selectTeam: team => dispatch(selectTeam(team))
   }
 }
 
