@@ -83,12 +83,17 @@ EventTeam.removeAttribute('id')
  * @type {}
  */
 const Cycle = sequelize.define('cycles', {
-  
+  id: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    primaryKey: true
+  },
+
   /**
    * Whether or not the record should appear in statistics
    * @type {Boolean}
    */
-  show: {
+  visible: {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
     allowNull: false
@@ -246,6 +251,20 @@ const Cycle = sequelize.define('cycles', {
     defaultValue: false,
     allowNull: false
   }
+}, {
+  getterMethods: {
+    amount: () => this.findAndCountAll({
+      where: {
+        match_id: this.match_id,
+        team_number: this.team_number
+      }
+    })
+  },
+  hooks: {
+    beforeCreate: cycle => {
+      cycle.set('id', cycle.match_id + '_' + cycle.team_number + '_' + (this.amount + 1))
+    }
+  }
 })
 
 Cycle.belongsTo(Match, { foreignKey: {
@@ -258,8 +277,6 @@ Cycle.belongsTo(Team, { foreignKey: {
   type: Sequelize.INTEGER,
   allowNull: false
 } })
-
-Cycle.removeAttribute('id')
 
 // Module exports
 module.exports = {

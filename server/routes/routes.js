@@ -10,6 +10,7 @@ const {
   Cycle
 } = require('../models/models')
 
+const { Op } = require('sequelize')
 const { join } = require('path')
 
 /**
@@ -39,21 +40,46 @@ const addCycle = (req, res) => {
  * Gets cycles/cycle from the database depending on the parameters
  */
 const getCyclesByEvent = (req, res) => {
-  Cycle.findAll()
+  Cycle.findAll({ where:
+    { match_id: { [Op.regex]: req.params.eventKey } }
+  })
+    .then(cycles => res.send(cycles))
 }
 
 const getCyclesByTeam = (req, res) => {
-  res.send()
+  Cycle.findAll({ where: { team_number: req.body.team_number } })
+    .then(cycles => {
+      res.send(cycles)
+    })
 }
 
 const getCycleByEventTeam = (req, res) => {
+  Cycle.findAll({ where: {
+    match_id: { [Op.regex]: req.params.eventKey },
+    team_number: req.params.teamNumber
+  } })
+    .then(cycles => res.send(cycles))
+}
+
+/**
+ * Toggles the selected cycle visibility in the statistics
+ */
+const toggleCycleVisibility = (req, res) => {
 
 }
 
 const getTeams = (req, res) => {
-  Team.findAll().then(teams => {
-    res.send(teams.map(team => team.team_number))
-  })
+  Team.findAll()
+    .then(teams => {
+      res.send(teams.map(team => team.team_number))
+    })
+}
+
+const getTeamsByEvent = (req, res) => {
+  EventTeam.findAll({ where: { event_key: req.params.eventKey } })
+    .then(teams => {
+      res.send(teams.map(team => team.team_number))
+    })
 }
 
 /**
@@ -69,5 +95,7 @@ module.exports = {
   getCycleByEventTeam,
   addCycle,
   getTeams,
+  getTeamsByEvent,
+  toggleCycleVisibility,
   views
 }

@@ -1,6 +1,7 @@
 {
+  "id": "",
   "teamNumber": 0,
-  "matchId": "", // <eventKey><matchid>
+  "matchId": "",
   "sandstorm": {},
   "teleop": {},
   "endgame": {},
