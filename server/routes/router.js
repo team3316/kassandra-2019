@@ -3,16 +3,34 @@ const { Router } = require('express')
 const router = new Router()
 
 const {
-  addTeam,
-  homePage,
-  addEvent,
-  addCycle
+  views,
+  getCyclesByEvent,
+  getCyclesByTeam,
+  getCycleByEventTeam,
+  addCycle,
+  getTeams
 } = require('./routes')
 
-router.post('/api/cycle', addCycle)
-router.post('/api/event', addEvent)
-router.post('/api/team', addTeam)
+/**
+ * Add cycle
+ */
+router.post('/cycles', addCycle)
 
-router.get('/*', homePage)
+/**
+ * Get teams
+ */
+router.get('/teams', getTeams)
+
+/**
+ * Get cycles
+ */
+router.get('/cycles/event/:eventKey', getCyclesByEvent)
+router.get('/cycles/team/:teamNumber/view=all', getCyclesByTeam)
+router.get('/cycles/event/:eventKey/team/:teamNumber', getCycleByEventTeam)
+
+/**
+ * Views
+ */
+router.get('/*', views)
 
 module.exports = router

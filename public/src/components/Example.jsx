@@ -7,7 +7,7 @@ class Example extends Component {
 
     this.state = {
       value: '',
-      show: ''
+      show: []
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -17,11 +17,20 @@ class Example extends Component {
   handleClick (e) {
     e.preventDefault()
 
-    axios.post('/team', { teamNumber: this.state.value })
+    axios.post('/teams', { teamNumber: this.state.value })
   }
 
   handleChange (e) {
     this.setState({ value: e.target.value })
+  }
+
+  handleRequest (e) {
+    e.preventDefault()
+
+    axios.get('/teams').then(({ data }) => {
+      this.setState({ show: data })
+      console.log(this.state.show)
+    })
   }
 
   render () {
@@ -31,7 +40,9 @@ class Example extends Component {
         <br />
         <button onClick={this.handleClick}>Submit</button>
         <br />
-        <p>{this.state.show}</p>
+        {this.state.show.map(team => <p>{team}</p>)}
+        <br />
+        <button onClick={e => this.handleRequest(e)}>Request teams</button>
       </form>
     )
   }

@@ -1,7 +1,7 @@
 {
   "scouting": {
     "eventKey": "",
-    "match": "",
+    "matchId": "",
     "team": 0,
     "teamName": "",
     "teamColor": "",
@@ -46,7 +46,7 @@
       }
     },
     "endgame": {
-      "climb": "" // Didn't try, Failed, Climbed level 2, Climbed level 3
+      "climb": ""
     },
     "comments": ""
   },
@@ -56,18 +56,8 @@
     "districtKey": "",
     "events": [],
     "eventKey": "",
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "matchlist": []
-=======
     "currentEventKey": "",
     "matchlist": [],
-    "team": 0
->>>>>>> match-list
-=======
-    "currentEventKey": "",
-    "matchlist": [],
-    "team": 0
->>>>>>> 6ac2331a15fe73cfc5b2401659ad9bb7891da904
+    "team": ""
   }
 }

@@ -1,0 +1,8 @@
+{
+  "teamNumber": 0,
+  "matchId": "", // <eventKey><matchid>
+  "sandstorm": {},
+  "teleop": {},
+  "endgame": {},
+  "comments": ""
+}

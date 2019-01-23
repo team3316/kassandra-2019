@@ -16,6 +16,12 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   }
 })
 
+const integer = {
+  type: Sequelize.INTEGER,
+  defaultValue: 0,
+  allowNull: false
+}
+
 /**
  * Table definitions
  *
@@ -23,18 +29,12 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
  */
 const Team = sequelize.define('teams', {
   team_number: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    allowNull: false
+    ...integer,
+    primaryKey: true
   }
 })
 
 const Event = sequelize.define('events', {
-  event_name: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-
   event_key: {
     type: Sequelize.STRING,
     primaryKey: true,
@@ -45,159 +45,222 @@ const Event = sequelize.define('events', {
  * matches table in the database
  */
 const Match = sequelize.define('matches', {
-  id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
-    allowNull: false,
-    autoIncrement: true
-  },
-  comp_level: {
-    type: Sequelize.ENUM,
-    values: ['QM', 'QF', 'SF', 'F'],
-    allowNull: false
-  },
-  set_number: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  match_number: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-  event: {
+  match_id: {
     type: Sequelize.STRING,
-    allowNull: false,
-    references: {
-      model: 'events',
-      key: 'event_name'
-    }
-  }
-}, {
-  getterMethods: {
-    /**
-     * @return {string} string with match name, for example QM4 DCMP or QF1M1 D2
-     */
-    match () {
-      const compLevel = this.getDataValue('comp_level')
-      const setNumber = this.getDataValue('set_number')
-      const matchNumber = this.getDataValue('match_number')
-      const event = this.getDataValue('event')
-
-      if (compLevel === 'QM') {
-        return 'QM' + matchNumber + ' ' + event
-      } else {
-        return compLevel + matchNumber + 'M' + setNumber + ' ' + event
-      }
-    }
+    primaryKey: true,
+    allowNull: false
   }
 })
+
+Match.belongsTo(Event, { foreignKey: {
+  name: 'event_key',
+  type: Sequelize.STRING,
+  allowNull: false
+} })
+
 /**
  * events_teams table in the database
  * A linking table between matches and teams
  */
-const EventTeam = sequelize.define('events_teams', {
-  team: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'teams',
-      key: 'team_number'
-    }
-  },
+const EventTeam = sequelize.define('events_teams')
 
-  event: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    references: {
-      model: 'events',
-      key: 'event_name'
-    }
-  }
-})
+EventTeam.belongsTo(Team, { foreignKey: {
+  name: 'team_number',
+  type: Sequelize.INTEGER,
+  defaultValue: 0,
+  allowNull: false
+} })
+EventTeam.belongsTo(Event, { foreignKey: {
+  name: 'event_key',
+  type: Sequelize.STRING,
+  allowNull: false
+} })
+
+EventTeam.removeAttribute('id')
+
 /**
  * cycles table in the database
- * @type {[}
+ * @type {}
  */
 const Cycle = sequelize.define('cycles', {
-  id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true
+  
+  /**
+   * Whether or not the record should appear in statistics
+   * @type {Boolean}
+   */
+  show: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: true,
+    allowNull: false
   },
 
-  team: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'teams',
-      key: 'team_number'
-    }
+  /**
+   * Collections
+   * Where can the robot collect from
+   * @type {Boolean}
+   */
+  collection_cargo_from_floor: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  collection_cargo_from_human_player: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  collection_panels_from_floor: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  collection_panels_from_human_player: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  collection_in_frame_perimeter: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
   },
 
-  match: {
+  /**
+   * Sandstorm
+   */
+  sandstorm_control_method: {
+    type: Sequelize.ENUM,
+    values: ['nothing', 'drivers', 'autonomous'],
+    defaultValue: 'nothing',
+    allowNull: false
+  },
+  sandstorm_panels_cargo_ship: {
     type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'matches',
-      key: 'id'
-    }
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_cargo_cargo_ship: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_panels_level1: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_panels_level2: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_panels_level3: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_cargo_level1: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_cargo_level2: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  sandstorm_cargo_level3: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  level2_drop: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
   },
 
-  autonomous: {
+  /**
+   * Teleop
+   * If the value is -1, show they can't do it
+   */
+  teleop_panels_cargo_ship: {
     type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'autonomous',
-      key: 'id'
-    }
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_cargo_cargo_ship: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_panels_level1: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_panels_level2: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_panels_level3: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_cargo_level1: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_cargo_level2: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
+  },
+  teleop_cargo_level3: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+    allowNull: false
   },
 
-  teleop: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'teleop',
-      key: 'id'
-    }
+  /**
+   * Endgame
+   */
+  climb_level: {
+    type: Sequelize.ENUM,
+    values: ['Level 1', 'Level 2', 'Level 3'],
+    defaultValue: 'Level 1',
+    allowNull: false
   },
 
-  end_game: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    references: {
-      model: 'end_game',
-      key: 'id'
-    }
+  /**
+   * Miscellaneous
+   */
+  comments: {
+    type: Sequelize.STRING
+  },
+  tech_fouls: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
   }
 })
 
-const Autonomous = sequelize.define('autonomous', {
-  id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true
-  }
-})
+Cycle.belongsTo(Match, { foreignKey: {
+  name: 'match_id',
+  type: Sequelize.STRING,
+  allowNull: false
+} })
+Cycle.belongsTo(Team, { foreignKey: {
+  name: 'team_number',
+  type: Sequelize.INTEGER,
+  allowNull: false
+} })
 
-const Teleop = sequelize.define('teleop', {
-  id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true
-  }
-})
+Cycle.removeAttribute('id')
 
-const EndGame = sequelize.define('end_game', {
-  id: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true
-  }
-})
 // Module exports
 module.exports = {
   Event,
@@ -205,8 +268,5 @@ module.exports = {
   Match,
   EventTeam,
   Cycle,
-  Autonomous,
-  Teleop,
-  EndGame,
   sequelize
 }
