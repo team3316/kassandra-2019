@@ -6,12 +6,11 @@ const {
   views,
   getCyclesByEvent,
   getCyclesByTeam,
-  getCycleByEventTeam,
+  getCyclesByEventTeam,
   addCycle,
   toggleCycleVisibility,
-  getTeams,
-  getTeamsByEvent
-} = require('./routes')
+  getStats
+} = require('./routes/index')
 
 /**
  * Add cycle
@@ -23,18 +22,17 @@ router.post('/cycles', addCycle)
  */
 router.get('/cycles/event/:eventKey', getCyclesByEvent)
 router.get('/cycles/team/:teamNumber', getCyclesByTeam)
-router.get('/cycles/event/:eventKey/team/:teamNumber', getCycleByEventTeam)
+router.get('/cycles/event/:eventKey/team/:teamNumber', getCyclesByEventTeam)
 
 /**
  * Toggle cycle visibility
  */
-router.put('/cycles', toggleCycleVisibility)
+router.put('/cycles/visibility', toggleCycleVisibility)
 
 /**
- * Get teams
+ * Get statistics for team
  */
-router.get('/teams', getTeams)
-router.get('/teams/event/:eventKey/', getTeamsByEvent)
+router.get('/stats/:teamKey', getStats)
 
 /**
  * Views
