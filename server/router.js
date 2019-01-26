@@ -32,7 +32,11 @@ router.put('/cycles/visibility', toggleCycleVisibility)
 /**
  * Get statistics for team
  */
-router.get('/stats/:teamKey', getStats)
+router.get('/stats/:teamNumber', getStats)
+
+/**
+ * Get rankings for specific event
+ */
 
 /**
  * Views

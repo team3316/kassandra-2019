@@ -141,13 +141,6 @@ const Cycle = sequelize.define('cycles', {
     defaultValue: false,
     allowNull: false
   }
-}, {
-  setterMethods: {
-    /**
-     * Toggles visibility of the match
-     */
-    visible: () => this.getDataValue('visible').then(isVisible => this.setDataValue(!isVisible))
-  }
 })
 
 /** Module exports */

@@ -66,6 +66,12 @@ class Example extends Component {
     })
   }
 
+  handlePut (e) {
+    e.preventDefault()
+
+    axios.put('/cycles/visibility', { id: 6 })
+  }
+
   render () {
     return (
       <form>
@@ -78,6 +84,8 @@ class Example extends Component {
         <button onClick={e => this.handleRequest(e)}>Request teams</button>
         <br />
         <button onClick={e => this.handlePost(e)}>Post Match</button>
+        <br />
+        <button onClick={e => this.handlePut(e)}>Toggle visibility</button>
       </form>
     )
   }
