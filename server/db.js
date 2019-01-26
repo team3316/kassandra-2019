@@ -80,49 +80,49 @@ const Cycle = sequelize.define('cycles', {
   /**
    * Teleop
    */
-  teleop_panels_cargo_ship: {
+  teleop_cargo_ship_panels: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_cargo_cargo_ship: {
+  teleop_cargo_ship_cargo: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_panels_level1: {
+  teleop_level1_panels: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_panels_level2: {
+  teleop_level2_panels: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_panels_level3: {
+  teleop_level3_panels: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_cargo_level1: {
+  teleop_level1_cargo: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_cargo_level2: {
+  teleop_level2_cargo: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_cargo_level3: {
+  teleop_level3_cargo: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
 
   /**
-   * Endgame
+   * Climb level
    */
   climb: {
     type: Sequelize.ENUM('nothing', 'failed', 'lvl1', 'lvl2', 'lvl3'),

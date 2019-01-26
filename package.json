@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "description": "D-Bug's generic scounting system",
   "scripts": {
-    "lint": "standard --fix",
+    "lint": "eslint --fix .",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
     "dev": "nodemon ./bin/www",
     "serve": "node ./bin/www"
   },
   "author": "Stav Eyal <staveyal210@gmail.com>",
+  "repository": "https://github.com/team3316/kassandra",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
@@ -37,8 +38,15 @@
     "@babel/preset-env": "^7.2.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-standard": "^4.0.0",
     "nodemon": "^1.18.9",
-    "standard": "^12.0.1",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2"
   }

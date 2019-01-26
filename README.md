@@ -31,7 +31,7 @@ npm run serve
 
 ## Scripts
 
-`npm run lint` - Lints the code using [StandardJS](https://standardjs.com/)
+`npm run lint` - Lints the code using ESLint in [Standard](https://standardjs.com/) style
 
 `npm run build` - Builds the code using [Webpack](https://webpack.js.org/) with [Babel](https://babeljs.io/)
 

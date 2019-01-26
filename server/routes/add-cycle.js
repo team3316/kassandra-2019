@@ -6,15 +6,35 @@
 const colors = require('colors')
 const { Cycle } = require('../db')
 
-module.exports = (req, res) => {
+module.exports = ({ body }, res) => {
   Cycle.create({
-    match_id: req.body.matchId,
-    team_number: req.body.teamNumber
+    match_id: body.matchId,
+    team_number: body.teamNumber,
+
+    sandstorm_control_method: body.sandstorm.controlMethod,
+    sandstorm_hab_line: body.sandstorm.habLine,
+    sandstorm_cargo_ship_panels: body.sandstorm.cargoShipPanels,
+    sandstorm_cargo_ship_cargo: body.sandstorm.cargoShipCargo,
+    sandstorm_rocket_panels: body.sandstorm.rocketPanels,
+    sandstorm_rocket_cargo: body.sandstorm.rocketCargo,
+
+    teleop_cargo_ship_panels: body.teleop.panels.cargoShip,
+    teleop_cargo_ship_cargo: body.teleop.cargo.cargoShip,
+    teleop_level1_panels: body.teleop.panels.level1,
+    teleop_level2_panels: body.teleop.panels.level2,
+    teleop_level3_panels: body.teleop.panels.level3,
+    teleop_level1_cargo: body.teleop.cargo.level1,
+    teleop_level2_cargo: body.teleop.cargo.level2,
+    teleop_level3_cargo: body.teleop.cargo.level3,
+
+    climb: body.climb,
+    comments: body.comments,
+    tech_fouls: body.tech_fouls
   })
 
   console.log(
     '==> ' + 'Request Body:'.green.bold + '\n' +
-    JSON.stringify(req.body, null, 2).yellow + '\n' +
+    JSON.stringify(body, null, 2).yellow + '\n' +
     '==> ' + 'Delete this logging'.red.bold
   )
 }

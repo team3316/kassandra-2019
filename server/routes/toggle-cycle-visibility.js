@@ -4,7 +4,7 @@
  */
 const { Cycle } = require('../db')
 
-module.exports = (req, res) => {
-  Cycle.findOne({ where: { id: req.body.id } })
+module.exports = ({ body }, res) => {
+  Cycle.findOne({ where: { id: body.id } })
     .then(cycle => cycle.set('visible'))
 }

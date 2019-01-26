@@ -33,6 +33,39 @@ class Example extends Component {
     })
   }
 
+  handlePost (e) {
+    e.preventDefault()
+
+    axios.post('/cycles', {
+      teamNumber: 3316,
+      matchId: '2018isde1qm1',
+      sandstorm: {
+        controlMethod: 'autonomous',
+        cargoShipPanels: true,
+        cargoShipCargo: false,
+        rocketPanels: false,
+        rocketCargo: false
+      },
+      teleop: {
+        cargo: {
+          cargoShip: 20,
+          level1: 20,
+          level2: 20,
+          level3: 20
+        },
+        panels: {
+          cargoShip: 20,
+          level1: 20,
+          level2: 20,
+          level3: 20
+        }
+      },
+      endgame: 'lvl1',
+      comments: 'הקבוצה הכי טובה נודרררררר',
+      tech_fouls: false
+    })
+  }
+
   render () {
     return (
       <form>
@@ -43,6 +76,8 @@ class Example extends Component {
         {this.state.teams.map(team => <p>{team}</p>)}
         <br />
         <button onClick={e => this.handleRequest(e)}>Request teams</button>
+        <br />
+        <button onClick={e => this.handlePost(e)}>Post Match</button>
       </form>
     )
   }
