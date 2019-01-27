@@ -9,7 +9,8 @@ const {
   getCyclesByEventTeam,
   addCycle,
   toggleCycleVisibility,
-  getStats
+  getStats,
+  getRankings
 } = require('./routes/index')
 
 /**
@@ -37,6 +38,7 @@ router.get('/stats/:teamNumber', getStats)
 /**
  * Get rankings for specific event
  */
+router.get('/rankings/:eventKey', getRankings)
 
 /**
  * Views
