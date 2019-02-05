@@ -3,7 +3,6 @@
  *
  * Request body format at new-cycle.json
  */
-const colors = require('colors')
 const { Cycle } = require('../db')
 
 module.exports = ({ body }, res) => {
@@ -31,10 +30,5 @@ module.exports = ({ body }, res) => {
     comments: body.comments,
     tech_fouls: body.tech_fouls
   })
-
-  console.log(
-    '==> ' + 'Request Body:'.green.bold + '\n' +
-    JSON.stringify(body, null, 2).yellow + '\n' +
-    '==> ' + 'Delete this logging'.red.bold
-  )
+  res.status(200).send('Cycle inserted \n' + JSON.stringify(body, null, 2))
 }

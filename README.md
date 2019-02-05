@@ -22,21 +22,21 @@ Make a `.env` file at the root folder with the same fields as `template.env` and
 # Clone the repository and change directory
 git clone https://github.com/Team3316/kassandra.git && cd kassandra
 # Install the node dependencies
-npm install
+yarn install
 # Build the code
-npm run build
+yarn run build
 # Start the server
-npm run serve
+yarn run serve
 ```
 
 ## Scripts
 
-`npm run lint` - Lints the code using [ESLint](https://eslint.org/) in [Standard](https://standardjs.com/) style
+`yarn run lint` - Lints the code using [ESLint](https://eslint.org/) in [Standard](https://standardjs.com/) style
 
-`npm run build` - Builds the code using [Webpack](https://webpack.js.org/) with [Babel](https://babeljs.io/)
+`yarn run build` - Builds the code using [Webpack](https://webpack.js.org/) with [Babel](https://babeljs.io/)
 
-`npm run watch` - Builds the code in watch mode
+`yarn run watch` - Builds the code in watch mode
 
-`npm run serve` - Serves using [Express](https://expressjs.com/)
+`yarn run serve` - Serves using [Express](https://expressjs.com/)
 
-`npm run dev` - Starts the server in [Nodemon](https://nodemon.io/)
+`yarn run dev` - Starts the server in [Nodemon](https://nodemon.io/)

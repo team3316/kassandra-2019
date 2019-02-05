@@ -3,7 +3,7 @@ const logger = require('morgan')
 const bodyParser = require('body-parser')
 const path = require('path')
 const router = require('./server/router')
-const colors = require('colors')
+require('colors')
 
 const app = express()
 const { sequelize } = require('./server/db')

@@ -15,4 +15,6 @@ module.exports = ({ body }, res) => {
       console.log('==> Cycle: ' + JSON.stringify(cycle, null, 2))
       cycle.save()
     })
+
+  res.status(200)
 }

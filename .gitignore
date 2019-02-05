@@ -1,11 +1,11 @@
-# Dependencies 
+# Dependencies
 node_modules/
 
 # Logs
 *.log
 
 # Webpack bundled files
-public/dist/
+public/app.js
 
 # Config
 .env
