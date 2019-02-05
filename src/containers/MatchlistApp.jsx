@@ -2,13 +2,13 @@ import { connect } from 'react-redux'
 import Filter from '../components/MatchlistFilter.jsx'
 import Matchlist from '../components/Matchlist.jsx'
 import React, { Component } from 'react'
-import { getEvents, getMatches, selectTeam } from '../actions/actions.js'
-
-import Loading from 'react-loading'
+import PropTypes from 'prop-types'
+import { getEvents, getMatches, filterMatchesByTeam } from '../actions/actions.js'
+import { Loading } from 'carbon-components-react'
 
 class App extends Component {
   componentDidMount () {
-    document.title = 'Match List'
+    document.title = 'Kassandra - Match List'
 
     const { getEvents, districtKey } = this.props
     getEvents(districtKey)
@@ -22,7 +22,8 @@ class App extends Component {
       matches,
       team,
       getMatches,
-      selectTeam
+      filterMatchesByTeam,
+      currentEventKey
     } = this.props
 
     return (
@@ -37,7 +38,8 @@ class App extends Component {
               <Filter
                 events={events}
                 getMatches={eventKey => getMatches(eventKey)}
-                selectTeam={team => selectTeam(team)}
+                filterMatchesByTeam={team => filterMatchesByTeam(team)}
+                currentEventKey={currentEventKey}
               />
 
               {
@@ -59,14 +61,28 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ admin }) => {
+App.propTypes = {
+  getEvents: PropTypes.func.isRequired,
+  getMatches: PropTypes.func.isRequired,
+  filterMatchesByTeam: PropTypes.func.isRequired,
+  isFetchingMatches: PropTypes.bool.isRequired,
+  isFetchingEvents: PropTypes.bool.isRequired,
+  districtKey: PropTypes.string.isRequired,
+  events: PropTypes.array.isRequired,
+  matches: PropTypes.array.isRequired,
+  team: PropTypes.string.isRequired,
+  currentEventKey: PropTypes.string.isRequired
+}
+
+const mapStateToProps = ({ matchlist }) => {
   return {
-    isFetchingEvents: admin.isFetchingEvents,
-    isFetchingMatches: admin.isFetchingMatches,
-    matches: admin.matches,
-    events: admin.events,
-    districtKey: admin.districtKey,
-    team: admin.team
+    isFetchingEvents: matchlist.isFetchingEvents,
+    isFetchingMatches: matchlist.isFetchingMatches,
+    matches: matchlist.matches,
+    events: matchlist.events,
+    districtKey: matchlist.districtKey,
+    team: matchlist.team,
+    currentEventKey: matchlist.currentEventKey
   }
 }
 
@@ -74,7 +90,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getEvents: districtKey => dispatch(getEvents(districtKey)),
     getMatches: eventKey => dispatch(getMatches(eventKey)),
-    selectTeam: team => dispatch(selectTeam(team))
+    filterMatchesByTeam: team => dispatch(filterMatchesByTeam(team))
   }
 }
 

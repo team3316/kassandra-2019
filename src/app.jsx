@@ -7,8 +7,11 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
+import './style/index.scss'
+
 import Example from './components/Example.jsx'
-import Container from './containers/MatchlistApp.jsx'
+import Scouting from './containers/Scouting.jsx'
+import Matchlist from './containers/MatchlistApp.jsx'
 import reducers from './reducers/reducers.js'
 
 const districtKey = process.env.DISTRICT_KEY
@@ -33,8 +36,9 @@ render(
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path='/' component={Example} />
-        <Route exact path='/matchlist' component={Container} />
+        <Route exact path='/testing' component={Example} />
+        <Route exact path='/matchlist' component={Matchlist} />
+        <Route exact path='/' component={Scouting} />
       </Switch>
     </Router>
   </Provider>,

@@ -27,13 +27,23 @@ export default class Matchlist extends Component {
         <tbody>
           {filteredMatches.map(match =>
             <tr key={match.key}>
-              {match.comp_level === 'QM'
-                ? <td key={match.key}>QM{match.match_number}</td>
-                : <td key={match.key}>{match.comp_level}{match.match_number}M{match.set_number}</td>
+              {
+                /**
+                 * If the match is a qualification match the set number doesn't matter
+                 */
+                match.comp_level === 'QM'
+                  ? <td key={match.key}>QM{match.match_number}</td>
+                  : <td key={match.key}>{match.comp_level}{match.match_number}M{match.set_number}</td>
               }
 
               {
+                /**
+                 * Red teams
+                 */
                 match.alliances.red.team_keys.map((team, index) => {
+                  /**
+                   * Filters the teams
+                   */
                   if (team.search(selectedTeam) > -1 && selectedTeam !== '') {
                     return <td
                       key={'Red' + (index++)}
@@ -47,9 +57,20 @@ export default class Matchlist extends Component {
                 })}
 
               {
+                /**
+                 * Blue teams
+                 */
                 match.alliances.blue.team_keys.map((team, index) => {
+                  /**
+                   * Filters the teams
+                   */
                   if (team.search(selectedTeam) > -1 && selectedTeam !== '') {
-                    return <td key={'Blue' + (index++)} style={{ 'fontWeight': 'bold' }}>{team}</td>
+                    return <td
+                      key={'Blue' + (index++)}
+                      style={{ 'fontWeight': 'bold' }}
+                    >
+                      {team}
+                    </td>
                   } else {
                     return <td key={'Blue' + (index++)}>{team}</td>
                   }

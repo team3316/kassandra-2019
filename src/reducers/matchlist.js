@@ -1,14 +1,20 @@
-export default (state = {
-  isFetchingEvents: false,
-  isFetchingMatches: false,
-  currentEventKey: '',
-  districtKey: '',
-  eventKey: '',
-  events: [],
-  matches: [],
-  team: ''
-}, action) => {
+import { matchlist } from './initial-state.js'
+
+export default (state = matchlist, action) => {
   switch (action.type) {
+    case 'DISTRICT_KEY':
+      return {
+        ...state,
+        districtKey: action.districtKey
+      }
+
+    case 'CURRENT_EVENT':
+      return {
+        ...state,
+        currentEventKey: action.currentEventKey,
+        eventKey: action.currentEventKey
+      }
+
     case 'REQUEST_EVENTS':
       return {
         ...state,
@@ -22,18 +28,6 @@ export default (state = {
         isFetchingEvents: false,
         events: action.events,
         districtKey: action.districtKey
-      }
-
-    case 'DISTRICT_KEY':
-      return {
-        ...state,
-        districtKey: action.districtKey
-      }
-
-    case 'CURRENT_EVENT':
-      return {
-        ...state,
-        currentEventKey: action.currentEventKey
       }
 
     case 'REQUEST_MATCHES':
@@ -51,7 +45,7 @@ export default (state = {
         matches: action.matches
       }
 
-    case 'SELECT_TEAM':
+    case 'FILTER_MATCHES':
       return {
         ...state,
         team: action.team
