@@ -18,7 +18,7 @@ class MatchlistFilter extends Component {
       <div className='filter'>
         <EventDropdown
           events={events}
-          getMatches={getMatches}
+          action={getMatches}
           currentEventKey={currentEventKey}
         />
         <input

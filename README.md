@@ -22,11 +22,11 @@ Make a `.env` file at the root folder with the same fields as `template.env` and
 # Clone the repository and change directory
 git clone https://github.com/Team3316/kassandra.git && cd kassandra
 # Install the node dependencies
-yarn install
+npm install
 # Build the code
-yarn run build
+npm run build
 # Start the server
-yarn run serve
+npm run serve
 ```
 
 ## Scripts

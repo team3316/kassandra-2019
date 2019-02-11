@@ -3,18 +3,17 @@ export const matchlist = {
   isFetchingMatches: false,
   currentEventKey: '',
   districtKey: '',
-  eventKey: '',
+  event: {},
   events: [],
   matches: [],
   team: ''
 }
 
 export const scouting = {
-  teamNumber: 0,
-  matchId: '',
-  eventKey: '',
+  match: {},
+  team: {},
+  isMatchSelected: false,
   sandstorm: {
-    controlMethod: '',
     cargoShipPanels: false,
     cargoShipCargo: false,
     rocketPanels: false,

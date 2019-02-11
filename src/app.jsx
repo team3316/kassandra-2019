@@ -36,9 +36,9 @@ render(
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route exact path='/testing' component={Example} />
-        <Route exact path='/matchlist' component={Matchlist} />
-        <Route exact path='/' component={Scouting} />
+        <Route path='/testing' component={Example} />
+        <Route path='/matchlist' component={Matchlist} />
+        <Route path='/' component={Scouting} />
       </Switch>
     </Router>
   </Provider>,

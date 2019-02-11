@@ -1,5 +1,5 @@
 /**
- * Blue Alliance axios instance
+ * Blue Alliance fetch function
  */
 const blueAlliance = url => fetch(`https://www.thebluealliance.com/api/v3${url}`, {
   mode: 'cors',
@@ -27,28 +27,29 @@ export const recieveEvents = (districtKey, events) => ({
 })
 
 /**
- * Return an action with the type 'REQUEST_MATCHES', setting the corresponding state to fetching and sets the eventKey
+ * Return an action with the type 'REQUEST_MATCHES',
+ * setting the corresponding state to fetching and sets the eventKey
  * @param  {[type]} eventKey [description]
  * @return {[type]}          [description]
  */
-export const requestMatches = eventKey => ({
+export const requestMatches = event => ({
   type: 'REQUEST_MATCHES',
-  eventKey
+  event
 })
 
-export const recieveMatches = (eventKey, matches) => ({
+export const recieveMatches = (event, matches) => ({
   type: 'RECIEVE_MATCHES',
-  eventKey,
+  event,
   matches
 })
 
 /**
  * Fetches matches, trim 'frc' from team numbers and dispatches to store
  */
-export const getMatches = eventKey => dispatch => {
-  dispatch(requestMatches(eventKey))
+export const getMatches = event => dispatch => {
+  dispatch(requestMatches(event))
 
-  return blueAlliance(`/event/${eventKey}/matches`)
+  return blueAlliance(`/event/${event.key}/matches`)
     .then(data => {
       const matches = data.map(match => {
         const newMatch = match
@@ -95,7 +96,7 @@ export const getMatches = eventKey => dispatch => {
        */
       matches.sort((a, b) => a.actual_time - b.actual_time)
 
-      dispatch(recieveMatches(eventKey, matches))
+      dispatch(recieveMatches(event, matches))
     })
 }
 
@@ -129,11 +130,31 @@ export const getEvents = districtKey => dispatch => {
     })
 }
 
+/**
+ * Dispatches a match object to the store
+ * @param  {Object} match A match object, retrieved from The Blue Alliance API
+ */
 export const selectMatch = match => ({
   type: 'SELECT_MATCH',
   match
 })
 
+/**
+ * Dispatches team object to the store
+ * @param  {Object} team A team object that contains:
+ * team.number: {Number} team number
+ * team.color: {String} team color
+ * team.pos: {Number} team position in the match
+ */
+export const selectTeam = team => ({
+  type: 'SELECT_TEAM',
+  team
+})
+
+/**
+ * Dispatches team to filter by to the store
+ * @param  {String} teamNumber Team number in string
+ */
 export const filterMatchesByTeam = teamNumber => ({
   type: 'FILTER_MATCHES',
   team: teamNumber

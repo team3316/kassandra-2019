@@ -8,10 +8,25 @@ export default (state = scouting, action) => {
         districtKey: action.districtKey
       }
 
+    case 'REQUEST_MATCHES':
+      return {
+        ...state,
+        match: {},
+        isMatchSelected: false,
+        team: {}
+      }
+
     case 'SELECT_MATCH':
       return {
         ...state,
-        match: action.match
+        match: action.match,
+        isMatchSelected: true
+      }
+
+    case 'SELECT_TEAM':
+      return {
+        ...state,
+        team: action.team
       }
 
     default:

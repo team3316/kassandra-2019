@@ -39,6 +39,7 @@ module.exports = {
       reducers: `${srcPath}/reducers`,
       containers: `${srcPath}/containers`,
       actions: `${srcPath}/actions`,
+      views: `${srcPath}/views`,
       style: `${srcPath}/style`
     }
   }

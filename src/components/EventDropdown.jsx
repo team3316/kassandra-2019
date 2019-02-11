@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ComboBox } from 'carbon-components-react'
+import { DropdownV2 as Dropdown } from 'carbon-components-react'
 import PropTypes from 'prop-types'
 
 /**
@@ -8,25 +8,27 @@ import PropTypes from 'prop-types'
 class EventDropdown extends Component {
   componentDidMount () {
     const {
-      getMatches,
+      events,
+      action,
       currentEventKey
     } = this.props
 
-    getMatches(currentEventKey)
+    action(events.find(event => event.key === currentEventKey))
   }
 
   render () {
     const {
       events,
-      getMatches,
-      currentEventKey
+      event,
+      action
     } = this.props
 
     return (
-      <ComboBox
-        onChange={e => getMatches(e.selectedItem.key)}
-        placeholder='Select event'
-        initialSelectedItem={events.find(event => event.key === currentEventKey)}
+      <Dropdown
+        onChange={({ selectedItem }) => action(selectedItem)}
+        titleText='Events'
+        label='Event'
+        selectedItem={event}
         items={events}
         itemToString={event => event.name}
       />
@@ -36,7 +38,8 @@ class EventDropdown extends Component {
 
 EventDropdown.propTypes = {
   events: PropTypes.array.isRequired,
-  getMatches: PropTypes.func.isRequired,
+  event: PropTypes.object.isRequired,
+  action: PropTypes.func.isRequired,
   currentEventKey: PropTypes.string.isRequired
 }
 

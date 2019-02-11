@@ -12,7 +12,9 @@ export default (state = matchlist, action) => {
       return {
         ...state,
         currentEventKey: action.currentEventKey,
-        eventKey: action.currentEventKey
+        event: {
+          key: action.currentEventKey
+        }
       }
 
     case 'REQUEST_EVENTS':
@@ -34,14 +36,14 @@ export default (state = matchlist, action) => {
       return {
         ...state,
         isFetchingMatches: true,
-        eventKey: action.eventKey
+        event: action.event
       }
 
     case 'RECIEVE_MATCHES':
       return {
         ...state,
         isFetchingMatches: false,
-        eventKey: action.eventKey,
+        event: action.event,
         matches: action.matches
       }
 
