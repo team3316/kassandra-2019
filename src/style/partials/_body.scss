@@ -1,5 +1,11 @@
+html {
+  top: 0;
+  bottom: 0;
+}
+
 body {
   font-size: $base-font-size;
   font-family: $font-face !important;
+  top: 0;
+  bottom: 0;
 }
-

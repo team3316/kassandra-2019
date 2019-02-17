@@ -14,13 +14,14 @@ export const scouting = {
   team: {},
   isMatchSelected: false,
   sandstorm: {
+    habLine: false,
     cargoShipPanels: false,
     cargoShipCargo: false,
     rocketPanels: false,
-    rocketCargo: false,
-    habLine: false
+    rocketCargo: false
   },
   teleop: {
+    decrement: false,
     cargo: {
       cargoShip: 0,
       level1: 0,

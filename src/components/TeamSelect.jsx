@@ -43,6 +43,7 @@ class TeamSelect extends Component {
         onChange={e => selectTeam(e.selectedItem)}
         label={'Select team'}
         selectedItem={team}
+        light
         items={teams}
         itemToElement={team => (<span className={`${team.color}Team`}> {team.label} </span>)}
       />

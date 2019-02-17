@@ -2,14 +2,14 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
-import { getEvents, getMatches, selectMatch, selectTeam } from '../actions/actions.js'
+import { getEvents, getMatches } from '../actions/matchlist.js'
+import { selectMatch, selectTeam, toggleHab } from '../actions/scouting.js'
+import Header from '../components/Header.jsx'
 import HomePage from '../views/HomePage.jsx'
 import Autonomous from '../views/Autonomous.jsx'
 
 class Scouting extends Component {
   componentDidMount () {
-    document.title = 'Kassandra - Select team'
-
     const {
       getEvents,
       isFetchingEvents,
@@ -27,6 +27,8 @@ class Scouting extends Component {
   }
 
   render () {
+    document.title = 'Kassandra - Select team'
+
     const {
       isFetchingEvents,
       isFetchingMatches,
@@ -39,7 +41,8 @@ class Scouting extends Component {
       currentEventKey,
       getEvents,
       getMatches,
-      selectMatch
+      selectMatch,
+      toggleHab
     } = this.props
 
     return (
@@ -61,11 +64,13 @@ class Scouting extends Component {
             selectMatch={selectMatch}
             selectTeam={this.props.selectTeam}
           />} />
-        <Route path='/' render={props => <Autonomous
-          {...props}
-          team={team}
-          selectedMatch={selectedMatch}
-        />} />
+        <Route path='/auto' render={props =>
+          <Autonomous
+            {...props}
+            team={team}
+            selectedMatch={selectedMatch}
+            toggleHab={toggleHab}
+          />} />
       </Switch>
     )
   }
@@ -86,7 +91,8 @@ Scouting.propTypes = {
   getEvents: PropTypes.func.isRequired,
   getMatches: PropTypes.func.isRequired,
   selectMatch: PropTypes.func.isRequired,
-  selectTeam: PropTypes.func.isRequired
+  selectTeam: PropTypes.func.isRequired,
+  toggleHab: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -109,7 +115,8 @@ const mapDispatchToProps = dispatch => {
     getEvents: districtKey => dispatch(getEvents(districtKey)),
     getMatches: event => dispatch(getMatches(event)),
     selectMatch: match => dispatch(selectMatch(match)),
-    selectTeam: team => dispatch(selectTeam(team))
+    selectTeam: team => dispatch(selectTeam(team)),
+    toggleHab: () => dispatch(toggleHab)
   }
 }
 

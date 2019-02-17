@@ -3,7 +3,7 @@ import Filter from '../components/MatchlistFilter.jsx'
 import Matchlist from '../components/Matchlist.jsx'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { getEvents, getMatches, filterMatchesByTeam } from '../actions/actions.js'
+import { getEvents, getMatches, filterMatchesByTeam } from '../actions/matchlist.js'
 import { Loading } from 'carbon-components-react'
 
 class App extends Component {

@@ -28,6 +28,7 @@ class EventDropdown extends Component {
         onChange={({ selectedItem }) => action(selectedItem)}
         titleText='Events'
         label='Event'
+        light
         selectedItem={event}
         items={events}
         itemToString={event => event.name}

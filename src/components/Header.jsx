@@ -9,7 +9,7 @@ class Header extends Component {
     } = this.props
 
     return (
-      <div className={`header ${color}`} > {children} </div>
+      <div className={`noselect header ${color}`} > {children} </div>
     )
   }
 }

@@ -1,12 +1,12 @@
-@import 'modules/colors.scss';
-@import 'modules/variables.scss';
-@import 'modules/font-face.scss';
+@import 'modules/index.scss';
 
-@import 'partials/header.scss';
 @import 'partials/body.scss';
 @import 'partials/typography.scss';
+@import 'partials/header.scss';
+@import 'partials/footer.scss';
+@import 'partials/checkbox.scss';
+@import 'partials/buttons.scss';
 
-@import '~carbon-components/scss/globals/scss/styles.scss';
-
+/** TODO: Move team dropdown colours to a different file */
 .redTeam { color: $team-red; }
 .blueTeam { color: $team-blue; }

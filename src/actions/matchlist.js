@@ -131,27 +131,6 @@ export const getEvents = districtKey => dispatch => {
 }
 
 /**
- * Dispatches a match object to the store
- * @param  {Object} match A match object, retrieved from The Blue Alliance API
- */
-export const selectMatch = match => ({
-  type: 'SELECT_MATCH',
-  match
-})
-
-/**
- * Dispatches team object to the store
- * @param  {Object} team A team object that contains:
- * team.number: {Number} team number
- * team.color: {String} team color
- * team.pos: {Number} team position in the match
- */
-export const selectTeam = team => ({
-  type: 'SELECT_TEAM',
-  team
-})
-
-/**
  * Dispatches team to filter by to the store
  * @param  {String} teamNumber Team number in string
  */

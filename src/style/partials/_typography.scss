@@ -1,14 +1,34 @@
+/**
+ * Disabling text selection
+ */
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version */
+}
+/**
+ * A div under the page header
+ */
 .content {
   position: absolute;
-  margin-top: 70px;
+  top: $header-height + 15px;
+  right: 8px;
+  left: 8px;
 }
 
+/**
+ * The title of the page, e.g. Sandstorm, Teleop
+ */
 .pageTitle {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
   width: 100%;
+  margin-bottom: 10px;
 
   h1 {
     font-size: 1.5rem !important;
@@ -17,8 +37,24 @@
   }
 
   svg {
-    margin: 0 8px;
     height: 1.625rem;
     width: 1.625rem;
+    margin-right: 8px;
   }
+}
+
+/**
+ * The text of the checkbox
+ */
+.bx--checkbox-label {
+  font-family: $font-face !important;
+}
+
+/**
+ * The div under the page title
+ */
+.form {
+  position: relative;
+  top: 5px;
+  width: 100%;
 }

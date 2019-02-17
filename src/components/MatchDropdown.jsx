@@ -17,6 +17,7 @@ class MatchDropdown extends Component {
       <Dropdown
         onChange={({ selectedItem }) => selectMatch(selectedItem)}
         label='Match'
+        light
         items={matches}
         itemToString={match => match.name}
         disabled={disabled}

@@ -1,0 +1,58 @@
+/**
+ * Container for the buttons columns
+ */
+.buttons {
+  position: absolute;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  right: 0;
+  left: 0;
+}
+
+/**
+ * Buttons column
+ */
+.column {
+  position: relative;
+  top: 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  &:not(:last-child) { margin-right: 8px; }
+  .title {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    svg {
+      margin-right: 4px;
+      height: 1.125rem;
+      width: 1.125rem;
+    }
+  }
+}
+
+/**
+ * Button properties
+ */
+.bx--btn {
+  font-family: $font-face !important;
+  margin-top: 8px;
+  display: flex !important;
+  // align-items: center !important;
+  flex-direction: row;
+  span { align-self: center; }
+  svg {
+    margin-right: 4px;
+    height: 1.125rem;
+    width: 1.125rem;
+  }
+}
+
+.bx--btn--primary {
+  &.blue { background-color: $team-blue !important; }
+  &.red { background-color: $team-red !important; }
+  height: 50px;
+  // width: 100%;
+  flex-grow: 1;
+}

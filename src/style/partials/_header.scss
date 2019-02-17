@@ -1,19 +1,28 @@
+/**
+ * This file has properties for the page header
+ */
 .header {
-  margin: 0 auto;
-  width: 100%;
   height: $header-height;
   line-height: $header-height;
   position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   color: #fff;
   background-color: #252525;
   display: inline-block;
   font-size: 150%;
   text-align: center;
 
+  /**
+   * The header changes colour based on team colour
+   */
   &.red { background-color: $team-red; }
   &.blue { background-color: $team-blue; }
 
+  /**
+   * The text of the header
+   */
   span {
     display: inline-block;
     text-align: center;
