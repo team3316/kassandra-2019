@@ -12,7 +12,9 @@ import {
   setIncrement,
   climb,
   techFouls,
-  comment
+  comment,
+  postForm,
+  finishSubmit
 } from '../actions/scouting.js'
 import {
   HomePage,
@@ -22,6 +24,12 @@ import {
 } from 'views'
 
 class Scouting extends Component {
+  constructor (props) {
+    super(props)
+
+    this.submit = this.submit.bind(this)
+  }
+
   componentDidMount () {
     const {
       getEvents,
@@ -39,6 +47,23 @@ class Scouting extends Component {
     }
   }
 
+  /**
+   * Make a submit requesg
+   * @return {Promise} Resolve after submit
+   */
+  submit () {
+    const {
+      match,
+      team,
+      sandstormState,
+      teleopState,
+      endgameState,
+      postForm
+    } = this.props
+
+    return postForm(match, team, sandstormState, teleopState, endgameState)
+  }
+
   render () {
     document.title = 'Select team'
 
@@ -49,7 +74,7 @@ class Scouting extends Component {
       isMatchSelected,
       matches,
       event,
-      selectedMatch,
+      match,
       team,
       currentEventKey,
       getEvents,
@@ -65,12 +90,15 @@ class Scouting extends Component {
       endgameState,
       climb,
       comment,
-      techFouls
+      techFouls,
+      finishSubmit,
+      isSubmitting
     } = this.props
+    const { submit } = this
 
     return (
       <Switch>
-        <Route exact path={`${this.props.match.url}/`} render={props =>
+        <Route exact path='/' render={props =>
           <HomePage
             {...props}
             isFetchingEvents={isFetchingEvents}
@@ -79,7 +107,7 @@ class Scouting extends Component {
             isMatchSelected={isMatchSelected}
             matches={matches}
             event={event}
-            selectedMatch={selectedMatch}
+            match={match}
             team={team}
             currentEventKey={currentEventKey}
             getEvents={getEvents}
@@ -91,7 +119,7 @@ class Scouting extends Component {
           <Sandstorm
             {...props}
             team={team}
-            selectedMatch={selectedMatch}
+            match={match}
             state={sandstormState}
             actions={sandstormActions}
           />} />
@@ -99,7 +127,7 @@ class Scouting extends Component {
           <Teleop
             {...props}
             team={team}
-            selectedMatch={selectedMatch}
+            match={match}
             state={teleopState}
             actions={changeValue}
             setIncrement={setIncrement}
@@ -109,11 +137,14 @@ class Scouting extends Component {
           <Endgame
             {...props}
             team={team}
-            selectedMatch={selectedMatch}
+            match={match}
             state={endgameState}
             climb={climb}
             techFouls={techFouls}
             comment={comment}
+            submit={submit}
+            finishSubmit={finishSubmit}
+            isSubmitting={isSubmitting}
           />} />
       </Switch>
     )
@@ -121,7 +152,6 @@ class Scouting extends Component {
 }
 
 Scouting.propTypes = {
-  match: PropTypes.object.isRequired,
   districtKey: PropTypes.string.isRequired,
   isFetchingMatches: PropTypes.bool.isRequired,
   isFetchingEvents: PropTypes.bool.isRequired,
@@ -129,7 +159,7 @@ Scouting.propTypes = {
   events: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
-  selectedMatch: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   team: PropTypes.object.isRequired,
   currentEventKey: PropTypes.string.isRequired,
   getEvents: PropTypes.func.isRequired,
@@ -143,7 +173,12 @@ Scouting.propTypes = {
   toggleDecrement: PropTypes.func.isRequired,
   setIncrement: PropTypes.func.isRequired,
   endgameState: PropTypes.object.isRequired,
-  climb: PropTypes.func.isRequired
+  climb: PropTypes.func.isRequired,
+  comment: PropTypes.func.isRequired,
+  techFouls: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  postForm: PropTypes.func.isRequired,
+  finishSubmit: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -156,11 +191,12 @@ const mapStateToProps = state => {
     isFetchingMatches: state.matchlist.isFetchingMatches,
     isMatchSelected: state.scouting.isMatchSelected,
     event: state.matchlist.event,
-    selectedMatch: state.scouting.match,
+    match: state.scouting.match,
     team: state.scouting.team,
     sandstormState: state.scouting.sandstorm,
     teleopState: state.scouting.teleop,
-    endgameState: state.scouting.endgame
+    endgameState: state.scouting.endgame,
+    isSubmitting: state.scouting.isSubmitting
   }
 }
 
@@ -176,7 +212,10 @@ const mapDispatchToProps = dispatch => {
     setIncrement: () => dispatch(setIncrement),
     climb: level => dispatch(climb(level)),
     comment: text => dispatch(comment(text)),
-    techFouls: () => dispatch(techFouls)
+    techFouls: () => dispatch(techFouls),
+    postForm: (team, match, sandstorm, teleop, endgame) =>
+      dispatch(postForm(team, match, sandstorm, teleop, endgame)),
+    finishSubmit: () => dispatch(finishSubmit)
   }
 }
 

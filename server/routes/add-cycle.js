@@ -7,7 +7,7 @@ const { Cycle } = require('../db')
 
 module.exports = ({ body }, res) => {
   Cycle.create({
-    match_id: body.matchId,
+    match_key: body.matchKey,
     team_number: body.teamNumber,
 
     sandstorm_hab_line: body.sandstorm.habLine,
@@ -26,7 +26,7 @@ module.exports = ({ body }, res) => {
     teleop_panels_to_level3: body.teleop.panels.level3,
 
     climb: body.climb,
-    comments: body.comments,
+    comment: body.comment,
     tech_fouls: body.tech_fouls
   })
   res.status(200).send('Cycle inserted \n' + JSON.stringify(body, null, 2))

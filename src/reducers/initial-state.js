@@ -36,8 +36,12 @@ export const scouting = {
     }
   },
   endgame: {
-    climb: null,
+    climb: {
+      label: 'Nothing',
+      value: 'nothing'
+    },
     comment: '',
     techFouls: false
-  }
+  },
+  isSubmitting: false
 }

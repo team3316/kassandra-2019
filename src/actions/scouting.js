@@ -100,10 +100,30 @@ export const comment = comment => ({
 
 export const techFouls = { type: 'TOGGLE_TECH_FOULS' }
 
-export const nextMatch = {
+/**
+ * Change the state to show the state of a submit request
+ */
+const requestSubmit = { type: 'REQUEST_SUBMIT' }
+export const finishSubmit = { type: 'FINISH_SUBMIT' }
 
-}
+/**
+ * Makes a post requsest, and returns a promise to resolve by the user
+ * @param  {Object} state The current state of the application
+ * @return {Promise}
+ */
+export const postForm = (match, team, sandstorm, teleop, endgame) => dispatch => {
+  dispatch(requestSubmit)
 
-export const submit = {
-
+  return fetch('/cycles', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      teamNumber: team.number,
+      matchKey: match.key,
+      sandstorm: sandstorm,
+      teleop: teleop,
+      ...endgame,
+      climb: endgame.climb.value
+    })
+  })
 }

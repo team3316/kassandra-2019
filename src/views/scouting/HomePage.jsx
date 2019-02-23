@@ -6,7 +6,6 @@ import {
   TeamSelect,
   Footer
 } from 'components'
-import { Link } from 'react-router-dom'
 import { DropdownSkeleton, Button } from 'carbon-components-react'
 
 class SelectTeam extends Component {
@@ -21,9 +20,10 @@ class SelectTeam extends Component {
       selectMatch,
       currentEventKey,
       selectTeam,
-      selectedMatch,
+      match,
       isMatchSelected,
-      team
+      team,
+      history
     } = this.props
 
     return (
@@ -55,7 +55,7 @@ class SelectTeam extends Component {
                 matches={matches}
                 selectMatch={selectMatch}
                 disabled={isFetchingMatches || matches.length === 0}
-                match={selectedMatch}
+                match={match}
               />
               {
                 /**
@@ -65,13 +65,13 @@ class SelectTeam extends Component {
                   ? <TeamSelect
                     team={team}
                     selectTeam={selectTeam}
-                    match={selectedMatch}
+                    match={match}
                   />
                   : <div id='Empty' />
               }
             </div>
         }
-        <Footer> <Link to='/sandstorm' > <Button> Sandstorm </Button> </Link> </Footer>
+        <Footer> <Button onClick={() => history.push('/sandstorm')}> Sandstorm </Button> </Footer>
       </div>
     )
   }
@@ -84,12 +84,13 @@ SelectTeam.propTypes = {
   events: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
-  selectedMatch: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   team: PropTypes.object.isRequired,
   currentEventKey: PropTypes.string.isRequired,
   getMatches: PropTypes.func.isRequired,
   selectMatch: PropTypes.func.isRequired,
-  selectTeam: PropTypes.func.isRequired
+  selectTeam: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default SelectTeam

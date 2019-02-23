@@ -9,8 +9,8 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  a {
+  align-items: baseline;
+  .bx--btn {
     flex-grow: 1;
     display: flex;
   }

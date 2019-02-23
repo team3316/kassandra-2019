@@ -5,9 +5,9 @@ import {
   DropdownV2 as Dropdown,
   Checkbox,
   Button,
-  TextArea
+  TextArea,
+  InlineLoading
 } from 'carbon-components-react'
-import { Link } from 'react-router-dom'
 import { GiStairsGoal as Stairs } from 'react-icons/gi'
 class Endgame extends Component {
   render () {
@@ -32,17 +32,21 @@ class Endgame extends Component {
 
     const {
       team,
-      selectedMatch,
+      match,
       state,
       climb,
       comment,
-      techFouls
+      techFouls,
+      isSubmitting,
+      submit,
+      finishSubmit,
+      history
     } = this.props
 
     return (
       <div className='endgame'>
         <Header color={team.color}>
-          <span> {`${selectedMatch.name} | ${team.label}`} </span>
+          <span> {`${match.name} | ${team.label}`} </span>
         </Header>
 
         <div className='content noselect'>
@@ -78,8 +82,20 @@ class Endgame extends Component {
           </div>
         </div>
         <Footer>
-          <Link to='/teleop'> <Button> Teleop </Button> </Link>
-          <Button> Submit </Button>
+          <Button onClick={() => history.push('/teleop')}> Teleop </Button>
+          {
+            !isSubmitting
+              ? <Button onClick={() => {
+                submit().then(res => {
+                  finishSubmit()
+                  history.push('/')
+                })
+              }}> Submit </Button>
+              : <InlineLoading
+                success={!isSubmitting}
+                description='Submitting...'
+              />
+          }
         </Footer>
       </div>
     )
@@ -88,11 +104,15 @@ class Endgame extends Component {
 
 Endgame.propTypes = {
   team: PropTypes.object.isRequired,
-  selectedMatch: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired,
   climb: PropTypes.func.isRequired,
   comment: PropTypes.func.isRequired,
-  techFouls: PropTypes.func.isRequired
+  techFouls: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  submit: PropTypes.func.isRequired,
+  finishSubmit: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default Endgame

@@ -64,7 +64,7 @@ export const getMatches = event => dispatch => {
           .map(teamKey => teamKey.replace('frc', ''))
 
         /**
-         * Sets name to show in the ComboBox
+         * Sets name to show in the dropdown
          * For example: Quals 33, Finals 1 Match 2
          */
         switch (newMatch.comp_level) {
@@ -102,8 +102,10 @@ export const getMatches = event => dispatch => {
 
 /** Gets district events and makes a get request */
 export const getEvents = districtKey => dispatch => {
+  /** Change the state fetching events */
   dispatch(requestEvents(districtKey))
 
+  /** Fetching events */
   return blueAlliance(`/district/${districtKey}/events/simple`)
     .then(data => {
       const events = []

@@ -1,7 +1,6 @@
 {
   "teamNumber": 0,
-  "matchId": "",
-  "eventKey": "",
+  "matchKey": "",
   "sandstorm": {
     "habLine": false,
     "cargoToCargoShip": false,
@@ -24,6 +23,6 @@
     }
   },
   "climb": "",
-  "comments": "",
+  "comment": "",
   "techFouls": false
 }

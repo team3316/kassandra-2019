@@ -77,7 +77,7 @@
  * Styles for toggling buttons
  */
 .disabled {
-&.bx--btn--primary { background-color: $disabled-button !important; }
+  &.bx--btn--primary { background-color: $disabled-button !important; }
   &.bx--btn--primary:hover { background-color: $disabled-button-hover !important; }
 }
 
@@ -86,4 +86,28 @@
  */
 .toggleDecrement {
   width: 100%;
+  &.increment {
+    &.bx--btn--primary {
+      background-color: $increment !important;
+      &:hover { background-color: $increment-hover !important }
+  }}
+
+  &.decrement {
+    &.bx--btn--primary {
+      background-color: $decrement !important;
+      &:hover { background-color: $decrement-hover !important }
+  }}
 }
+
+
+.increment {
+  .bx--btn--primary {
+    background-color: $increment !important;
+    &:hover { background-color: $increment-hover !important }
+}}
+
+.decrement {
+  .bx--btn--primary {
+    background-color: $decrement !important;
+    &:hover { background-color: $decrement-hover !important }
+}}

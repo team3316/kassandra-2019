@@ -17,13 +17,13 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   }
 })
 
-/** Importing models */
+/** Creating models */
 const Cycle = sequelize.define('cycles', {
   /**
    * The match id consists of the event, the match and the set number
    * @type {String}
    */
-  match_id: {
+  match_key: {
     type: Sequelize.STRING,
     allowNull: false
   },
@@ -119,7 +119,8 @@ const Cycle = sequelize.define('cycles', {
    * Climb level
    */
   climb: {
-    type: Sequelize.ENUM('nothing', 'failed', 'level1', 'level2', 'level3'),
+    type: Sequelize.ENUM,
+    values: ['nothing', 'failed', 'level1', 'level2', 'level3'],
     defaultValue: 'nothing',
     allowNull: false
   },
@@ -127,7 +128,7 @@ const Cycle = sequelize.define('cycles', {
   /**
    * Miscellaneous
    */
-  comments: {
+  comment: {
     type: Sequelize.STRING
   },
   tech_fouls: {

@@ -341,6 +341,24 @@ export default (state = scouting, action) => {
         }
       }
 
+    /**
+     * Change state to represent currently submitting the form
+     */
+    case 'REQUEST_SUBMIT':
+      return {
+        ...state,
+        isSubmitting: true
+      }
+
+    /**
+     * Change state to the next team in the same position in the next match
+     */
+    case 'FINISH_SUBMIT':
+      return {
+        ...state,
+        isSubmitting: false
+      }
+
     default:
       return state
   }

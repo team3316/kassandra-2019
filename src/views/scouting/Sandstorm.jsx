@@ -20,7 +20,8 @@ class Sandstorm extends Component {
 
     const {
       team,
-      selectedMatch,
+      match,
+      history,
       state,
       actions
     } = this.props
@@ -28,7 +29,7 @@ class Sandstorm extends Component {
     return (
       <div id='auto'>
         <Header color={team.color}>
-          <span> {`${selectedMatch.name} | ${team.label}`} </span>
+          <span> {`${match.name} | ${team.label}`} </span>
         </Header>
 
         <div className='content noselect'>
@@ -84,8 +85,8 @@ class Sandstorm extends Component {
         </div>
 
         <Footer>
-          <Link to='/'> <Button> Team Selection </Button> </Link>
-          <Link to='/teleop'> <Button> Teleop </Button> </Link>
+          <Button onClick={() => history.push('/')}> Team Selection </Button>
+          <Button onClick={() => history.push('/teleop')}> Teleop </Button>
         </Footer>
       </div>
     )
@@ -94,9 +95,10 @@ class Sandstorm extends Component {
 
 Sandstorm.propTypes = {
   team: PropTypes.object.isRequired,
-  selectedMatch: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired,
-  actions: PropTypes.func.isRequired
+  actions: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default Sandstorm

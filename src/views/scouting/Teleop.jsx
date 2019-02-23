@@ -5,7 +5,6 @@ import {
   Footer
 } from 'components'
 import { Button } from 'carbon-components-react'
-import { Link } from 'react-router-dom'
 import {
   GiJoystick as Controller,
   GiSailboat as Sailboat,
@@ -23,11 +22,12 @@ class Teleop extends Component {
 
     const {
       team,
-      selectedMatch,
+      match,
       state,
       actions,
       toggleDecrement,
-      setIncrement
+      setIncrement,
+      history
     } = this.props
 
     const {
@@ -39,7 +39,7 @@ class Teleop extends Component {
     return (
       <div className='teleop'>
         <Header color={team.color}>
-          <span> {`${selectedMatch.name} | ${team.label}`} </span>
+          <span> {`${match.name} | ${team.label}`} </span>
         </Header>
 
         <div className='content noselect'>
@@ -91,8 +91,14 @@ class Teleop extends Component {
           </div>
         </div>
         <Footer>
-          <Link to='/sandstorm'> <Button onClick={() => setIncrement()}> Sandstorm </Button> </Link>
-          <Link to='/endgame'> <Button onClick={() => setIncrement()}> Endgame </Button> </Link>
+          <Button onClick={() => {
+            setIncrement()
+            history.push(`/sandstorm`)
+          }}> Sandstorm </Button>
+          <Button onClick={() => {
+            setIncrement()
+            history.push('/endgame')
+          }}> Endgame </Button>
         </Footer>
       </div>
     )
@@ -101,11 +107,12 @@ class Teleop extends Component {
 
 Teleop.propTypes = {
   team: PropTypes.object.isRequired,
-  selectedMatch: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
   state: PropTypes.object.isRequired,
   actions: PropTypes.func.isRequired,
   setIncrement: PropTypes.func.isRequired,
-  toggleDecrement: PropTypes.func.isRequired
+  toggleDecrement: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default Teleop
