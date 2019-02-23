@@ -2,13 +2,16 @@
  * This file contains stylings for the page footer
  */
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
-  height: $footer-height;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  a {
+    flex-grow: 1;
+    display: flex;
+  }
 }

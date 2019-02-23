@@ -39,39 +39,44 @@ export default (state = scouting, action) => {
       return {
         ...state,
         sandstorm: {
+          ...state.sandstorm,
           habLine: !state.sandstorm.habLine
         }
       }
 
-    case 'TOGGLE_AUTO_PANEL_CARGO_SHIP':
+    case 'TOGGLE_SANDSTORM_CARGO_TO_CARGO_SHIP':
       return {
         ...state,
         sandstorm: {
-          cargoShipPanels: !state.sandstorm.cargoShipPanels
+          ...state.sandstorm,
+          cargoToCargoShip: !state.sandstorm.cargoToCargoShip
         }
       }
 
-    case 'TOGGLE_AUTO_PANEL_ROCKET':
+    case 'TOGGLE_SANDSTORM_CARGO_TO_ROCKET':
       return {
         ...state,
         sandstorm: {
-          rocketPanels: !state.sandstorm.rocketPanels
+          ...state.sandstorm,
+          cargoToRocket: !state.sandstorm.cargoToRocket
         }
       }
 
-    case 'TOGGLE_AUTO_CARGO_CARGO_SHIP':
+    case 'TOGGLE_SANDSTORM_PANEL_TO_CARGO_SHIP':
       return {
         ...state,
         sandstorm: {
-          cargoShipCargo: !state.sandstorm.cargoShipCargo
+          ...state.sandstorm,
+          panelToCargoShip: !state.sandstorm.panelToCargoShip
         }
       }
 
-    case 'TOGGLE_AUTO_CARGO_ROCKET':
+    case 'TOGGLE_SANDSTORM_PANEL_TO_ROCKET':
       return {
         ...state,
         sandstorm: {
-          rocketCargo: !state.sandstorm.rocketCargo
+          ...state.sandstorm,
+          panelToRocket: !state.sandstorm.panelToRocket
         }
       }
 
@@ -82,7 +87,21 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
-          decrement: !state.teleop.decrement
+          ...state.teleop,
+          shouldDecrement: !state.teleop.shouldDecrement
+        }
+      }
+
+    /**
+     * Sets shouldDecrement to true
+     * Used after moving views
+     */
+    case 'SET_INCREMENT':
+      return {
+        ...state,
+        teleop: {
+          ...state.teleop,
+          shouldDecrement: false
         }
       }
 
@@ -93,8 +112,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            cargoShip: state.cargo.cargoShip + 1
+            ...state.teleop.cargo,
+            cargoShip: state.teleop.cargo.cargoShip + 1
           }
         }
       }
@@ -103,8 +124,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            level1: state.cargo.level1 + 1
+            ...state.teleop.cargo,
+            level1: state.teleop.cargo.level1 + 1
           }
         }
       }
@@ -113,8 +136,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            level2: state.cargo.level2 + 1
+            ...state.teleop.cargo,
+            level2: state.teleop.cargo.level2 + 1
           }
         }
       }
@@ -123,8 +148,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            level3: state.cargo.level3 + 1
+            ...state.teleop.cargo,
+            level3: state.teleop.cargo.level3 + 1
           }
         }
       }
@@ -133,8 +160,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            cargoShip: state.panels.cargoShip + 1
+            ...state.teleop.panels,
+            cargoShip: state.teleop.panels.cargoShip + 1
           }
         }
       }
@@ -143,8 +172,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            level1: state.panels.level1 + 1
+            ...state.teleop.panels,
+            level1: state.teleop.panels.level1 + 1
           }
         }
       }
@@ -153,8 +184,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            level2: state.panels.level2 + 1
+            ...state.teleop.panels,
+            level2: state.teleop.panels.level2 + 1
           }
         }
       }
@@ -163,8 +196,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            level3: state.panels.level3 + 1
+            ...state.teleop.panels,
+            level3: state.teleop.panels.level3 + 1
           }
         }
       }
@@ -176,8 +211,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            cargoShip: state.cargo.cargoShip - 1
+            ...state.teleop.cargo,
+            cargoShip: state.teleop.cargo.cargoShip - 1
           }
         }
       }
@@ -186,8 +223,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            level1: state.cargo.level1 - 1
+            ...state.teleop.cargo,
+            level1: state.teleop.cargo.level1 - 1
           }
         }
       }
@@ -196,8 +235,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            level2: state.cargo.level2 - 1
+            ...state.teleop.cargo,
+            level2: state.teleop.cargo.level2 - 1
           }
         }
       }
@@ -206,8 +247,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           cargo: {
-            level3: state.cargo.level3 - 1
+            ...state.teleop.cargo,
+            level3: state.teleop.cargo.level3 - 1
           }
         }
       }
@@ -216,8 +259,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            cargoShip: state.panels.cargoShip - 1
+            ...state.teleop.panels,
+            cargoShip: state.teleop.panels.cargoShip - 1
           }
         }
       }
@@ -226,8 +271,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            level1: state.panels.level1 - 1
+            ...state.teleop.panels,
+            level1: state.teleop.panels.level1 - 1
           }
         }
       }
@@ -236,8 +283,10 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            level2: state.panels.level2 - 1
+            ...state.teleop.panels,
+            level2: state.teleop.panels.level2 - 1
           }
         }
       }
@@ -246,19 +295,50 @@ export default (state = scouting, action) => {
       return {
         ...state,
         teleop: {
+          ...state.teleop,
           panels: {
-            level3: state.panels.level3 - 1
+            ...state.teleop.panels,
+            level3: state.teleop.panels.level3 - 1
           }
         }
       }
 
     /**
      * Endgame
+     *
+     * Gets action.level for climb level
      */
     case 'CLIMB':
       return {
         ...state,
-        climb: action.level
+        endgame: {
+          ...state.endgame,
+          climb: action.level
+        }
+      }
+
+    /**
+     * Gets action.comment for the comments
+     */
+    case 'COMMENT':
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          comment: action.comment
+        }
+      }
+
+    /**
+     * Toggle tech fouls
+     */
+    case 'TOGGLE_TECH_FOULS':
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          techFouls: !state.endgame.techFouls
+        }
       }
 
     default:

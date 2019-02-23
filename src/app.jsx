@@ -7,16 +7,16 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 
-import './style/index.scss'
-import './style/carbon.scss'
+import 'style/index.scss'
+import 'style/carbon.scss'
 
-import Example from './components/Example.jsx'
-import Scouting from './containers/Scouting.jsx'
-import Matchlist from './containers/MatchlistApp.jsx'
-import reducers from './reducers/reducers.js'
+import { Example } from 'components'
+import Scouting from 'containers/Scouting.jsx'
+import Matchlist from 'containers/MatchlistApp.jsx'
+import reducers from 'reducers/reducers.js'
 
 /**
- * Gets the current district and event from enviorment variables (during bundling)
+ * Gets the current district and event from enviornment variables (during bundling)
  */
 const districtKey = process.env.DISTRICT_KEY
 const currentEventKey = process.env.CURRENT_EVENT

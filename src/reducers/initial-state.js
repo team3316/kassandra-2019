@@ -15,10 +15,10 @@ export const scouting = {
   isMatchSelected: false,
   sandstorm: {
     habLine: false,
-    cargoShipPanels: false,
-    cargoShipCargo: false,
-    rocketPanels: false,
-    rocketCargo: false
+    cargoToCargoShip: false,
+    cargoToRocket: false,
+    panelToCargoShip: false,
+    panelToRocket: false
   },
   teleop: {
     decrement: false,
@@ -35,7 +35,9 @@ export const scouting = {
       level3: 0
     }
   },
-  climb: '',
-  comments: '',
-  techFouls: false
+  endgame: {
+    climb: null,
+    comment: '',
+    techFouls: false
+  }
 }

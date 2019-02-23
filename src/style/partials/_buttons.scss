@@ -4,10 +4,32 @@
 .buttons {
   position: absolute;
   display: flex;
-  flex-grow: 1;
   flex-direction: row;
   right: 0;
   left: 0;
+}
+
+/**
+ * Titles for the button rows
+ */
+.titles {
+  display: flex;
+  flex-direction: row;
+  right: 0;
+  left: 0;
+  .title {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0px;
+    flex-grow: 1;
+    flex-basis: 0;
+    &:not(:first-child) { margin-left: 8px; }
+    svg {
+      margin-right: 4px;
+      height: 1.125rem;
+      width: 1.125rem;
+    }
+  }
 }
 
 /**
@@ -20,26 +42,15 @@
   display: flex;
   flex-direction: column;
   &:not(:last-child) { margin-right: 8px; }
-  .title {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 0px;
-    svg {
-      margin-right: 4px;
-      height: 1.125rem;
-      width: 1.125rem;
-    }
-  }
 }
 
 /**
  * Button properties
  */
 .bx--btn {
+  display: inline-flex !important;
   font-family: $font-face !important;
-  margin-top: 8px;
-  display: flex !important;
-  // align-items: center !important;
+  &:not(:first-child) { margin-top: 8px; }
   flex-direction: row;
   span { align-self: center; }
   svg {
@@ -50,9 +61,29 @@
 }
 
 .bx--btn--primary {
-  &.blue { background-color: $team-blue !important; }
-  &.red { background-color: $team-red !important; }
+  &.red {
+    background-color: $team-red !important;
+    &:hover { background-color: $team-red-hover !important; }
+  }
+  &.blue {
+    background-color: $team-blue !important;
+    &:hover { background-color: $team-blue-hover !important; }
+  }
   height: 50px;
-  // width: 100%;
   flex-grow: 1;
+}
+
+/**
+ * Styles for toggling buttons
+ */
+.disabled {
+&.bx--btn--primary { background-color: $disabled-button !important; }
+  &.bx--btn--primary:hover { background-color: $disabled-button-hover !important; }
+}
+
+/**
+ * Stylings for the plus/minus button at the Teleop page
+ */
+.toggleDecrement {
+  width: 100%;
 }

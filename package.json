@@ -1,9 +1,9 @@
 {
   "name": "kassandra",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "D-Bug's generic scounting system",
   "scripts": {
-    "lint": "eslint --fix .",
+    "lint": "eslint --ext .jsx,.js --fix .",
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
     "dev": "nodemon ./bin/www",

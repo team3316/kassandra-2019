@@ -20,40 +20,70 @@ export const selectTeam = team => ({
 })
 
 /**
- * Toggle hab line value
+ * Sandstorm actions
  */
-export const toggleHab = { type: 'TOGGLE_HAB' }
+export const sandstorm = {
+  /**
+   * Toggle hab line value
+   */
+  toggleHab: { type: 'TOGGLE_HAB' },
 
-/**
- * Togglers for autonomous installations
- */
-export const toggleAutoPanelCargoShip = { type: 'TOGGLE_AUTO_PANEL_CARGO_SHIP' }
-export const toggleAutoPanelRocket = { type: 'TOGGLE_AUTO_PANEL_ROCKET' }
-export const toggleAutoCargoCargoShip = { type: 'TOGGLE_AUTO_CARGO_CARGO_SHIP' }
-export const toggleAutoCargoRocket = { type: 'TOGGLE_AUTO_CARGO_ROCKET' }
+  /**
+   * Togglers for autonomous installations
+   */
+  togglePanelToCargoShip: { type: 'TOGGLE_SANDSTORM_PANEL_TO_CARGO_SHIP' },
+  togglePanelToRocket: { type: 'TOGGLE_SANDSTORM_PANEL_TO_ROCKET' },
+  toggleCargoToCargoShip: { type: 'TOGGLE_SANDSTORM_CARGO_TO_CARGO_SHIP' },
+  toggleCargoToRocket: { type: 'TOGGLE_SANDSTORM_CARGO_TO_ROCKET' }
+}
 
 /**
  * Incrementing and decrementing the teleop states
  */
 export const toggleDecrement = { type: 'TOGGLE_DECREMENT' }
 
-export const incrementCargoCargoShip = { type: 'INCREMENT_CARGO_CARGO_SHIP' }
-export const incrementCargoLevel1 = { type: 'INCREMENT_CARGO_LEVEL1' }
-export const incrementCargoLevel2 = { type: 'INCREMENT_CARGO_LEVEL2' }
-export const incrementCargoLevel3 = { type: 'INCREMENT_CARGO_LEVEL3' }
-export const incrementPanelCargoShip = { type: 'INCREMENT_PANEL_CARGO_SHIP' }
-export const incrementPanelLevel1 = { type: 'INCREMENT_PANEL_LEVEL1' }
-export const incrementPanelLevel2 = { type: 'INCREMENT_PANEL_LEVEL2' }
-export const incrementPanelLevel3 = { type: 'INCREMENT_PANEL_LEVEL3' }
+export const increment = {
+  cargoToCargoShip: { type: 'INCREMENT_CARGO_CARGO_SHIP' },
+  cargoToLevel1: { type: 'INCREMENT_CARGO_LEVEL1' },
+  cargoToLevel2: { type: 'INCREMENT_CARGO_LEVEL2' },
+  cargoToLevel3: { type: 'INCREMENT_CARGO_LEVEL3' },
+  panelToCargoShip: { type: 'INCREMENT_PANEL_CARGO_SHIP' },
+  panelToLevel1: { type: 'INCREMENT_PANEL_LEVEL1' },
+  panelToLevel2: { type: 'INCREMENT_PANEL_LEVEL2' },
+  panelToLevel3: { type: 'INCREMENT_PANEL_LEVEL3' }
+}
 
-export const decrementCargoCargoShip = { type: 'DECREMENT_CARGO_CARGO_SHIP' }
-export const decrementCargoLevel1 = { type: 'DECREMENT_CARGO_LEVEL1' }
-export const decrementCargoLevel2 = { type: 'DECREMENT_CARGO_LEVEL2' }
-export const decrementCargoLevel3 = { type: 'DECREMENT_CARGO_LEVEL3' }
-export const decrementPanelCargoShip = { type: 'DECREMENT_PANEL_CARGO_SHIP' }
-export const decrementPanelLevel1 = { type: 'DECREMENT_PANEL_LEVEL1' }
-export const decrementPanelLevel2 = { type: 'DECREMENT_PANEL_LEVEL2' }
-export const decrementPanelLevel3 = { type: 'DECREMENT_PANEL_LEVEL3' }
+export const decrement = {
+  cargoToCargoShip: { type: 'DECREMENT_CARGO_CARGO_SHIP' },
+  cargoToLevel1: { type: 'DECREMENT_CARGO_LEVEL1' },
+  cargoToLevel2: { type: 'DECREMENT_CARGO_LEVEL2' },
+  cargoToLevel3: { type: 'DECREMENT_CARGO_LEVEL3' },
+  panelToCargoShip: { type: 'DECREMENT_PANEL_CARGO_SHIP' },
+  panelToLevel1: { type: 'DECREMENT_PANEL_LEVEL1' },
+  panelToLevel2: { type: 'DECREMENT_PANEL_LEVEL2' },
+  panelToLevel3: { type: 'DECREMENT_PANEL_LEVEL3' }
+}
+
+/**
+ * An exported function that increment/decrements from the state based on parameters
+ * @param  {String} type            Where to change the value i.e. 'panelToLevel1'
+ * @param  {Boolean} shouldDecrement Should you decrement or increment
+ */
+export const changeValue = (type, shouldDecrement) => dispatch => {
+  if (!shouldDecrement) {
+    dispatch(increment[type])
+  } else {
+    dispatch(decrement[type])
+    dispatch(toggleDecrement)
+  }
+}
+
+/**
+ * Sets the state to incrementing
+ * Used after moving views
+ * @type {Object}
+ */
+export const setIncrement = { type: 'SET_INCREMENT' }
 
 /**
  * Endgame
@@ -62,3 +92,18 @@ export const climb = level => ({
   type: 'CLIMB',
   level
 })
+
+export const comment = comment => ({
+  type: 'COMMENT',
+  comment
+})
+
+export const techFouls = { type: 'TOGGLE_TECH_FOULS' }
+
+export const nextMatch = {
+
+}
+
+export const submit = {
+
+}

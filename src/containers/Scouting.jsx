@@ -3,10 +3,23 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
 import { getEvents, getMatches } from '../actions/matchlist.js'
-import { selectMatch, selectTeam, toggleHab } from '../actions/scouting.js'
-import Header from '../components/Header.jsx'
-import HomePage from '../views/HomePage.jsx'
-import Autonomous from '../views/Autonomous.jsx'
+import {
+  selectMatch,
+  selectTeam,
+  sandstorm,
+  changeValue,
+  toggleDecrement,
+  setIncrement,
+  climb,
+  techFouls,
+  comment
+} from '../actions/scouting.js'
+import {
+  HomePage,
+  Sandstorm,
+  Teleop,
+  Endgame
+} from 'views'
 
 class Scouting extends Component {
   componentDidMount () {
@@ -27,7 +40,7 @@ class Scouting extends Component {
   }
 
   render () {
-    document.title = 'Kassandra - Select team'
+    document.title = 'Select team'
 
     const {
       isFetchingEvents,
@@ -42,7 +55,17 @@ class Scouting extends Component {
       getEvents,
       getMatches,
       selectMatch,
-      toggleHab
+      selectTeam,
+      sandstormState,
+      sandstormActions,
+      teleopState,
+      changeValue,
+      toggleDecrement,
+      setIncrement,
+      endgameState,
+      climb,
+      comment,
+      techFouls
     } = this.props
 
     return (
@@ -62,14 +85,35 @@ class Scouting extends Component {
             getEvents={getEvents}
             getMatches={getMatches}
             selectMatch={selectMatch}
-            selectTeam={this.props.selectTeam}
+            selectTeam={selectTeam}
           />} />
-        <Route path='/auto' render={props =>
-          <Autonomous
+        <Route path='/sandstorm' render={props =>
+          <Sandstorm
             {...props}
             team={team}
             selectedMatch={selectedMatch}
-            toggleHab={toggleHab}
+            state={sandstormState}
+            actions={sandstormActions}
+          />} />
+        <Route path='/teleop' render={props =>
+          <Teleop
+            {...props}
+            team={team}
+            selectedMatch={selectedMatch}
+            state={teleopState}
+            actions={changeValue}
+            setIncrement={setIncrement}
+            toggleDecrement={toggleDecrement}
+          />} />
+        <Route path='/endgame' render={props =>
+          <Endgame
+            {...props}
+            team={team}
+            selectedMatch={selectedMatch}
+            state={endgameState}
+            climb={climb}
+            techFouls={techFouls}
+            comment={comment}
           />} />
       </Switch>
     )
@@ -92,7 +136,14 @@ Scouting.propTypes = {
   getMatches: PropTypes.func.isRequired,
   selectMatch: PropTypes.func.isRequired,
   selectTeam: PropTypes.func.isRequired,
-  toggleHab: PropTypes.func.isRequired
+  sandstormState: PropTypes.object.isRequired,
+  sandstormActions: PropTypes.func.isRequired,
+  teleopState: PropTypes.object.isRequired,
+  changeValue: PropTypes.func.isRequired,
+  toggleDecrement: PropTypes.func.isRequired,
+  setIncrement: PropTypes.func.isRequired,
+  endgameState: PropTypes.object.isRequired,
+  climb: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -106,7 +157,10 @@ const mapStateToProps = state => {
     isMatchSelected: state.scouting.isMatchSelected,
     event: state.matchlist.event,
     selectedMatch: state.scouting.match,
-    team: state.scouting.team
+    team: state.scouting.team,
+    sandstormState: state.scouting.sandstorm,
+    teleopState: state.scouting.teleop,
+    endgameState: state.scouting.endgame
   }
 }
 
@@ -116,7 +170,13 @@ const mapDispatchToProps = dispatch => {
     getMatches: event => dispatch(getMatches(event)),
     selectMatch: match => dispatch(selectMatch(match)),
     selectTeam: team => dispatch(selectTeam(team)),
-    toggleHab: () => dispatch(toggleHab)
+    sandstormActions: type => dispatch(sandstorm[type]),
+    changeValue: (type, shouldDecrement) => dispatch(changeValue(type, shouldDecrement)),
+    toggleDecrement: () => dispatch(toggleDecrement),
+    setIncrement: () => dispatch(setIncrement),
+    climb: level => dispatch(climb(level)),
+    comment: text => dispatch(comment(text)),
+    techFouls: () => dispatch(techFouls)
   }
 }
 

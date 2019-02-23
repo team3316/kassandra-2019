@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import EventDropdown from '../components/EventDropdown.jsx'
-import MatchDropdown from '../components/MatchDropdown.jsx'
-import TeamSelect from '../components/TeamSelect.jsx'
+import {
+  EventDropdown,
+  MatchDropdown,
+  TeamSelect,
+  Footer
+} from 'components'
 import { Link } from 'react-router-dom'
 import { DropdownSkeleton, Button } from 'carbon-components-react'
 
@@ -26,6 +29,9 @@ class SelectTeam extends Component {
     return (
       <div>
         {
+          /**
+           * If fetching for events, show a skeleton
+           */
           isFetchingEvents || events.length === 0
             ? <DropdownSkeleton />
             : <div>
@@ -39,6 +45,9 @@ class SelectTeam extends Component {
         }
 
         {
+          /**
+           * If fetching for events, show a skeleton
+           */
           isFetchingMatches || matches.length === 0
             ? <DropdownSkeleton />
             : <div>
@@ -49,6 +58,9 @@ class SelectTeam extends Component {
                 match={selectedMatch}
               />
               {
+                /**
+                 * If a match was selected, enable selecting a team
+                 */
                 isMatchSelected
                   ? <TeamSelect
                     team={team}
@@ -59,7 +71,7 @@ class SelectTeam extends Component {
               }
             </div>
         }
-        <Link to='/auto' > <Button> Auto </Button> </Link>
+        <Footer> <Link to='/sandstorm' > <Button> Sandstorm </Button> </Link> </Footer>
       </div>
     )
   }

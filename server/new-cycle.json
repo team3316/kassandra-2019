@@ -3,12 +3,11 @@
   "matchId": "",
   "eventKey": "",
   "sandstorm": {
-    "controlMethod": "",
-    "cargoShipPanels": false,
-    "cargoShipCargo": false,
-    "rocketPanels": false,
-    "rocketCargo": false,
-    "habLine": false
+    "habLine": false,
+    "cargoToCargoShip": false,
+    "cargoToRocket": false,
+    "panelToCargoShip": false,
+    "panelToRocket": false
   },
   "teleop": {
     "cargo": {

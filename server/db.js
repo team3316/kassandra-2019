@@ -45,33 +45,27 @@ const Cycle = sequelize.define('cycles', {
   /**
    * Sandstorm
    */
-  sandstorm_control_method: {
-    type: Sequelize.ENUM,
-    values: ['nothing', 'drivers', 'autonomous'],
-    defaultValue: 'nothing',
-    allowNull: false
-  },
-  sandstorm_cargo_ship_panels: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
-  },
-  sandstorm_cargo_ship_cargo: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
-  },
-  sandstorm_rocket_cargo: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
-  },
-  sandstorm_rocket_panels: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: false,
-    allowNull: false
-  },
   sandstorm_hab_line: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  sandstorm_cargo_to_cargo_ship: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  sandstorm_cargo_to_rocket: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  sandstorm_panel_to_cargo_ship: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false
+  },
+  sandstorm_panel_to_rocket: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
     allowNull: false
@@ -80,42 +74,42 @@ const Cycle = sequelize.define('cycles', {
   /**
    * Teleop
    */
-  teleop_cargo_ship_panels: {
+  teleop_panels_to_cargo_ship: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_cargo_ship_cargo: {
+  teleop_cargo_to_cargo_ship: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_level1_panels: {
+  teleop_cargo_to_level1: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_level2_panels: {
+  teleop_cargo_to_level2: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_level3_panels: {
+  teleop_cargo_to_level3: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_level1_cargo: {
+  teleop_panels_to_level1: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_level2_cargo: {
+  teleop_panels_to_level2: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
   },
-  teleop_level3_cargo: {
+  teleop_panels_to_level3: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
     allowNull: false
@@ -125,7 +119,7 @@ const Cycle = sequelize.define('cycles', {
    * Climb level
    */
   climb: {
-    type: Sequelize.ENUM('nothing', 'failed', 'lvl1', 'lvl2', 'lvl3'),
+    type: Sequelize.ENUM('nothing', 'failed', 'level1', 'level2', 'level3'),
     defaultValue: 'nothing',
     allowNull: false
   },

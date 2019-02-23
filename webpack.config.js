@@ -38,11 +38,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      components: `${srcPath}/components`,
+      components: `${srcPath}/components/index.js`,
       reducers: `${srcPath}/reducers`,
       containers: `${srcPath}/containers`,
       actions: `${srcPath}/actions`,
-      views: `${srcPath}/views`,
+      views: `${srcPath}/views/index.js`,
       style: `${srcPath}/style`
     }
   }

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import Filter from '../components/MatchlistFilter.jsx'
-import Matchlist from '../components/Matchlist.jsx'
+import { MatchlistFilter, Matchlist } from 'components'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getEvents, getMatches, filterMatchesByTeam } from '../actions/matchlist.js'
@@ -35,7 +34,7 @@ class App extends Component {
               type={'spin'}
             />
             : <div>
-              <Filter
+              <MatchlistFilter
                 events={events}
                 getMatches={eventKey => getMatches(eventKey)}
                 filterMatchesByTeam={team => filterMatchesByTeam(team)}
