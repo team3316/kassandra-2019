@@ -26,7 +26,7 @@ npm install
 # Build the code
 npm run build
 # Start the server
-npm run serve
+npm run start
 ```
 
 ## Scripts
