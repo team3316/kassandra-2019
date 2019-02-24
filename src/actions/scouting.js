@@ -104,7 +104,6 @@ export const techFouls = { type: 'TOGGLE_TECH_FOULS' }
  * Change the state to show the state of a submit request
  */
 const requestSubmit = { type: 'REQUEST_SUBMIT' }
-export const finishSubmit = { type: 'FINISH_SUBMIT' }
 
 /**
  * Makes a post requsest, and returns a promise to resolve by the user
@@ -127,3 +126,11 @@ export const postForm = (match, team, sandstorm, teleop, endgame) => dispatch =>
     })
   })
 }
+
+/**
+ * Move the state to the next match
+ */
+export const nextMatch = matches => ({
+  type: 'NEXT_MATCH',
+  matches
+})

@@ -14,7 +14,7 @@ import {
   techFouls,
   comment,
   postForm,
-  finishSubmit
+  nextMatch
 } from '../actions/scouting.js'
 import {
   HomePage,
@@ -28,6 +28,7 @@ class Scouting extends Component {
     super(props)
 
     this.submit = this.submit.bind(this)
+    this.nextMatch = this.nextMatch.bind(this)
   }
 
   componentDidMount () {
@@ -64,6 +65,15 @@ class Scouting extends Component {
     return postForm(match, team, sandstormState, teleopState, endgameState)
   }
 
+  nextMatch () {
+    const {
+      matches,
+      nextMatch
+    } = this.props
+
+    return nextMatch(matches)
+  }
+
   render () {
     document.title = 'Select team'
 
@@ -91,10 +101,13 @@ class Scouting extends Component {
       climb,
       comment,
       techFouls,
-      finishSubmit,
       isSubmitting
     } = this.props
-    const { submit } = this
+
+    const {
+      submit,
+      nextMatch
+    } = this
 
     return (
       <Switch>
@@ -143,7 +156,7 @@ class Scouting extends Component {
             techFouls={techFouls}
             comment={comment}
             submit={submit}
-            finishSubmit={finishSubmit}
+            nextMatch={nextMatch}
             isSubmitting={isSubmitting}
           />} />
       </Switch>
@@ -159,8 +172,8 @@ Scouting.propTypes = {
   events: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
-  team: PropTypes.object.isRequired,
+  match: PropTypes.object,
+  team: PropTypes.object,
   currentEventKey: PropTypes.string.isRequired,
   getEvents: PropTypes.func.isRequired,
   getMatches: PropTypes.func.isRequired,
@@ -178,7 +191,7 @@ Scouting.propTypes = {
   techFouls: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   postForm: PropTypes.func.isRequired,
-  finishSubmit: PropTypes.func.isRequired
+  nextMatch: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -215,7 +228,7 @@ const mapDispatchToProps = dispatch => {
     techFouls: () => dispatch(techFouls),
     postForm: (team, match, sandstorm, teleop, endgame) =>
       dispatch(postForm(team, match, sandstorm, teleop, endgame)),
-    finishSubmit: () => dispatch(finishSubmit)
+    nextMatch: matches => dispatch(nextMatch(matches))
   }
 }
 

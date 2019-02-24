@@ -14,9 +14,9 @@ export default (state = scouting, action) => {
     case 'REQUEST_MATCHES':
       return {
         ...state,
-        match: {},
+        match: null,
         isMatchSelected: false,
-        team: {}
+        team: null
       }
 
     case 'SELECT_MATCH':
@@ -351,12 +351,21 @@ export default (state = scouting, action) => {
       }
 
     /**
-     * Change state to the next team in the same position in the next match
+     * Change state to the next team in the same position in the next match,
+     * and show that submitting has been completed
      */
-    case 'FINISH_SUBMIT':
+    case 'NEXT_MATCH':
       return {
         ...state,
-        isSubmitting: false
+        isSubmitting: false,
+        match: action.matches[state.match.index + 1],
+        team: {
+          ...state.team,
+          number: action.matches[state.match.index + 1].alliances[state.team.color].team_keys[state.team.index]
+        },
+        sandstorm: scouting.sandstorm,
+        teleop: scouting.teleop,
+        endgame: scouting.endgame
       }
 
     default:

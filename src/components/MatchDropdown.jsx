@@ -7,7 +7,8 @@ class MatchDropdown extends Component {
     const {
       selectMatch,
       matches,
-      disabled
+      disabled,
+      match
     } = this.props
 
     /**
@@ -16,7 +17,8 @@ class MatchDropdown extends Component {
     return (
       <Dropdown
         onChange={({ selectedItem }) => selectMatch(selectedItem)}
-        label='Match'
+        selectedItem={match}
+        label='Select match'
         light
         items={matches}
         itemToString={match => match.name}
@@ -29,7 +31,8 @@ class MatchDropdown extends Component {
 MatchDropdown.propTypes = {
   selectMatch: PropTypes.func.isRequired,
   matches: PropTypes.array.isRequired,
-  disabled: PropTypes.bool.isRequired
+  disabled: PropTypes.bool.isRequired,
+  match: PropTypes.object
 }
 
 export default MatchDropdown

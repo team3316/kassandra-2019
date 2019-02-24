@@ -39,7 +39,7 @@ class Endgame extends Component {
       techFouls,
       isSubmitting,
       submit,
-      finishSubmit,
+      nextMatch,
       history
     } = this.props
 
@@ -87,7 +87,7 @@ class Endgame extends Component {
             !isSubmitting
               ? <Button onClick={() => {
                 submit().then(res => {
-                  finishSubmit()
+                  nextMatch()
                   history.push('/')
                 })
               }}> Submit </Button>
@@ -111,7 +111,7 @@ Endgame.propTypes = {
   techFouls: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   submit: PropTypes.func.isRequired,
-  finishSubmit: PropTypes.func.isRequired,
+  nextMatch: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 }
 

@@ -51,7 +51,12 @@ export const getMatches = event => dispatch => {
 
   return blueAlliance(`/event/${event.key}/matches`)
     .then(data => {
-      const matches = data.map(match => {
+      /**
+      * Sorts matches by the time they were played in
+      */
+      data.sort((a, b) => a.actual_time - b.actual_time)
+
+      const matches = data.map((match, index) => {
         const newMatch = match
 
         /**
@@ -87,14 +92,10 @@ export const getMatches = event => dispatch => {
          * For example: 'qm' => 'QM'
          */
         newMatch.comp_level = newMatch.comp_level.toUpperCase()
+        newMatch.index = index
 
         return newMatch
       })
-
-      /**
-       * Sorts matches by the time they were played in
-       */
-      matches.sort((a, b) => a.actual_time - b.actual_time)
 
       dispatch(recieveMatches(event, matches))
     })

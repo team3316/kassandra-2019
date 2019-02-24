@@ -8,7 +8,7 @@ import {
 } from 'components'
 import { DropdownSkeleton, Button } from 'carbon-components-react'
 
-class SelectTeam extends Component {
+class HomePage extends Component {
   render () {
     const {
       events,
@@ -26,6 +26,11 @@ class SelectTeam extends Component {
       history
     } = this.props
 
+    /**
+     * Flags if you should be fetching for matches
+     */
+    const shouldFetchMatches = isFetchingMatches || matches.length === 0
+
     return (
       <div>
         {
@@ -40,15 +45,16 @@ class SelectTeam extends Component {
                 action={getMatches}
                 currentEventKey={currentEventKey}
                 event={event}
+                shouldFetchMatches={shouldFetchMatches}
               />
             </div>
         }
 
         {
           /**
-           * If fetching for events, show a skeleton
+           * If fetching for matches, show a skeleton
            */
-          isFetchingMatches || matches.length === 0
+          shouldFetchMatches
             ? <DropdownSkeleton />
             : <div>
               <MatchDropdown
@@ -71,21 +77,34 @@ class SelectTeam extends Component {
               }
             </div>
         }
-        <Footer> <Button onClick={() => history.push('/sandstorm')}> Sandstorm </Button> </Footer>
+        <Footer>
+          {
+          /**
+           * Navigation button to Sandstorm page
+           * Disabled if a team isn't selected
+           */
+          }
+          <Button
+            onClick={() => history.push('/sandstorm')}
+            disabled={team === null}
+          >
+            Sandstorm
+          </Button>
+        </Footer>
       </div>
     )
   }
 }
 
-SelectTeam.propTypes = {
+HomePage.propTypes = {
   isFetchingMatches: PropTypes.bool.isRequired,
   isFetchingEvents: PropTypes.bool.isRequired,
   isMatchSelected: PropTypes.bool.isRequired,
   events: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
-  team: PropTypes.object.isRequired,
+  match: PropTypes.object,
+  team: PropTypes.object,
   currentEventKey: PropTypes.string.isRequired,
   getMatches: PropTypes.func.isRequired,
   selectMatch: PropTypes.func.isRequired,
@@ -93,4 +112,4 @@ SelectTeam.propTypes = {
   history: PropTypes.object.isRequired
 }
 
-export default SelectTeam
+export default HomePage

@@ -10,10 +10,13 @@ class EventDropdown extends Component {
     const {
       events,
       action,
-      currentEventKey
+      currentEventKey,
+      shouldFetchMatches
     } = this.props
 
-    action(events.find(event => event.key === currentEventKey))
+    if (shouldFetchMatches) {
+      action(events.find(event => event.key === currentEventKey))
+    }
   }
 
   render () {
@@ -41,7 +44,8 @@ EventDropdown.propTypes = {
   events: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
   action: PropTypes.func.isRequired,
-  currentEventKey: PropTypes.string.isRequired
+  currentEventKey: PropTypes.string.isRequired,
+  shouldFetchMatches: PropTypes.bool.isRequired
 }
 
 export default EventDropdown

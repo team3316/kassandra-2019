@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Checkbox, Button } from 'carbon-components-react'
-import { Link } from 'react-router-dom'
 import {
   GiSightDisabled as SightDisabled,
   GiSailboat as Sailboat,
