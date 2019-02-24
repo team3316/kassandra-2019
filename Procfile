@@ -1,2 +1,2 @@
 build: npm run build
-web: npm run serve
+web: npm run start
