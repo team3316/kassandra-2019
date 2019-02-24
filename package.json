@@ -7,7 +7,7 @@
     "build": "webpack --progress --colors",
     "watch": "webpack --progress --colors --watch",
     "dev": "nodemon ./bin/www",
-    "serve": "node ./bin/www",
+    "start": "node ./bin/www",
     "heroku-postbuild": "echo Skip build on Heroku"
   },
   "author": "Stav Eyal <staveyal210@gmail.com>",
