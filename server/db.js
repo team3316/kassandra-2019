@@ -3,19 +3,25 @@
  */
 const Sequelize = require('sequelize')
 
-/** Connecting to the database */
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-  dialect: process.env.DB_DIALECT,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
+/**
+ * Connecting to the database
+ * If DATABASE_URL exists, use it
+ * If not, use other config variables
+ */
+const sequelize = process.env.DATABASE_URL !== null
+  ? new Sequelize(process.env.DATABASE_URL)
+  : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    dialect: process.env.DB_DIALECT,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
 
-  /** Default table definition options */
-  define: {
-    timestamps: false,
-    freezeTableName: true,
-    schema: process.env.DB_SCHEMA
-  }
-})
+    /** Default table definition options */
+    define: {
+      timestamps: false,
+      freezeTableName: true,
+      schema: process.env.DB_SCHEMA
+    }
+  })
 
 /** Creating models */
 const Cycle = sequelize.define('cycles', {
