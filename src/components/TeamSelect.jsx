@@ -54,7 +54,7 @@ class TeamSelect extends Component {
 TeamSelect.propTypes = {
   selectTeam: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
-  team: PropTypes.object.isRequired
+  team: PropTypes.object
 }
 
 export default TeamSelect

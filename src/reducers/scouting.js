@@ -362,7 +362,11 @@ export default (state = scouting, action) => {
         match: action.matches[state.match.index + 1],
         team: {
           ...state.team,
-          number: action.matches[state.match.index + 1].alliances[state.team.color].team_keys[state.team.index]
+          number: action.matches[state.match.index + 1]
+            .alliances[state.team.color].team_keys[state.team.index],
+          label: `${action.matches[state.match.index + 1]
+            .alliances[state.team.color].team_keys[state.team.index]}
+             - Blue ${state.team.index + 1}`
         },
         sandstorm: scouting.sandstorm,
         teleop: scouting.teleop,
