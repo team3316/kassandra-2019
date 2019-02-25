@@ -23,7 +23,8 @@ export default (state = scouting, action) => {
       return {
         ...state,
         match: action.match,
-        isMatchSelected: true
+        isMatchSelected: true,
+        team: null
       }
 
     case 'SELECT_TEAM':
