@@ -8,11 +8,11 @@
   },
   "scripts": {
     "lint": "eslint --ext .jsx,.js --fix .",
-    "build": "webpack && echo Webpack started",
+    "build": "webpack",
     "watch": "webpack --progress --colors --watch",
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
-    "heroku-postbuild": "echo Skip build on Heroku"
+    "heroku-postbuild": "webpack"
   },
   "author": "Stav Eyal <staveyal210@gmail.com>",
   "repository": "https://github.com/team3316/kassandra",
