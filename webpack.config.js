@@ -1,8 +1,8 @@
 const path = require('path')
 const srcPath = path.join(__dirname, 'src')
-
-const Dotenv = require('dotenv-webpack')
 require('dotenv').config()
+
+const { EnviornmentPlugin } = require('webpack')
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -14,7 +14,12 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
-    new Dotenv()
+    new EnviornmentPlugin([
+      'NODE_ENV',
+      'DISTRICT_KEY',
+      'CURRENT_EVENT',
+      'TBA_AUTH'
+    ])
   ],
   module: {
     rules: [{
