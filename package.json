@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint --ext .jsx,.js --fix .",
-    "build": "webpack --progress --colors",
+    "build": "webpack",
     "watch": "webpack --progress --colors --watch",
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
