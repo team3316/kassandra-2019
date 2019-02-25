@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "description": "D-Bug's generic scounting system",
   "engines": {
-    "node": "11.6.x",
-    "npm": "6.x"
+    "node": "11.6.0",
+    "npm": "6.8"
   },
   "scripts": {
     "lint": "eslint --ext .jsx,.js --fix .",
