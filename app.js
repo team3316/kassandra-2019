@@ -1,5 +1,5 @@
 const express = require('express')
-const logger = require('morgan')
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const path = require('path')
 const router = require('./server/router')
@@ -10,7 +10,13 @@ const { sequelize } = require('./server/db')
 
 /** Middleware usage */
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(logger('dev'))
+
+/**
+ * If the enviornment isn't production, use morgan http request logger
+ */
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'))
+}
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', router)
