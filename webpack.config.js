@@ -2,7 +2,7 @@ const path = require('path')
 const srcPath = path.join(__dirname, 'src')
 require('dotenv').config()
 
-const { EnviornmentPlugin } = require('webpack')
+const { EnvironmentPlugin } = require('webpack')
 
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
@@ -14,7 +14,7 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
-    new EnviornmentPlugin([
+    new EnvironmentPlugin([
       'NODE_ENV',
       'DISTRICT_KEY',
       'CURRENT_EVENT',
