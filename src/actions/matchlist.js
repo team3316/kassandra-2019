@@ -1,5 +1,7 @@
 /**
  * Blue Alliance fetch function
+ * @param {String} url The api url it fetches from e.g. /district/2018isr/events
+ *
  */
 const blueAlliance = url => fetch(`https://www.thebluealliance.com/api/v3${url}`, {
   mode: 'cors',
@@ -18,7 +20,7 @@ export const requestEvents = districtKey => ({
 /**
  * Recieves event list of the specified district
  * @param  {Object} events List of events
- * @return {Object}        State
+ * @return {Object}        Action
  */
 export const recieveEvents = (districtKey, events) => ({
   type: 'RECIEVE_EVENTS',
@@ -29,8 +31,8 @@ export const recieveEvents = (districtKey, events) => ({
 /**
  * Return an action with the type 'REQUEST_MATCHES',
  * setting the corresponding state to fetching and sets the eventKey
- * @param  {[type]} eventKey [description]
- * @return {[type]}          [description]
+ * @param  {String} eventKey The Blue Alliance key for the selected event
+ * @return {Object}          Action
  */
 export const requestMatches = event => ({
   type: 'REQUEST_MATCHES',
@@ -54,7 +56,7 @@ export const getMatches = event => dispatch => {
       /**
       * Sorts matches by the time they were played in
       */
-      data.sort((a, b) => a.actual_time - b.actual_time)
+      data.sort((a, b) => a.time - b.time)
 
       const matches = data.map((match, index) => {
         const newMatch = match
@@ -101,7 +103,11 @@ export const getMatches = event => dispatch => {
     })
 }
 
-/** Gets district events and makes a get request */
+/**
+ * Gets event list for current district, and dispatches to store
+ * @param  {String} districtKey The Blue Alliance key for the selected district
+ * @return {[type]}             [description]
+ */
 export const getEvents = districtKey => dispatch => {
   /** Change the state fetching events */
   dispatch(requestEvents(districtKey))

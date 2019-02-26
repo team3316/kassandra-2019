@@ -6,11 +6,18 @@ import MatchDropdown from './MatchDropdown.jsx'
 import Matchlist from './Matchlist.jsx'
 import MatchlistFilter from './MatchlistFilter.jsx'
 import TeamSelect from './TeamSelect.jsx'
-export { EventDropdown }
-export { Example }
-export { Footer }
-export { Header }
-export { MatchDropdown }
-export { Matchlist }
-export { MatchlistFilter }
-export { TeamSelect }
+import ScoutingHeader from './ScoutingHeader.jsx'
+import TeamInput from './TeamInput.jsx'
+
+export {
+  EventDropdown,
+  Example,
+  Footer,
+  Header,
+  MatchDropdown,
+  Matchlist,
+  MatchlistFilter,
+  TeamSelect,
+  ScoutingHeader,
+  TeamInput
+}

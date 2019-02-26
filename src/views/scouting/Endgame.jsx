@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Header, Footer } from 'components'
+import { ScoutingHeader, Footer } from 'components'
 import {
   DropdownV2 as Dropdown,
   Checkbox,
@@ -45,12 +45,12 @@ class Endgame extends Component {
 
     return (
       <div className='endgame'>
-        <Header color={team.color}>
-          <span> {`${match.name} | ${team.label}`} </span>
-        </Header>
+        <ScoutingHeader match={match} team={team} />
 
         <div className='content noselect'>
-          <div className={`pageTitle ${team.color}Team`}>
+          <div className={`pageTitle
+            ${team.color == null ? '' : `${team.color}Team`}`}
+          >
             <Stairs /> <h1> Endgame </h1>
           </div>
           <div className='form'>

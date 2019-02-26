@@ -4,9 +4,10 @@ import {
   EventDropdown,
   MatchDropdown,
   TeamSelect,
-  Footer
+  Footer,
+  TeamInput
 } from 'components'
-import { DropdownSkeleton, Button } from 'carbon-components-react'
+import { DropdownSkeleton, Button, NumberInput } from 'carbon-components-react'
 
 class HomePage extends Component {
   render () {
@@ -21,7 +22,6 @@ class HomePage extends Component {
       currentEventKey,
       selectTeam,
       match,
-      isMatchSelected,
       team,
       history
     } = this.props
@@ -36,18 +36,17 @@ class HomePage extends Component {
         {
           /**
            * If fetching for events, show a skeleton
+           * If not, show an event dropdown
            */
           isFetchingEvents || events.length === 0
             ? <DropdownSkeleton />
-            : <div>
-              <EventDropdown
-                events={events}
-                action={getMatches}
-                currentEventKey={currentEventKey}
-                event={event}
-                shouldFetchMatches={shouldFetchMatches}
-              />
-            </div>
+            : <EventDropdown
+              events={events}
+              action={getMatches}
+              currentEventKey={currentEventKey}
+              event={event}
+              shouldFetchMatches={shouldFetchMatches}
+            />
         }
 
         {
@@ -57,23 +56,69 @@ class HomePage extends Component {
           shouldFetchMatches
             ? <DropdownSkeleton />
             : <div>
-              <MatchDropdown
-                matches={matches}
-                selectMatch={selectMatch}
-                disabled={isFetchingMatches || matches.length === 0}
-                match={match}
-              />
+              <div className='matchSelection'>
+                <MatchDropdown
+                  matches={matches}
+                  selectMatch={selectMatch}
+                  disabled={isFetchingMatches || matches.length === 0}
+                  match={match}
+                />
+                {
+                  /**
+                   * Checks if a match has been selected,
+                   * Then checks if the match is a practice match
+                   */
+                  match != null
+                    ? match.comp_level === 'PM'
+                      ? <NumberInput
+                        id='practiceMatch'
+                        light
+                        label='Practice match number'
+                        placeholder='Enter practice match number'
+                        min={1}
+                        invalidText='Please enter a number'
+                        value={match.number}
+                        onChange={e => {
+                          const { value } = document.querySelector('#practiceMatch')
+
+                          selectMatch({
+                            ...match,
+                            name: `Practice${value != null ? ` ${value}` : ''}`,
+                            match_key: `${match.event_key}_pm${value}`,
+                            number: Number(value)
+                          })
+                        }}
+                      />
+                      : <div className='empty' />
+                    : <div className='empty' />
+                }
+              </div>
               {
                 /**
                  * If a match was selected, enable selecting a team
                  */
-                isMatchSelected
-                  ? <TeamSelect
-                    team={team}
-                    selectTeam={selectTeam}
-                    match={match}
-                  />
-                  : <div id='Empty' />
+                match != null
+                /**
+                 * Check if the match is a practice match
+                 * If not, show dropdown
+                 * If it is a practice match, show team numbers
+                 */
+                  ? match.comp_level !== 'PM'
+                    ? <TeamSelect
+                      team={team}
+                      selectTeam={selectTeam}
+                      match={match}
+                    />
+                    : <TeamInput
+                      id='practiceTeam'
+                      value={team != null ? team.number : 1}
+                      onChange={value => selectTeam({
+                        number: Number(value),
+                        label: value
+                      })
+                      }
+                    />
+                  : <div id='empty' />
               }
             </div>
         }
@@ -99,7 +144,6 @@ class HomePage extends Component {
 HomePage.propTypes = {
   isFetchingMatches: PropTypes.bool.isRequired,
   isFetchingEvents: PropTypes.bool.isRequired,
-  isMatchSelected: PropTypes.bool.isRequired,
   events: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,

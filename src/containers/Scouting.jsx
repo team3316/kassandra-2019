@@ -81,7 +81,6 @@ class Scouting extends Component {
       isFetchingEvents,
       isFetchingMatches,
       events,
-      isMatchSelected,
       matches,
       event,
       match,
@@ -117,7 +116,6 @@ class Scouting extends Component {
             isFetchingEvents={isFetchingEvents}
             isFetchingMatches={isFetchingMatches}
             events={events}
-            isMatchSelected={isMatchSelected}
             matches={matches}
             event={event}
             match={match}
@@ -168,7 +166,6 @@ Scouting.propTypes = {
   districtKey: PropTypes.string.isRequired,
   isFetchingMatches: PropTypes.bool.isRequired,
   isFetchingEvents: PropTypes.bool.isRequired,
-  isMatchSelected: PropTypes.bool.isRequired,
   events: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired,
   event: PropTypes.object.isRequired,
@@ -202,7 +199,6 @@ const mapStateToProps = state => {
     currentEventKey: state.matchlist.currentEventKey,
     isFetchingEvents: state.matchlist.isFetchingEvents,
     isFetchingMatches: state.matchlist.isFetchingMatches,
-    isMatchSelected: state.scouting.isMatchSelected,
     event: state.matchlist.event,
     match: state.scouting.match,
     team: state.scouting.team,

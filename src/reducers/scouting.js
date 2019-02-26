@@ -3,7 +3,11 @@ import { scouting } from './initial-state.js'
 export default (state = scouting, action) => {
   switch (action.type) {
     /**
-     * Selecting a match and a team
+     * Home page
+     */
+
+    /**
+     * Dispatching the selected district key e.g. 2019isr
      */
     case 'DISTRICT_KEY':
       return {
@@ -11,6 +15,9 @@ export default (state = scouting, action) => {
         districtKey: action.districtKey
       }
 
+    /**
+     * Indicating the app is current requesting matches from The Blue Alliance
+     */
     case 'REQUEST_MATCHES':
       return {
         ...state,
@@ -19,6 +26,9 @@ export default (state = scouting, action) => {
         team: null
       }
 
+    /**
+     * Selecting a match
+     */
     case 'SELECT_MATCH':
       return {
         ...state,
@@ -27,6 +37,9 @@ export default (state = scouting, action) => {
         team: null
       }
 
+    /**
+     * Selecting a team
+     */
     case 'SELECT_TEAM':
       return {
         ...state,
@@ -307,7 +320,9 @@ export default (state = scouting, action) => {
     /**
      * Endgame
      *
-     * Gets action.level for climb level
+     * Climbing
+     * @param {String} action.level The climb level
+     * Permitted values: ['nothing', 'failed', 'level1', 'level2', 'level3']
      */
     case 'CLIMB':
       return {
@@ -319,7 +334,8 @@ export default (state = scouting, action) => {
       }
 
     /**
-     * Gets action.comment for the comments
+     * Commenting
+     * @param {String} action.comment The comments for the match
      */
     case 'COMMENT':
       return {
@@ -359,15 +375,41 @@ export default (state = scouting, action) => {
       return {
         ...state,
         isSubmitting: false,
-        match: action.matches[state.match.index + 1],
-        team: {
+
+        /**
+         * If the match is a practice match
+         * @type {Object}
+         */
+        match: state.match.comp_level !== 'PM'
+          ? action.matches[state.match.index + 1]
+          : {
+            comp_level: 'PM',
+            number: state.match.number + 1,
+            name: `Practice ${state.match.number + 1}`,
+            match_key: `${action.matches[1].event_key}_${state.match.number + 1}`
+          },
+
+        /**
+         * If the match is a practice match return null to team
+         * If not, change the team number to the team at the same position
+         * (index in alliance array) and change the team label accordingly
+         * @type {Object}
+         */
+        team: state.match.comp_level !== 'PM' ? {
           ...state.team,
+
           number: action.matches[state.match.index + 1]
             .alliances[state.team.color].team_keys[state.team.index],
+
           label: `${action.matches[state.match.index + 1]
             .alliances[state.team.color].team_keys[state.team.index]}
              - Blue ${state.team.index + 1}`
-        },
+        } : { number: 1, label: '1' },
+
+        /**
+         * Reset scouting parameters to their initial values
+         * @type {Object}
+         */
         sandstorm: scouting.sandstorm,
         teleop: scouting.teleop,
         endgame: scouting.endgame

@@ -8,7 +8,7 @@ const Sequelize = require('sequelize')
  * If DATABASE_URL exists, use it
  * If not, use other config variables
  */
-const sequelize = process.env.DATABASE_URL !== null
+const sequelize = process.env.NODE_ENV === 'production'
   ? new Sequelize(process.env.DATABASE_URL)
   : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     dialect: process.env.DB_DIALECT,

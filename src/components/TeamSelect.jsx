@@ -40,9 +40,9 @@ class TeamSelect extends Component {
 
     return (
       <Dropdown
-        onChange={e => selectTeam(e.selectedItem)}
+        onChange={({ selectedItem }) => selectTeam(selectedItem)}
         label={'Select team'}
-        selectedItem={team}
+        initialSelectedItem={team}
         light
         items={teams}
         itemToElement={team => (<span className={`${team.color}Team`}> {team.label} </span>)}
@@ -53,7 +53,7 @@ class TeamSelect extends Component {
 
 TeamSelect.propTypes = {
   selectTeam: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired,
+  match: PropTypes.object,
   team: PropTypes.object
 }
 

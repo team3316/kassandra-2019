@@ -8,10 +8,7 @@ import {
 } from 'react-icons/gi'
 import { FiCircle as Cargo } from 'react-icons/fi'
 import { IoIosRocket as Rocket } from 'react-icons/io'
-import {
-  Header,
-  Footer
-} from 'components'
+import { ScoutingHeader, Footer } from 'components'
 
 class Sandstorm extends Component {
   render () {
@@ -26,13 +23,13 @@ class Sandstorm extends Component {
     } = this.props
 
     return (
-      <div id='auto'>
-        <Header color={team.color}>
-          <span> {`${match.name} | ${team.label}`} </span>
-        </Header>
+      <div id='sandstorm'>
+        <ScoutingHeader match={match} team={team} />
 
         <div className='content noselect'>
-          <div className={`pageTitle ${team.color}Team`}>
+          <div className={`pageTitle
+            ${team.color == null ? '' : `${team.color}Team`}`}
+          >
             <SightDisabled /> <h1>Sandstorm</h1>
           </div>
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  Header,
-  Footer
-} from 'components'
+import { ScoutingHeader, Footer } from 'components'
 import { Button } from 'carbon-components-react'
 import {
   GiJoystick as Controller,
@@ -38,12 +35,12 @@ class Teleop extends Component {
 
     return (
       <div className='teleop'>
-        <Header color={team.color}>
-          <span> {`${match.name} | ${team.label}`} </span>
-        </Header>
+        <ScoutingHeader match={match} team={team} />
 
         <div className='content noselect'>
-          <div className={`pageTitle ${team.color}Team`}>
+          <div className={`pageTitle
+            ${team.color == null ? '' : `${team.color}Team`}`}
+          >
             <Controller /> <h1>Teleop</h1>
           </div>
           <div className='form'>

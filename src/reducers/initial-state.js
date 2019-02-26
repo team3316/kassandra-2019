@@ -12,7 +12,6 @@ export const matchlist = {
 export const scouting = {
   match: null,
   team: null,
-  isMatchSelected: false,
   sandstorm: {
     habLine: false,
     cargoToCargoShip: false,

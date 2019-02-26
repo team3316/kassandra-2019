@@ -9,13 +9,13 @@ class Header extends Component {
     } = this.props
 
     return (
-      <div className={`noselect header ${color}`} > {children} </div>
+      <div className={`noselect header${color == null ? '' : ` ${color}`}`} > {children} </div>
     )
   }
 }
 
 Header.propTypes = {
-  color: PropTypes.string.isRequired
+  color: PropTypes.string
 }
 
 export default Header
