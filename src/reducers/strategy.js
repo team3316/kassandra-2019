@@ -13,9 +13,19 @@ export default strategy = (state = strategy, action) => {
      * @param {Array} action.records database records
      */
     case 'RECIEVE_RECORDS':
+      /**
+       * List of events taken from the match_key
+       * Removes year and match, then removes duplicates
+       */
+      let events = action.records.map(({ match_key }) =>
+        match_key.replace(/_.*/, '')).replace(/\d{4}|_.*/, '')
+
+      events = events.filter((event, index) => events.indexOf(event) === index)
+
       return {
         isFetchingRecords: false,
-        records: action.records
+        records: action.records,
+        events
       }
 
     case 'FILTER_BY_TEAM':
