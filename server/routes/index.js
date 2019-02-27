@@ -4,13 +4,12 @@
 const { join } = require('path')
 const addCycle = require('./add-cycle')
 const {
+  getCycles,
   getCyclesByEvent,
   getCyclesByEventTeam,
   getCyclesByTeam
 } = require('./get-cycles')
 const toggleCycleVisibility = require('./toggle-cycle-visibility')
-const getStats = require('./get-stats')
-const getRankings = require('./get-rankings')
 
 /**
  * Directs to all views
@@ -25,7 +24,6 @@ module.exports = {
   getCyclesByEventTeam,
   addCycle,
   toggleCycleVisibility,
-  getStats,
-  getRankings,
+  getCycles,
   views
 }

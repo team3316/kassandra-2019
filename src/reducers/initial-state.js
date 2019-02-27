@@ -46,7 +46,11 @@ export const scouting = {
 }
 
 export const strategy = {
-  team: 0,
+  event: {
+    label: 'All events',
+    event_key: 'all'
+  },
+  team: {},
   isFetchingRecords: false,
   records: []
 }

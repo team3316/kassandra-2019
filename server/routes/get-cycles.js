@@ -5,6 +5,12 @@ const { Op } = require('sequelize')
 const { Cycle } = require('../db')
 
 /**
+ * Get all cycles in the database
+ */
+const getCycles = (req, res) => {
+  Cycle.findAll().then(cycles => res.send(cycles))
+}
+/**
  * Gets eventKey as a url parameter
  * Returns the cycles in the event
  */
@@ -37,6 +43,7 @@ const getCyclesByEventTeam = (req, res) => {
 }
 
 module.exports = {
+  getCycles,
   getCyclesByTeam,
   getCyclesByEvent,
   getCyclesByEventTeam
