@@ -44,3 +44,9 @@ export const scouting = {
   },
   isSubmitting: false
 }
+
+export const strategy = {
+  team: 0,
+  isFetchingRecords: false,
+  records: []
+}
