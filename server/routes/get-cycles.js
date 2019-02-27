@@ -7,13 +7,8 @@ const { Cycle } = require('../db')
 /**
  * Get all cycles in the database
  */
-const getCycles = (req, res) => {
-  console.log('Request recieved')
-  Cycle.findAll().then(cycles => {
-    res.send(JSON.stringify(cycles))
-    console.log(JSON.stringify(cycles, null, 2))
-  })
-}
+const getCycles = (req, res) =>
+  Cycle.findAll().then(cycles => res.json(cycles))
 
 /**
  * Gets eventKey as a url parameter
@@ -23,7 +18,7 @@ const getCyclesByEvent = (req, res) => {
   Cycle.findAll({ where:
     { match_id: { [Op.regex]: req.params.eventKey } }
   })
-    .then(cycles => res.send(JSON.stringify(cycles)))
+    .then(cycles => res.json(cycles))
 }
 
 /**
@@ -32,7 +27,7 @@ const getCyclesByEvent = (req, res) => {
  */
 const getCyclesByTeam = (req, res) => {
   Cycle.findAll({ where: { team_number: req.body.team_number } })
-    .then(cycles => res.send(JSON.stringify(cycles)))
+    .then(cycles => res.json(cycles))
 }
 
 /**
@@ -44,7 +39,7 @@ const getCyclesByEventTeam = (req, res) => {
     match_id: { [Op.regex]: req.params.eventKey },
     team_number: req.params.teamNumber
   } })
-    .then(cycles => res.send(JSON.stringify(cycles)))
+    .then(cycles => res.json(cycles))
 }
 
 module.exports = {
