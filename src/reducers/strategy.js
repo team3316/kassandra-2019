@@ -1,6 +1,6 @@
 import { strategy } from './initial-state.js'
 
-export default strategy = (state = strategy, action) => {
+export default (state = strategy, action) => {
   switch (action.type) {
     /**
      * Requesting and recieving records from the database
