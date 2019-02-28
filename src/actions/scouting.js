@@ -113,9 +113,6 @@ const requestSubmit = { type: 'REQUEST_SUBMIT' }
 export const postForm = (match, team, sandstorm, teleop, endgame) => dispatch => {
   dispatch(requestSubmit)
 
-  console.log('Match: ' + JSON.stringify(match, null , 2))
-  console.log('Team: ' + JSON.stringify(team, null, 2))
-
   return fetch('/cycles', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
