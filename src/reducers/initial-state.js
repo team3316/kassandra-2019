@@ -54,5 +54,5 @@ export const strategy = {
   teams: [],
   team: 0,
   isFetchingRecords: false,
-  records: []
+  matches: []
 }
