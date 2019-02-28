@@ -222,8 +222,8 @@ const mapDispatchToProps = dispatch => {
     climb: level => dispatch(climb(level)),
     comment: text => dispatch(comment(text)),
     techFouls: () => dispatch(techFouls),
-    postForm: (team, match, sandstorm, teleop, endgame) =>
-      dispatch(postForm(team, match, sandstorm, teleop, endgame)),
+    postForm: (match, team, sandstorm, teleop, endgame) =>
+      dispatch(postForm(match, team, sandstorm, teleop, endgame)),
     nextMatch: matches => dispatch(nextMatch(matches))
   }
 }
