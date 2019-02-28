@@ -37,5 +37,8 @@ export default (state = strategy, action) => {
      */
     case 'FILTER_BY_EVENT':
       return { event: action.event }
+
+    default:
+      return state
   }
 }
