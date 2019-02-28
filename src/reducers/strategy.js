@@ -24,7 +24,7 @@ export default (state = strategy, action) => {
 
       return {
         isFetchingRecords: false,
-        matches: action.matches,
+        matches: action.records,
         events
       }
 
