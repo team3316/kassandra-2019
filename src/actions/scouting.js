@@ -118,8 +118,7 @@ export const postForm = (match, team, sandstorm, teleop, endgame) => dispatch =>
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       teamNumber: team.number,
-      // If the match is a practice match append the match number to the id
-      matchKey: !match.practice ? match.key : match.key + match.number,
+      matchKey: match.key,
       sandstorm: sandstorm,
       teleop: teleop,
       ...endgame,

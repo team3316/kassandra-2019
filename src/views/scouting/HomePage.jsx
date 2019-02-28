@@ -84,7 +84,7 @@ class HomePage extends Component {
                           selectMatch({
                             ...match,
                             name: `Practice${value != null ? ` ${value}` : ''}`,
-                            match_key: `${match.event_key}_pm${value}`,
+                            key: `${match.event_key}_pm${value}`,
                             number: Number(value)
                           })
                         }}

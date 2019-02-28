@@ -194,38 +194,42 @@ Scouting.propTypes = {
   path: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => ({
-  districtKey: state.matchlist.districtKey,
-  events: state.matchlist.events,
-  matches: state.matchlist.matches,
-  currentEventKey: state.matchlist.currentEventKey,
-  isFetchingEvents: state.matchlist.isFetchingEvents,
-  isFetchingMatches: state.matchlist.isFetchingMatches,
-  event: state.matchlist.event,
-  match: state.scouting.match,
-  team: state.scouting.team,
-  sandstormState: state.scouting.sandstorm,
-  teleopState: state.scouting.teleop,
-  endgameState: state.scouting.endgame,
-  isSubmitting: state.scouting.isSubmitting
-})
+const mapStateToProps = state => {
+  return {
+    districtKey: state.matchlist.districtKey,
+    events: state.matchlist.events,
+    matches: state.matchlist.matches,
+    currentEventKey: state.matchlist.currentEventKey,
+    isFetchingEvents: state.matchlist.isFetchingEvents,
+    isFetchingMatches: state.matchlist.isFetchingMatches,
+    event: state.matchlist.event,
+    match: state.scouting.match,
+    team: state.scouting.team,
+    sandstormState: state.scouting.sandstorm,
+    teleopState: state.scouting.teleop,
+    endgameState: state.scouting.endgame,
+    isSubmitting: state.scouting.isSubmitting
+  }
+}
 
-const mapDispatchToProps = dispatch => ({
-  getEvents: districtKey => dispatch(getEvents(districtKey)),
-  getMatches: event => dispatch(getMatches(event)),
-  selectMatch: match => dispatch(selectMatch(match)),
-  selectTeam: team => dispatch(selectTeam(team)),
-  sandstormActions: type => dispatch(sandstorm[type]),
-  changeValue: (type, shouldDecrement) => dispatch(changeValue(type, shouldDecrement)),
-  toggleDecrement: () => dispatch(toggleDecrement),
-  setIncrement: () => dispatch(setIncrement),
-  climb: level => dispatch(climb(level)),
-  comment: text => dispatch(comment(text)),
-  techFouls: () => dispatch(techFouls),
-  postForm: (team, match, sandstorm, teleop, endgame) =>
-    dispatch(postForm(team, match, sandstorm, teleop, endgame)),
-  nextMatch: matches => dispatch(nextMatch(matches))
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    getEvents: districtKey => dispatch(getEvents(districtKey)),
+    getMatches: event => dispatch(getMatches(event)),
+    selectMatch: match => dispatch(selectMatch(match)),
+    selectTeam: team => dispatch(selectTeam(team)),
+    sandstormActions: type => dispatch(sandstorm[type]),
+    changeValue: (type, shouldDecrement) => dispatch(changeValue(type, shouldDecrement)),
+    toggleDecrement: () => dispatch(toggleDecrement),
+    setIncrement: () => dispatch(setIncrement),
+    climb: level => dispatch(climb(level)),
+    comment: text => dispatch(comment(text)),
+    techFouls: () => dispatch(techFouls),
+    postForm: (match, team, sandstorm, teleop, endgame) =>
+      dispatch(postForm(match, team, sandstorm, teleop, endgame)),
+    nextMatch: matches => dispatch(nextMatch(matches))
+  }
+}
 
 export default connect(
   mapStateToProps,
