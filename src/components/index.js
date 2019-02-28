@@ -1,5 +1,4 @@
 import EventDropdown from './EventDropdown.jsx'
-import Example from './Example.jsx'
 import Footer from './Footer.jsx'
 import Header from './Header.jsx'
 import MatchDropdown from './MatchDropdown.jsx'
@@ -11,7 +10,6 @@ import TeamInput from './TeamInput.jsx'
 
 export {
   EventDropdown,
-  Example,
   Footer,
   Header,
   MatchDropdown,

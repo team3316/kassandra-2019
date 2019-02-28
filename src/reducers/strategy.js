@@ -22,9 +22,12 @@ export default (state = strategy, action) => {
 
       events = events.filter((event, index) => events.indexOf(event) === index)
 
+      const teams = action.records.map(({ team_number }) => team_number)
+
       return {
         isFetchingRecords: false,
         matches: action.records,
+        teams,
         events
       }
 

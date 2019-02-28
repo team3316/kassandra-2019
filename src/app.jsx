@@ -10,9 +10,9 @@ import logger from 'redux-logger'
 import 'style/index.scss'
 import 'style/carbon.scss'
 
-import { Example } from 'components'
 import Scouting from 'containers/Scouting.jsx'
 import Matchlist from 'containers/MatchlistApp.jsx'
+import Strategy from 'containers/Strategy.jsx'
 import reducers from 'reducers/reducers.js'
 
 /**
@@ -50,9 +50,9 @@ render(
   <Provider store={store}>
     <Router>
       <Switch>
-        <Route path='/' component={Scouting} />
-        <Route path='/testing' component={Example} />
-        <Route path='/matchlist' component={Matchlist} />
+        <Route path='/strategy' render={props => <Strategy {...props} />} />
+        <Route path='/matchlist' render={props => <Matchlist {...props} {...props.match} />} />
+        <Route path='/' render={props => <Scouting {...props} {...props.match} />} />
       </Switch>
     </Router>
   </Provider>,
