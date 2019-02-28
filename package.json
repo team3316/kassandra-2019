@@ -18,6 +18,9 @@
   "repository": "https://github.com/team3316/kassandra",
   "license": "ISC",
   "dependencies": {
+    "@vx/group": "0.0.183",
+    "@vx/scale": "0.0.182",
+    "@vx/shape": "0.0.184",
     "body-parser": "^1.18.3",
     "carbon-components": "^9.68.11",
     "carbon-components-react": "^6.82.0",
