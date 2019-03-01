@@ -7,6 +7,7 @@ import MatchlistFilter from './MatchlistFilter.jsx'
 import TeamSelect from './TeamSelect.jsx'
 import ScoutingHeader from './ScoutingHeader.jsx'
 import TeamInput from './TeamInput.jsx'
+import GameObjectGraph from './GameObjectGraph.jsx'
 
 export {
   EventDropdown,
@@ -17,5 +18,6 @@ export {
   MatchlistFilter,
   TeamSelect,
   ScoutingHeader,
-  TeamInput
+  TeamInput,
+  GameObjectGraph
 }

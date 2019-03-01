@@ -15,14 +15,17 @@ export default (state = strategy, action) => {
     case 'RECIEVE_RECORDS':
       /**
        * List of events taken from the match_key
-       * Removes year and match, then removes duplicates
+       * Removes year and match key
        */
-      let events = action.records.map(({ match_key }) =>
-        match_key.replace(/_.*/, '')).replace(/\d{4}|_.*/, '')
+      let events = action.records.map(({ matchKey }) =>
+        matchKey.replace(/\d{4}|_.*/, '').toUpperCase())
 
+      /**
+       * Filters out duplicates
+       */
       events = events.filter((event, index) => events.indexOf(event) === index)
 
-      const teams = action.records.map(({ team_number }) => team_number)
+      const teams = action.records.map(({ teamNumber }) => teamNumber)
 
       return {
         isFetchingRecords: false,

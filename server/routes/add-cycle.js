@@ -27,7 +27,7 @@ module.exports = ({ body }, res) => {
 
     climb: body.climb,
     comment: body.comment,
-    tech_fouls: body.tech_fouls
+    tech_fouls: body.techFouls
   })
   res.status(200).send('Cycle inserted \n' + JSON.stringify(body, null, 2))
 }

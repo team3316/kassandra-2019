@@ -2,12 +2,12 @@ import { connect } from 'react-redux'
 import { MatchlistFilter, Matchlist } from 'components'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { getEvents, getMatches, filterMatchesByTeam } from '../actions/matchlist.js'
+import { getEvents, getMatches, filterMatchesByTeam } from 'actions/matchlist.js'
 import { Loading } from 'carbon-components-react'
 
 class App extends Component {
   componentDidMount () {
-    document.title = 'Kassandra - Match List'
+    document.title = 'Match list'
 
     const { getEvents, districtKey } = this.props
     getEvents(districtKey)

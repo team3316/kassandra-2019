@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
-import { getEvents, getMatches } from '../actions/matchlist.js'
+import { getEvents, getMatches } from 'actions/matchlist.js'
 import {
   selectMatch,
   selectTeam,

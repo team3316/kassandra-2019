@@ -16,8 +16,13 @@ export const recieveRecords = records => ({
  * Get all records from the database
  * @param  {Function} dispatch Dispatching to the state
  */
-export const getAll = dispatch => {
+export const getAll = () => dispatch => {
   dispatch(requestRecords)
   fetch('/cycles').then(res => res.json())
     .then(records => dispatch(recieveRecords(records)))
 }
+
+export const filterByTeam = team => ({
+  type: 'FILTER_BY_TEAM',
+  team
+})

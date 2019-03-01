@@ -1,3 +1,7 @@
+/**
+ * Inital state for the match list
+ * Used by all containers
+ */
 export const matchlist = {
   isFetchingEvents: false,
   isFetchingMatches: false,
