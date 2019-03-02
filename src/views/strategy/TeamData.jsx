@@ -10,13 +10,14 @@ class TeamData extends Component {
       isFetchingRecords
     } = this.props
 
+    /** If a team is selected show its number at the page title */
     document.title = `Team${team !== 0 ? team : ' data'}`
 
     return (
       !isFetchingRecords && matches.length !== 0
         ? <GameObjectGraph
           height={500}
-          width={1000}
+          width={500}
           matches={matches}
           gameObject={'cargo'}
         />
@@ -26,7 +27,9 @@ class TeamData extends Component {
 }
 
 TeamData.propTypes = {
-  team: PropTypes.number.isRequired
+  team: PropTypes.number.isRequired,
+  matches: PropTypes.array.isRequired,
+  isFetchingRecords: PropTypes.bool.isRequired
 }
 
 export default TeamData
