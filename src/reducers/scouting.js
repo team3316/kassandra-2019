@@ -381,7 +381,7 @@ export default (state = scouting, action) => {
          * @type {Object}
          */
         match: state.match.comp_level !== 'PM'
-          ? action.matches[state.match.index + 1]
+          ? action.matches[state.match.index + 2]
           : {
             comp_level: 'PM',
             number: state.match.number + 1,
@@ -398,12 +398,12 @@ export default (state = scouting, action) => {
         team: state.match.comp_level !== 'PM' ? {
           ...state.team,
 
-          number: action.matches[state.match.index + 1]
+          number: action.matches[state.match.index + 2]
             .alliances[state.team.color].team_keys[state.team.index],
 
-          label: `${action.matches[state.match.index + 1]
+          label: `${action.matches[state.match.index + 2]
             .alliances[state.team.color].team_keys[state.team.index]}
-             - Blue ${state.team.index + 1}`
+             - ${state.team.color.charAt(0).toUpperCase()}${state.team.color.slice(1)} ${state.team.index + 1}`
         } : { number: 1, label: '1' },
 
         /**
