@@ -32,20 +32,23 @@ class Scouting extends Component {
   }
 
   componentDidMount () {
-    console.log(this.props.path)
     const {
       getEvents,
+      getMatches,
       isFetchingEvents,
       districtKey,
-      events
+      events,
+      event
     } = this.props
 
     /*
-     * Checks if matches were already fetched
-     * If they weren't, fetches them from The Blue Alliance
+     * Checks if matches were already fetched and if the district key is 'non'
+     * If not weren't, fetches them from The Blue Alliance
      */
-    if (isFetchingEvents === false && events.length === 0) {
+    if (isFetchingEvents === false && events.length === 0 && districtKey !== 'non') {
       getEvents(districtKey)
+    } else if (districtKey === 'non') {
+      getMatches(event)
     }
   }
 
@@ -102,6 +105,7 @@ class Scouting extends Component {
       comment,
       techFouls,
       isSubmitting,
+      districtKey,
       path
     } = this.props
 
@@ -115,6 +119,7 @@ class Scouting extends Component {
         <Route exact path={path} render={props =>
           <HomePage
             {...props}
+            districtKey={districtKey}
             isFetchingEvents={isFetchingEvents}
             isFetchingMatches={isFetchingMatches}
             events={events}
@@ -191,7 +196,7 @@ Scouting.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
   postForm: PropTypes.func.isRequired,
   nextMatch: PropTypes.func.isRequired,
-  path: PropTypes.func.isRequired
+  path: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => {

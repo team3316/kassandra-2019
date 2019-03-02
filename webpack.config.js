@@ -14,12 +14,12 @@ module.exports = {
     filename: '[name].js'
   },
   plugins: [
-    new EnvironmentPlugin([
-      'NODE_ENV',
-      'DISTRICT_KEY',
-      'CURRENT_EVENT',
-      'TBA_AUTH'
-    ])
+    new EnvironmentPlugin({
+      'NODE_ENV': 'development',
+      'DISTRICT_KEY': 'non',
+      'CURRENT_EVENT': '2019isde2',
+      'TBA_AUTH': ''
+    })
   ],
   module: {
     rules: [{

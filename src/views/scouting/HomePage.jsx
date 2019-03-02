@@ -23,6 +23,7 @@ class HomePage extends Component {
       selectTeam,
       match,
       team,
+      districtKey,
       history
     } = this.props
 
@@ -35,18 +36,23 @@ class HomePage extends Component {
       <div>
         {
           /**
+           * If the district key is specified enable event selection
+           */
+          districtKey !== 'non'
+          /**
            * If fetching for events, show a skeleton
            * If not, show an event dropdown
            */
-          isFetchingEvents || events.length === 0
-            ? <DropdownSkeleton />
-            : <EventDropdown
-              events={events}
-              action={getMatches}
-              currentEventKey={currentEventKey}
-              event={event}
-              shouldFetchMatches={shouldFetchMatches}
-            />
+            ? isFetchingEvents || events.length === 0
+              ? <DropdownSkeleton />
+              : <EventDropdown
+                events={events}
+                action={getMatches}
+                currentEventKey={currentEventKey}
+                event={event}
+                shouldFetchMatches={shouldFetchMatches}
+              />
+            : <div />
         }
 
         {
@@ -67,6 +73,7 @@ class HomePage extends Component {
                   /**
                    * Checks if a match has been selected,
                    * Then checks if the match is a practice match
+                   * If the match is a practice match, show a number input box
                    */
                   match != null
                     ? match.comp_level === 'PM'
@@ -101,7 +108,7 @@ class HomePage extends Component {
                 /**
                  * Check if the match is a practice match
                  * If not, show dropdown
-                 * If it is a practice match, show team numbers
+                 * If it is a practice match, show a number input box
                  */
                   ? match.comp_level !== 'PM'
                     ? <TeamSelect
@@ -142,6 +149,7 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
+  districtKey: PropTypes.string.isRequired,
   isFetchingMatches: PropTypes.bool.isRequired,
   isFetchingEvents: PropTypes.bool.isRequired,
   events: PropTypes.array.isRequired,

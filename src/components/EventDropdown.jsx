@@ -14,6 +14,9 @@ class EventDropdown extends Component {
       shouldFetchMatches
     } = this.props
 
+    /**
+     * If shouldFetchMatches is true, fetch for matches
+     */
     if (shouldFetchMatches) {
       action(events.find(event => event.key === currentEventKey))
     }
