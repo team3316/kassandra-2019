@@ -26,6 +26,7 @@ class GameObjectGraph extends Component {
     console.log(JSON.stringify(keys, null, 2))
 
     const stacks = []
+    const stacks2 = []
 
     keys.forEach(key => {
       let color
@@ -53,7 +54,24 @@ class GameObjectGraph extends Component {
         }))}
         style={{
           data: {
-            fill: color,
+            fill: color
+          },
+          labels: {
+            fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif'
+          }
+        }}
+      />)
+
+      stacks2.unshift(<VictoryArea
+        key={key}
+        name={key}
+        data={matches.map((match, index) => ({
+          x: index,
+          y: match.teleop.panels[key]
+        }))}
+        style={{
+          data: {
+            fill: color
           },
           labels: {
             fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif'
@@ -71,6 +89,9 @@ class GameObjectGraph extends Component {
       >
         <VictoryStack>
           { stacks }
+        </VictoryStack>
+        <VictoryStack>
+          { stacks2 }
         </VictoryStack>
       </VictoryChart>
     )

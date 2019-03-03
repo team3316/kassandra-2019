@@ -10,6 +10,8 @@ const { Cycle } = require('../db')
  * @return {Object}       Formatted cycle object
  */
 const formatCycle = cycle => ({
+  id: cycle.id,
+  visible: cycle.visible,
   matchKey: cycle.match_key,
   teamNumber: cycle.team_number,
   sandstorm: {
