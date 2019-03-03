@@ -1,56 +1,87 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { AreaStack } from '@vx/shape'
-import { scaleLinear, scaleBand } from '@vx/scale'
+import { VictoryTheme, VictoryChart, VictoryStack, VictoryArea } from 'victory'
+
+const graphTheme = {
+  ...VictoryTheme.material,
+  axis: {
+    ...VictoryTheme.material.axis,
+    fill: '#000'
+  }
+}
+
+console.log(JSON.stringify(VictoryTheme.material))
 
 class GameObjectGraph extends Component {
   render () {
     const {
       matches,
-      width,
       gameObject,
-      height
+      height,
+      width
     } = this.props
 
-    const keys = Object.keys(matches[0].teleop[gameObject])
+    const keys = Object.keys(matches[0].teleop[gameObject]).reverse()
 
-    const x = d => d.map(({ matchKey }) => matchKey.replace(/.*_/))
-    const y0 = d => d[0]
-    const y1 = d => d[1]
+    console.log(JSON.stringify(keys, null, 2))
 
-    const xScale = scaleBand({ range: [0, width] })
-    const yScale = scaleLinear({ range: [height, 0] })
+    const stacks = []
+
+    keys.forEach(key => {
+      let color
+      switch (key) {
+        case 'cargoShip':
+          color = '#ff9933'
+          break
+        case 'level1':
+          color = '#3498db'
+          break
+        case 'level2':
+          color = '#9b59b6'
+          break
+        case 'level3':
+          color = '#1abc9c'
+          break
+      }
+
+      stacks.unshift(<VictoryArea
+        key={key}
+        name={key}
+        data={matches.map((match, index) => ({
+          x: index,
+          y: match.teleop[gameObject][key]
+        }))}
+        style={{
+          data: {
+            fill: color,
+          },
+          labels: {
+            fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif'
+          }
+        }}
+      />)
+    })
 
     return (
-      <svg width={width} height={height}>
-        <AreaStack
-          keys={keys}
-          data={matches}
-          width={width}
-          height={height}
-          x={d => xScale(x(d.data))}
-          y0={d => yScale(y0(d))}
-          y1={d => yScale(y1(d))}
-        >
-          {area => {
-            const { path, stacks } = area
-
-            return stacks.map(stack => <path
-              key={`stack-${stack.key}`}
-              d={path(stack)}
-            />)
-          }}
-        </AreaStack>
-      </svg>
+      <VictoryChart
+        style={{ labels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }}
+        theme={graphTheme}
+        height={height}
+        width={width}
+      >
+        <VictoryStack>
+          { stacks }
+        </VictoryStack>
+      </VictoryChart>
     )
   }
 }
 
 GameObjectGraph.propTypes = {
-  gameObject: PropTypes.string.isRequired,
-  matches: PropTypes.array.isRequired,
+  height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
+  matches: PropTypes.array.isRequired,
+  gameObject: PropTypes.string.isRequired
 }
 
 export default GameObjectGraph

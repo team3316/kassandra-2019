@@ -11,15 +11,10 @@ class Strategy extends Component {
   }
 
   render () {
-    const {
-      state,
-      filterByTeam
-    } = this.props
-
     return (
       <TeamData
-        {...state}
-        filterByTeam={filterByTeam}
+        {...this.props.state}
+        filterByTeam={this.props.filterByTeam}
       />
     )
   }

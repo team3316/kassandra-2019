@@ -56,7 +56,7 @@ export const strategy = {
     event_key: 'all'
   },
   teams: [],
-  team: 0,
+  team: null,
   isFetchingRecords: false,
   matches: []
 }

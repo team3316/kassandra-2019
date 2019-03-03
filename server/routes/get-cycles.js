@@ -21,13 +21,13 @@ const formatCycle = cycle => ({
   },
   teleop: {
     cargo: {
-      cargoShip: cycle.teleop_cargo_to_ship,
+      cargoShip: cycle.teleop_cargo_to_cargo_ship,
       level1: cycle.teleop_cargo_to_level1,
       level2: cycle.teleop_cargo_to_level2,
       level3: cycle.teleop_cargo_to_level3
     },
     panels: {
-      cargoShip: cycle.teleop_panels_to_ship,
+      cargoShip: cycle.teleop_panels_to_cargo_ship,
       level1: cycle.teleop_panels_to_level1,
       level2: cycle.teleop_panels_to_level2,
       level3: cycle.teleop_panels_to_level3

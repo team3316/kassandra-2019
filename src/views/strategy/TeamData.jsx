@@ -1,35 +1,54 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { GameObjectGraph } from 'components'
+import { ComboBox } from 'carbon-components-react'
 
 class TeamData extends Component {
   render () {
     const {
+      teams,
+      filterByTeam,
       team,
       matches,
       isFetchingRecords
     } = this.props
 
     /** If a team is selected show its number at the page title */
-    document.title = `Team${team !== 0 ? team : ' data'}`
+    document.title = `Team ${team != null ? team : 'data'}`
 
     return (
-      !isFetchingRecords && matches.length !== 0
-        ? <GameObjectGraph
-          height={500}
-          width={500}
-          matches={matches}
-          gameObject={'cargo'}
+      <div>
+        <ComboBox
+          onChange={({ selectedItem }) => filterByTeam(selectedItem)}
+          placeholder='Select team'
+          label='Team'
+          light
+          items={teams}
+          itemToString={team => team}
         />
-        : <div />
+        {
+          !isFetchingRecords && matches.length !== 0 && team != null
+            ? <div>
+              <GameObjectGraph
+                matches={matches.filter(match => match.teamNumber === team)}
+                gameObject={'cargo'}
+                height={200}
+                width={200}
+              />
+            </div>
+            : <div />
+        }
+      </div>
     )
   }
 }
 
 TeamData.propTypes = {
-  team: PropTypes.number.isRequired,
+  teams: PropTypes.array.isRequired,
+  team: PropTypes.string,
   matches: PropTypes.array.isRequired,
-  isFetchingRecords: PropTypes.bool.isRequired
+  isFetchingRecords: PropTypes.bool.isRequired,
+  filterByTeam: PropTypes.func.isRequired
 }
 
 export default TeamData

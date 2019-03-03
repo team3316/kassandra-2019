@@ -19,8 +19,6 @@
   "license": "ISC",
   "dependencies": {
     "@vx/group": "0.0.183",
-    "@vx/scale": "0.0.182",
-    "@vx/shape": "0.0.184",
     "body-parser": "^1.18.3",
     "carbon-components": "^9.68.11",
     "carbon-components-react": "^6.82.0",
@@ -42,7 +40,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sequelize": "^4.41.2",
-    "svg-inline-react": "^3.1.0"
+    "svg-inline-react": "^3.1.0",
+    "victory": "^32.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

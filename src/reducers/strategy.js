@@ -6,7 +6,10 @@ export default (state = strategy, action) => {
      * Requesting and recieving records from the database
      */
     case 'REQUEST_RECORDS':
-      return { isFetchingRecords: true }
+      return {
+        ...state,
+        isFetchingRecords: true
+      }
 
     /**
      * Recieving records from the database
@@ -14,35 +17,47 @@ export default (state = strategy, action) => {
      */
     case 'RECIEVE_RECORDS':
       /**
-       * List of events taken from the match_key
+       * List of events taken from the matchKey
        * Removes year and match key
        */
       let events = action.records.map(({ matchKey }) =>
-        matchKey.replace(/\d{4}|_.*/, '').toUpperCase())
-
-      /**
-       * Filters out duplicates
-       */
+        matchKey.replace(/_.*/, '').toUpperCase())
+      /** Filters out duplicates */
       events = events.filter((event, index) => events.indexOf(event) === index)
 
-      const teams = action.records.map(({ teamNumber }) => teamNumber)
+      /**
+       * List of teams taken from the records
+       * Filtered to remove duplicates
+       */
+      let teams = action.records.map(({ teamNumber }) => String(teamNumber))
+      teams = teams.filter((team, index) => teams.indexOf(team) === index)
+      teams = teams.sort((a, b) => Number(a) - Number(b))
+
+      const matches = action.records.map(match => ({ ...match, teamNumber: String(match.teamNumber) }))
 
       return {
+        ...state,
         isFetchingRecords: false,
-        matches: action.records,
+        matches,
         teams,
         events
       }
 
     case 'FILTER_BY_TEAM':
-      return { team: action.team }
+      return {
+        ...state,
+        team: action.team
+      }
 
     /**
      * Filters the records by an event
      * @param {Object} action.event event to filter by
      */
     case 'FILTER_BY_EVENT':
-      return { event: action.event }
+      return {
+        ...state,
+        event: action.event
+      }
 
     default:
       return state
