@@ -19,15 +19,19 @@ const Installations = ({ match, gameObject }) => {
   const installs = match.teleop[gameObject]
 
   return (
-  <div className={gameObject}>
-    <p> <Sailboat /> Cargoship: { installs.cargoShip } </p>
-    <p> Level I: { installs.level1 } </p>
-    <p> Level II: { installs.level2 } </p>
-    <p> Level III: { installs.level3 } </p>
-  </div>
+    <div className={gameObject}>
+      <p> <Sailboat /> Cargoship: { installs.cargoShip } </p>
+      <p> Level I: { installs.level1 } </p>
+      <p> Level II: { installs.level2 } </p>
+      <p> Level III: { installs.level3 } </p>
+    </div>
   )
 }
 
+Installations.propTypes = {
+  match: PropTypes.object.isRequired,
+  gameObject: PropTypes.string.isRequired
+}
 
 /**
  * A component that visualises in a paragraph the record data
