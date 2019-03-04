@@ -1,54 +1,42 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { GameObjectGraph } from 'components'
+import { Record } from 'components'
 import { ComboBox } from 'carbon-components-react'
 
-class TeamData extends Component {
+class TeamData extends React.Component {
   render () {
     const {
-      event,
-      teams,
-      filterByTeam,
-      team,
       matches,
-      isFetchingRecords
+      teams,
+      isFetchingRecords,
+      filterByTeam
     } = this.props
 
-    /** If a team is selected show its number at the page title */
-    document.title = `Team ${team != null ? team : 'data'}`
+    const mapMatchToView = match => <div>
+      <Record match={match} />
+      <br />
+    </div>
 
     /**
-     * Filtered matches by team number, event number, and if they should be visible
+     * Takes the records and maps them to components
      * @type {Array}
      */
-    const filteredMatches = matches.filter(match =>
-      match.teamNumber === team && match.visible && (event === 'All' ? true : match.event === event))
+    const recordViews = matches.map(mapMatchToView)
 
     return (
       <div>
-        <ComboBox
-          onChange={({ selectedItem }) => filterByTeam(selectedItem)}
-          placeholder='Select team'
-          label='Team'
-          light
-          items={teams}
-          itemToString={team => team}
-        />
         {
-          !isFetchingRecords && matches.length !== 0 && team != null
+          !isFetchingRecords
             ? <div>
-              <GameObjectGraph
-                matches={filteredMatches}
-                gameObject={'cargo'}
-                height={200}
-                width={400}
+              <ComboBox
+                onChange={({ selectedItem }) => filterByTeam(selectedItem)}
+                placeholder='Select team'
+                label='Team'
+                light
+                items={teams}
+                itemToString={team => team}
               />
-              <GameObjectGraph
-                matches={filteredMatches}
-                gameObject={'panels'}
-                height={200}
-                width={400}
-              />
+              { recordViews }
             </div>
             : <div />
         }
@@ -58,10 +46,8 @@ class TeamData extends Component {
 }
 
 TeamData.propTypes = {
-  event: PropTypes.string.isRequired,
-  teams: PropTypes.array.isRequired,
-  team: PropTypes.string,
   matches: PropTypes.array.isRequired,
+  teams: PropTypes.array.isRequired,
   isFetchingRecords: PropTypes.bool.isRequired,
   filterByTeam: PropTypes.func.isRequired
 }

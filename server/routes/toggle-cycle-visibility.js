@@ -4,17 +4,18 @@
  */
 const { Cycle } = require('../db')
 
+/**
+ * Gets cycle id in the request body, returns what visibility state the cycle was changed to
+ * @return {Object}
+ * An object with a visible field that describes what the visibility was changed to
+ */
 module.exports = ({ body }, res) => {
   Cycle.findOne({
     where: { id: body.id }
   })
     .then(cycle => {
-      console.log('==> Visibility state: ' + cycle.visible)
-      console.log('==> Cycle: ' + JSON.stringify(cycle, null, 2))
       cycle.set('visible', !cycle.get('visible'))
-      console.log('==> Cycle: ' + JSON.stringify(cycle, null, 2))
       cycle.save()
+      res.json({ visible: cycle.get('visible') })
     })
-
-  res.status(200)
 }

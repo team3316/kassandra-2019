@@ -5,9 +5,9 @@ import { Button } from 'carbon-components-react'
 import {
   GiJoystick as Controller,
   GiSailboat as Sailboat,
-  GiCompactDisc as Panel
+  GiCompactDisc as Panel,
+  GiPlainCircle as Cargo
 } from 'react-icons/gi'
-import { FiCircle as Cargo } from 'react-icons/fi'
 
 /**
  * TODO: Find a better controller icon

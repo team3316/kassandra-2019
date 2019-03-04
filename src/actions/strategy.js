@@ -26,3 +26,20 @@ export const filterByTeam = team => ({
   type: 'FILTER_BY_TEAM',
   team
 })
+
+export const filterByEvent = event => ({
+  type: 'FILTER_BY_EVENT',
+  event
+})
+
+export const filterByEventTeam = (event, team) => dispatch => {
+  dispatch(filterByTeam(team))
+  dispatch(filterByEvent(event))
+}
+
+export const requestByTeam = team => dispatch => {
+  dispatch(requestRecords)
+  dispatch(filterByTeam(team))
+  fetch(`/cycles/team/${team}`).then(res => res.json())
+    .then(records => dispatch(recieveRecords(records)))
+}

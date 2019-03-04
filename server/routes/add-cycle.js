@@ -28,6 +28,5 @@ module.exports = ({ body }, res) => {
     climb: body.climb,
     comment: body.comment,
     tech_fouls: body.techFouls
-  })
-  res.status(200)
+  }).spread(match => res.status(200).send(`Cycle inserted: \n${JSON.stringify(match)}`))
 }

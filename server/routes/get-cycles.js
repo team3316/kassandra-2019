@@ -69,7 +69,7 @@ const getCyclesByEvent = (req, res) => {
  * Returns the cycles the team has
  */
 const getCyclesByTeam = (req, res) => {
-  Cycle.findAll({ where: { team_number: req.body.team_number } })
+  Cycle.findAll({ where: { team_number: Number(req.params.teamNumber) } })
     .then(cycles => res.json(formatCycles(cycles)))
 }
 

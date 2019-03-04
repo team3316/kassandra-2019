@@ -4,9 +4,9 @@ import { Checkbox, Button } from 'carbon-components-react'
 import {
   GiSightDisabled as SightDisabled,
   GiSailboat as Sailboat,
+  GiPlainCircle as Cargo,
   GiCompactDisc as Panel
 } from 'react-icons/gi'
-import { FiCircle as Cargo } from 'react-icons/fi'
 import { IoIosRocket as Rocket } from 'react-icons/io'
 import { ScoutingHeader, Footer } from 'components'
 

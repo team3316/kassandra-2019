@@ -8,6 +8,7 @@ import TeamSelect from './TeamSelect.jsx'
 import ScoutingHeader from './ScoutingHeader.jsx'
 import TeamInput from './TeamInput.jsx'
 import GameObjectGraph from './GameObjectGraph.jsx'
+import Record from './Record.jsx'
 
 export {
   EventDropdown,
@@ -19,5 +20,6 @@ export {
   TeamSelect,
   ScoutingHeader,
   TeamInput,
-  GameObjectGraph
+  GameObjectGraph,
+  Record
 }

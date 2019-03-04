@@ -33,7 +33,11 @@ export default (state = strategy, action) => {
       teams = teams.filter((team, index) => teams.indexOf(team) === index)
       teams = teams.sort((a, b) => Number(a) - Number(b))
 
-      const matches = action.records.map(match => ({ ...match, teamNumber: String(match.teamNumber) }))
+      const matches = action.records.map(match => ({
+        ...match,
+        teamNumber: String(match.teamNumber),
+        eventKey: match.matchKey.replace(/_.*/, '')
+      }))
 
       return {
         ...state,
