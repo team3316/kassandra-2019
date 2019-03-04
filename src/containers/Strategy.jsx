@@ -15,7 +15,9 @@ class Strategy extends Component {
   render () {
     const { matches, event, team } = this.props.state
 
-    const filteredMatches = matches.filter(match =>
+    const sortedMatches = matches.sort((a, b) => a.id - b.id)
+
+    const filteredMatches = sortedMatches.filter(match =>
       match.teamNumber === team && match.visible && (event === 'All' ? true : match.event === event))
 
     return (
@@ -32,7 +34,7 @@ class Strategy extends Component {
           <TeamData
             {...props}
             {...this.props.state}
-            matches={matches}
+            matches={filteredMatches}
             filterByTeam={this.props.filterByTeam}
             getAll={getAll}
           />}
@@ -45,7 +47,8 @@ class Strategy extends Component {
 Strategy.propTypes = {
   state: PropTypes.object.isRequired,
   getAll: PropTypes.func.isRequired,
-  filterByTeam: PropTypes.func.isRequired
+  filterByTeam: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired
 }
 
 const mapStateToProps = ({ strategy }) => ({ state: strategy })
