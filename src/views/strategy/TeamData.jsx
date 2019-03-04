@@ -58,6 +58,7 @@ class TeamData extends Component {
 }
 
 TeamData.propTypes = {
+  event: PropTypes.string.isRequired,
   teams: PropTypes.array.isRequired,
   team: PropTypes.string,
   matches: PropTypes.array.isRequired,

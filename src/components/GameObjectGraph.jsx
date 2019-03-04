@@ -6,8 +6,6 @@ const graphTheme = {
   ...VictoryTheme.material
 }
 
-console.log(JSON.stringify(VictoryTheme.material))
-
 class GameObjectGraph extends Component {
   render () {
     const {
@@ -19,6 +17,10 @@ class GameObjectGraph extends Component {
 
     const keys = Object.keys(matches[0].teleop[gameObject]).reverse()
 
+    /**
+     * An array of areas
+     * @type {Array}
+     */
     const stacks = []
 
     keys.forEach(key => {
@@ -37,13 +39,12 @@ class GameObjectGraph extends Component {
           color = '#34A853'
           break
       }
-
       stacks.unshift(<VictoryArea
         key={key}
         name={key}
-        data={matches.map((match, index) => ({
+        data={matches.map(({ teleop }, index) => ({
           x: index,
-          y: match.teleop[gameObject][key]
+          y: teleop[gameObject][key]
         }))}
         style={{
           data: { fill: color }
@@ -58,9 +59,13 @@ class GameObjectGraph extends Component {
           height={height}
           width={width}
         >
-          <VictoryAxis tickCount={matches.length}
+          <VictoryAxis
+            tickValues={matches.map((match, index) => index)}
             style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }} />
-          <VictoryAxis dependentAxis />
+          <VictoryAxis
+            dependentAxis
+            style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }}
+          />
           <VictoryStack colorScale={'blue'}>
             { stacks }
           </VictoryStack>
