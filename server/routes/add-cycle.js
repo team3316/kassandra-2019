@@ -29,5 +29,5 @@ module.exports = ({ body }, res) => {
     comment: body.comment,
     tech_fouls: body.techFouls
   })
-  res.status(200).send('Cycle inserted \n' + JSON.stringify(body, null, 2))
+  res.status(200)
 }

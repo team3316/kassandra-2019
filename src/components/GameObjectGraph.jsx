@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { VictoryTheme, VictoryChart, VictoryStack, VictoryArea } from 'victory'
+import { VictoryAxis, VictoryTheme, VictoryChart, VictoryStack, VictoryArea } from 'victory'
 
 const graphTheme = {
-  ...VictoryTheme.material,
-  axis: {
-    ...VictoryTheme.material.axis,
-    fill: '#000'
-  }
+  ...VictoryTheme.material
 }
 
 console.log(JSON.stringify(VictoryTheme.material))
@@ -23,25 +19,22 @@ class GameObjectGraph extends Component {
 
     const keys = Object.keys(matches[0].teleop[gameObject]).reverse()
 
-    console.log(JSON.stringify(keys, null, 2))
-
     const stacks = []
-    const stacks2 = []
 
     keys.forEach(key => {
       let color
       switch (key) {
         case 'cargoShip':
-          color = '#ff9933'
+          color = '#4285F4'
           break
         case 'level1':
-          color = '#3498db'
+          color = '#EA4335'
           break
         case 'level2':
-          color = '#9b59b6'
+          color = '#FBBC05'
           break
         case 'level3':
-          color = '#1abc9c'
+          color = '#34A853'
           break
       }
 
@@ -53,47 +46,26 @@ class GameObjectGraph extends Component {
           y: match.teleop[gameObject][key]
         }))}
         style={{
-          data: {
-            fill: color
-          },
-          labels: {
-            fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif'
-          }
-        }}
-      />)
-
-      stacks2.unshift(<VictoryArea
-        key={key}
-        name={key}
-        data={matches.map((match, index) => ({
-          x: index,
-          y: match.teleop.panels[key]
-        }))}
-        style={{
-          data: {
-            fill: color
-          },
-          labels: {
-            fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif'
-          }
+          data: { fill: color }
         }}
       />)
     })
 
     return (
-      <VictoryChart
-        style={{ labels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }}
-        theme={graphTheme}
-        height={height}
-        width={width}
-      >
-        <VictoryStack>
-          { stacks }
-        </VictoryStack>
-        <VictoryStack>
-          { stacks2 }
-        </VictoryStack>
-      </VictoryChart>
+      <div>
+        <VictoryChart
+          theme={graphTheme}
+          height={height}
+          width={width}
+        >
+          <VictoryAxis tickCount={matches.length}
+            style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }} />
+          <VictoryAxis dependentAxis />
+          <VictoryStack colorScale={'blue'}>
+            { stacks }
+          </VictoryStack>
+        </VictoryChart>
+      </div>
     )
   }
 }

@@ -20,7 +20,7 @@ class MatchDropdown extends Component {
       matches.unshift({
         name: 'Practice 1',
         event_key: matches[0].event_key,
-        match_key: `${matches[0].event_key}_pm1`,
+        key: `${matches[0].event_key}_pm1`,
         comp_level: 'PM',
         number: 1
       })
