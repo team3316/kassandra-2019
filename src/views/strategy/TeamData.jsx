@@ -38,13 +38,13 @@ class TeamData extends Component {
           !isFetchingRecords && matches.length !== 0 && team != null
             ? <div>
               <GameObjectGraph
-                matches={matches.filter(match => match.teamNumber === team && match.visible)}
+                matches={filteredMatches}
                 gameObject={'cargo'}
                 height={200}
                 width={400}
               />
               <GameObjectGraph
-                matches={matches.filter(match => match.teamNumber === team)}
+                matches={filteredMatches}
                 gameObject={'panels'}
                 height={200}
                 width={400}
