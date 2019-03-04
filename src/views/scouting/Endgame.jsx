@@ -82,13 +82,13 @@ class Endgame extends Component {
           </div>
         </div>
         <Footer>
-          <Button onClick={() => history.push('/teleop')}> Teleop </Button>
+          <Button onClick={() => history.push('/scouting/teleop')}> Teleop </Button>
           {
             !isSubmitting
               ? <Button onClick={() => {
                 submit().then(res => {
                   nextMatch()
-                  history.push('/')
+                  history.push('/scouting')
                 })
               }}> Submit </Button>
               : <InlineLoading

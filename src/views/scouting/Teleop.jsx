@@ -90,11 +90,11 @@ class Teleop extends Component {
         <Footer>
           <Button onClick={() => {
             setIncrement()
-            history.push(`/sandstorm`)
+            history.push(`/scouting/sandstorm`)
           }}> Sandstorm </Button>
           <Button onClick={() => {
             setIncrement()
-            history.push('/endgame')
+            history.push('/scouting/endgame')
           }}> Endgame </Button>
         </Footer>
       </div>

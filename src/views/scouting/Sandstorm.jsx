@@ -81,8 +81,8 @@ class Sandstorm extends Component {
         </div>
 
         <Footer>
-          <Button onClick={() => history.push('/')}> Team Selection </Button>
-          <Button onClick={() => history.push('/teleop')}> Teleop </Button>
+          <Button onClick={() => history.push('/scouting')}> Team Selection </Button>
+          <Button onClick={() => history.push('/scouting/teleop')}> Teleop </Button>
         </Footer>
       </div>
     )

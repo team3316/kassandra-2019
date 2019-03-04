@@ -133,7 +133,7 @@ class Scouting extends Component {
             selectMatch={selectMatch}
             selectTeam={selectTeam}
           />} />
-        <Route path='/sandstorm' render={props =>
+        <Route path={`${path}/sandstorm`} render={props =>
           <Sandstorm
             {...props}
             team={team}
@@ -141,7 +141,7 @@ class Scouting extends Component {
             state={sandstormState}
             actions={sandstormActions}
           />} />
-        <Route path='/teleop' render={props =>
+        <Route path={`${path}/teleop`} render={props =>
           <Teleop
             {...props}
             team={team}
@@ -151,7 +151,7 @@ class Scouting extends Component {
             setIncrement={setIncrement}
             toggleDecrement={toggleDecrement}
           />} />
-        <Route path='/endgame' render={props =>
+        <Route path={`${path}/endgame`} render={props =>
           <Endgame
             {...props}
             team={team}

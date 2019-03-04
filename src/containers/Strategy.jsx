@@ -3,19 +3,26 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { TeamData } from 'views'
 import { getAll, filterByTeam } from 'actions/strategy.js'
+import { Switch, Route } from 'react-router-dom'
 
 class Strategy extends Component {
   componentDidMount () {
+    document.title = 'Strategy'
     const { getAll } = this.props
     getAll()
   }
 
   render () {
     return (
-      <TeamData
-        {...this.props.state}
-        filterByTeam={this.props.filterByTeam}
-      />
+      <Switch>
+        <Route path={`${this.props.match.path}/team`} render={props =>
+          <TeamData
+            {...props}
+            {...this.props.state}
+            filterByTeam={this.props.filterByTeam}
+          />}
+        />
+      </Switch>
     )
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
@@ -52,7 +52,8 @@ render(
       <Switch>
         <Route path='/strategy' render={props => <Strategy {...props} />} />
         <Route path='/matchlist' render={props => <Matchlist {...props} {...props.match} />} />
-        <Route path='/' render={props => <Scouting {...props} {...props.match} />} />
+        <Route path='/scouting' render={props => <Scouting {...props} {...props.match} />} />
+        <Redirect from='' to='/scouting' />
       </Switch>
     </Router>
   </Provider>,

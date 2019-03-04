@@ -137,7 +137,7 @@ class HomePage extends Component {
            */
           }
           <Button
-            onClick={() => history.push('/sandstorm')}
+            onClick={() => history.push('/scouting/sandstorm')}
             disabled={team === null}
           >
             Sandstorm
