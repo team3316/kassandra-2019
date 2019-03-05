@@ -6,7 +6,8 @@ import {
   GiJoystick as Controller,
   GiSailboat as Sailboat,
   GiPlainCircle as Cargo,
-  GiCompactDisc as Panel
+  GiCompactDisc as Panel,
+  GiStairsGoal as Stairs
 } from 'react-icons/gi'
 import { IoIosRocket as Rocket } from 'react-icons/io'
 
@@ -92,6 +93,18 @@ class Record extends React.Component {
 
         <p> <Panel /> Panels: </p>
         <Installations match={match} gameObject='panels' />
+
+        <p> <Stairs /> Climb: {match.climb} </p>
+
+        <p style={{ color: match.techFouls ? '#e74c3c' : '#2ecc71' }}>
+          Tech fouls: {match.techFouls ? 'true' : 'false'} </p>
+
+        {
+          match.comment === ''
+            ? <span />
+            : <p> Comments: {match.comment} </p>
+        }
+
       </div>
     )
   }
