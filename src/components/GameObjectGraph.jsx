@@ -43,18 +43,12 @@ class GameObjectGraph extends Component {
 
     // When the graph has 1 data point, it will look like a line.
     // Add another item to the list so that it would look like an actual area graph
-    if (matches.length === 1) {
-      const actualData = matches[0]
-      matches[0] = {
-        matchKey: '_ ', // An empty string looks weird, so a space is needed
-        teleop: actualData.teleop
-      }
-
-      matches.push(actualData)
-    }
+    const matchesToUse = matches.length === 1
+      ? [{ matchKey: '_ ', teleop: matches[0].teleop }, matches[0]]
+      : matches
 
     keys.forEach((key, i) => {
-      const labels = matches.map(({ teleop }) => {
+      const labels = matchesToUse.map(({ teleop }) => {
         const y = teleop[gameObject][key]
         if (i === 0) return y
 
@@ -65,7 +59,7 @@ class GameObjectGraph extends Component {
       stacks.unshift(<VictoryArea
         key={key}
         name={key}
-        data={matches.map(({ matchKey, teleop }) => ({
+        data={matchesToUse.map(({ matchKey, teleop }) => ({
           x: getMatchID(matchKey),
           y: teleop[gameObject][key]
         }))}
@@ -85,7 +79,7 @@ class GameObjectGraph extends Component {
         domainPadding={{ x: 10 }}
       >
         <VictoryAxis
-          tickValues={matches.map((match, index) => index)}
+          tickValues={matchesToUse.map((match, index) => index)}
           style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }} />
         <VictoryAxis
           dependentAxis
