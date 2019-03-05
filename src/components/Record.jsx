@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from 'carbon-components-react'
+import { AccordionItem, Button } from 'carbon-components-react'
 import {
   GiSightDisabled as SightDisabled,
   GiJoystick as Controller,
@@ -46,9 +46,15 @@ class Record extends React.Component {
   render () {
     const { match } = this.props
 
+    const getTitle = isVisible => match.matchKey.toUpperCase().replace('_', ' ') + (!isVisible
+      ? ' [HIDDEN]' : ''
+    )
+
     return (
-      <div key={match.id}>
-        <h3> { match.matchKey.toUpperCase().replace('_', ' ') } </h3>
+      <AccordionItem
+        key={match.id}
+        title={getTitle(this.state.visible)}
+      >
         <Button onClick={() => {
           /**
            * Changes the cycle's visibility in the database
@@ -105,7 +111,7 @@ class Record extends React.Component {
             : <p> Comments: {match.comment} </p>
         }
 
-      </div>
+      </AccordionItem>
     )
   }
 }

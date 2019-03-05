@@ -15,10 +15,8 @@ class Strategy extends Component {
   render () {
     const { matches, event, team } = this.props.state
 
-    const sortedMatches = matches.sort((a, b) => a.id - b.id)
-
-    const filteredMatches = sortedMatches.filter(match =>
-      match.teamNumber === team && match.visible && (event === 'All' ? true : match.event === event))
+    const filteredMatches = matches.sort((a, b) => a.id - b.id).filter(match =>
+      match.teamNumber === team && (event === 'All' ? true : match.event === event))
 
     return (
       <Switch>
@@ -26,7 +24,7 @@ class Strategy extends Component {
           <Graphs
             {...props}
             {...this.props.state}
-            matches={filteredMatches}
+            matches={filteredMatches.filter(m => m.visible)}
             filterByTeam={this.props.filterByTeam}
           />}
         />

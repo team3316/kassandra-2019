@@ -68,7 +68,7 @@ class TeamData extends Component {
      * @type {Array}
      */
     return (
-      <div id='graphs'>
+      <div className='strategy' id='graphs'>
         <ComboBox
           onChange={({ selectedItem }) => filterByTeam(selectedItem)}
           placeholder='Select team'
@@ -84,8 +84,11 @@ class TeamData extends Component {
             : <div />
         }
 
-        <Footer> <Button onClick={() => this.props.history.push(`/strategy/team`)}>
-          Team reports </Button> </Footer>
+        <Footer>
+          <Button onClick={() => this.props.history.push(`/strategy/team`)}>
+            Team reports
+          </Button>
+        </Footer>
       </div>
     )
   }

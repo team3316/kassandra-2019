@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Record } from 'components'
-import { ComboBox } from 'carbon-components-react'
+import { Record, Footer } from 'components'
+import { ComboBox, Button, Accordion } from 'carbon-components-react'
 
 class TeamData extends React.Component {
   render () {
@@ -12,22 +12,11 @@ class TeamData extends React.Component {
       filterByTeam
     } = this.props
 
-    const mapMatchToView = match => <div>
-      <Record match={match} />
-      <br />
-    </div>
-
-    /**
-     * Takes the records and maps them to components
-     * @type {Array}
-     */
-    const recordViews = matches.map(mapMatchToView)
-
     return (
       <div>
         {
           !isFetchingRecords
-            ? <div>
+            ? <div className='strategy'>
               <ComboBox
                 onChange={({ selectedItem }) => filterByTeam(selectedItem)}
                 placeholder='Select team'
@@ -36,10 +25,20 @@ class TeamData extends React.Component {
                 items={teams}
                 itemToString={team => team}
               />
-              { recordViews }
+              <div className='content'>
+                <Accordion>
+                  {matches.map(match => <Record match={match} />)}
+                </Accordion>
+              </div>
             </div>
             : <div />
         }
+
+        <Footer>
+          <Button onClick={() => this.props.history.push(`/strategy/graphs`)}>
+            Team graphs
+          </Button>
+        </Footer>
       </div>
     )
   }
@@ -49,7 +48,8 @@ TeamData.propTypes = {
   matches: PropTypes.array.isRequired,
   teams: PropTypes.array.isRequired,
   isFetchingRecords: PropTypes.bool.isRequired,
-  filterByTeam: PropTypes.func.isRequired
+  filterByTeam: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 export default TeamData
