@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { VictoryAxis, VictoryTheme, VictoryChart, VictoryStack, VictoryArea } from 'victory'
+import {
+  VictoryAxis,
+  VictoryTheme,
+  VictoryChart,
+  VictoryStack,
+  VictoryArea
+} from 'victory'
 
 const graphTheme = {
   ...VictoryTheme.material
@@ -23,22 +29,16 @@ class GameObjectGraph extends Component {
      */
     const stacks = []
 
-    keys.forEach(key => {
-      let color
+    const getColorForKey = key => {
       switch (key) {
-        case 'cargoShip':
-          color = '#4285F4'
-          break
-        case 'level1':
-          color = '#EA4335'
-          break
-        case 'level2':
-          color = '#FBBC05'
-          break
-        case 'level3':
-          color = '#34A853'
-          break
+        case 'cargoShip': return '#4285F4'
+        case 'level1': return '#EA4335'
+        case 'level2': return '#FBBC05'
+        case 'level3': return '#34A853'
       }
+    }
+
+    keys.forEach(key => {
       stacks.unshift(<VictoryArea
         key={key}
         name={key}
@@ -47,7 +47,7 @@ class GameObjectGraph extends Component {
           y: teleop[gameObject][key]
         }))}
         style={{
-          data: { fill: color }
+          data: { fill: getColorForKey(key) }
         }}
       />)
     })

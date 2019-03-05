@@ -7,6 +7,42 @@ import {
   GiCompactDisc as Panel
 } from 'react-icons/gi'
 
+const GraphsLegend = () => (
+  <div className='legend'>
+    <span>Cargo Ship</span>
+    <span>Level 1</span>
+    <span>Level 2</span>
+    <span>Level 3</span>
+  </div>
+)
+
+const ObjectGraphsRow = ({ matches }) => (
+  <div className='row'>
+    <div>
+      <span className='title'>
+        <Cargo /> Cargo
+      </span>
+      <GameObjectGraph
+        matches={matches}
+        gameObject={'cargo'}
+        height={200}
+        width={400}
+      />
+    </div>
+    <div>
+      <span className='title'>
+        <Panel /> Panels
+      </span>
+      <GameObjectGraph
+        matches={matches}
+        gameObject={'panels'}
+        height={200}
+        width={400}
+      />
+    </div>
+  </div>
+)
+
 class TeamData extends Component {
   render () {
     const {
@@ -20,12 +56,19 @@ class TeamData extends Component {
     /** If a team is selected show its number at the page title */
     document.title = `Team ${team != null ? team : 'data'}`
 
+    const PageContent = ({ matches }) => (
+      <div className='content'>
+        <ObjectGraphsRow matches={matches} />
+        <GraphsLegend />
+      </div>
+    )
+
     /**
      * Filtered matches by team number, event number, and if they should be visible
      * @type {Array}
      */
     return (
-      <div>
+      <div id='graphs'>
         <ComboBox
           onChange={({ selectedItem }) => filterByTeam(selectedItem)}
           placeholder='Select team'
@@ -34,26 +77,13 @@ class TeamData extends Component {
           items={teams}
           itemToString={team => team}
         />
+
         {
           !isFetchingRecords && matches.length !== 0 && team != null
-            ? <div>
-              <h1> <Cargo /> Cargo </h1>
-              <GameObjectGraph
-                matches={matches}
-                gameObject={'cargo'}
-                height={200}
-                width={400}
-              />
-              <h1> <Panel /> Panels </h1>
-              <GameObjectGraph
-                matches={matches}
-                gameObject={'panels'}
-                height={200}
-                width={400}
-              />
-            </div>
+            ? <PageContent matches={matches} />
             : <div />
         }
+
         <Footer> <Button onClick={() => this.props.history.push(`/strategy/team`)}>
           Team reports </Button> </Footer>
       </div>
