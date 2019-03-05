@@ -9,20 +9,30 @@ require('colors')
  * If DATABASE_URL exists, use it
  * If not, use other config variables
  */
-const sequelize = process.env.DATABASE_URL === '' || process.env.DATABASE_URL == null
-  ? new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    dialect: process.env.DB_DIALECT,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+const defaultSequelizeArgs = {
+  define: {
+    timestamps: false,
+    freezeTableName: true
+  }
+}
 
-    /** Default table definition options */
-    define: {
-      timestamps: false,
-      freezeTableName: true,
-      schema: process.env.DB_SCHEMA
-    }
-  })
-  : new Sequelize(process.env.DATABASE_URL)
+const sequelizeArgs = process.env.DATABASE_URL === '' || process.env.DATABASE_URL == null
+  ? [
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    Object.assign({}, defaultSequelizeArgs, {
+      dialect: process.env.DB_DIALECT,
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      define: {
+        schema: process.env.DB_SCHEMA
+      }
+    })
+  ]
+  : [process.env.DATABASE_URL, defaultSequelizeArgs]
+
+const sequelize = new Sequelize(...sequelizeArgs)
 
 /** Creating models */
 const Cycle = sequelize.define('cycles', {
