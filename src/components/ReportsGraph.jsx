@@ -27,7 +27,7 @@ const tickValuesToProps = {
   'Tech Foul': 'techFouls',
   'Climb': 'climb',
   '[S] RT Panel': 'sandstorm.panelToRocket',
-  '[S] RT Cargo': 'sandstomr.cargoToRocket',
+  '[S] RT Cargo': 'sandstorm.cargoToRocket',
   '[S] CS Panel': 'sandstorm.panelToCargoShip',
   '[S] CS Cargo': 'sandstorm.cargoToCargoShip',
   'HAB Line': 'sandstorm.habLine'
@@ -47,7 +47,7 @@ class ReportsGraph extends Component {
 
     const getMatchID = matchKey => matchKey.split('_')[1].toUpperCase()
 
-    const scatters = SCATTER_TICK_VALUES.filter(t => !/climb/.test(t)).map((tick, i) => {
+    const scatters = SCATTER_TICK_VALUES.filter(t => !/climb/i.test(t)).map((tick, i) => {
       const prop = tickValuesToProps[tick]
 
       return (
@@ -56,7 +56,7 @@ class ReportsGraph extends Component {
           name={tick}
           data={matches.map(match => {
             const symbol = (!prop.includes('sandstorm') ? match[prop] : match['sandstorm'][prop.split('.')[1]]) ? 'square' : 'triangleDown'
-            console.log(prop, i)
+            console.log(prop, i, symbol)
             return {
               x: getMatchID(match.matchKey),
               y: i,
@@ -80,7 +80,7 @@ class ReportsGraph extends Component {
           <VictoryAxis
             dependentAxis
             tickValues={SCATTER_TICK_VALUES}
-            domain={[0, 8]}
+            domain={[0, 6]}
             style={ticksStyle}
           />
           <VictoryStack colorScale={'blue'}>
