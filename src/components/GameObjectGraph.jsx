@@ -5,7 +5,8 @@ import {
   VictoryTheme,
   VictoryChart,
   VictoryStack,
-  VictoryArea
+  VictoryArea,
+  VictoryLabel
 } from 'victory'
 
 const graphTheme = {
@@ -50,10 +51,17 @@ class GameObjectGraph extends Component {
       }
 
       matches.push(actualData)
-      console.log(matches)
     }
 
-    keys.forEach(key => {
+    keys.forEach((key, i) => {
+      const labels = matches.map(({ teleop }) => {
+        const y = teleop[gameObject][key]
+        if (i === 0) return y
+
+        const dy = y - teleop[gameObject][keys[i - 1]]
+        return dy > 0 ? dy : undefined
+      })
+
       stacks.unshift(<VictoryArea
         key={key}
         name={key}
@@ -61,6 +69,8 @@ class GameObjectGraph extends Component {
           x: getMatchID(matchKey),
           y: teleop[gameObject][key]
         }))}
+        labels={labels}
+        labelComponent={<VictoryLabel dy={5} />}
         style={{
           data: { fill: getColorForKey(key) }
         }}
@@ -68,24 +78,24 @@ class GameObjectGraph extends Component {
     })
 
     return (
-      <div>
-        <VictoryChart
-          theme={graphTheme}
-          height={height}
-          width={width}
-        >
-          <VictoryAxis
-            tickValues={matches.map((match, index) => index)}
-            style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }} />
-          <VictoryAxis
-            dependentAxis
-            style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }}
-          />
-          <VictoryStack colorScale={'blue'}>
-            { stacks }
-          </VictoryStack>
-        </VictoryChart>
-      </div>
+      <VictoryChart
+        theme={graphTheme}
+        height={height}
+        width={width}
+        domainPadding={{ x: 10 }}
+      >
+        <VictoryAxis
+          tickValues={matches.map((match, index) => index)}
+          style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }} />
+        <VictoryAxis
+          dependentAxis
+          domain={[0, 15]}
+          style={{ tickLabels: { fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif' } }}
+        />
+        <VictoryStack colorScale={'blue'}>
+          { stacks }
+        </VictoryStack>
+      </VictoryChart>
     )
   }
 }
