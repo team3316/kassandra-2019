@@ -111,8 +111,7 @@ class Record extends React.Component {
 }
 
 Record.propTypes = {
-  match: PropTypes.object.isRequired,
-  getAll: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired
 }
 
 export default Record
