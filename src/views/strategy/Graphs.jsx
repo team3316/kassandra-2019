@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { GameObjectGraph, Footer } from 'components'
+import { GameObjectGraph, ReportsGraph, Footer } from 'components'
 import { ComboBox, Button } from 'carbon-components-react'
 import {
   GiPlainCircle as Cargo,
@@ -43,7 +43,11 @@ const ObjectGraphsRow = ({ matches }) => (
   </div>
 )
 
-class TeamData extends Component {
+ObjectGraphsRow.propTypes = {
+  matches: PropTypes.array.isRequired
+}
+
+class Graphs extends Component {
   render () {
     const {
       teams,
@@ -57,9 +61,10 @@ class TeamData extends Component {
     document.title = `Team ${team != null ? team : 'data'}`
 
     const PageContent = ({ matches }) => (
-      <div className='content'>
+      <div className='content col'>
         <ObjectGraphsRow matches={matches} />
         <GraphsLegend />
+        <ReportsGraph matches={matches} />
       </div>
     )
 
@@ -94,7 +99,7 @@ class TeamData extends Component {
   }
 }
 
-TeamData.propTypes = {
+Graphs.propTypes = {
   event: PropTypes.string.isRequired,
   teams: PropTypes.array.isRequired,
   team: PropTypes.string,
@@ -104,4 +109,4 @@ TeamData.propTypes = {
   history: PropTypes.object.isRequired
 }
 
-export default TeamData
+export default Graphs
