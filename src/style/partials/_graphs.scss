@@ -8,12 +8,12 @@
   display: flex;
   flex-direction: row;
 
-  > div:not(.legend) {
-    flex: 4;
-  }
-
-  > .legend {
+  > div {
     flex: 1;
+
+    > div {
+      height: 230px !important;
+    }
   }
 }
 
@@ -33,6 +33,11 @@
     > svg {
       margin-right: 5px;
     }
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
   }
 
 
