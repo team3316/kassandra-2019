@@ -5,7 +5,8 @@ import {
   VictoryAxis,
   VictoryTheme,
   VictoryChart,
-  VictoryScatter
+  VictoryScatter,
+  VictoryStack
 } from 'victory'
 
 const graphTheme = {
@@ -22,6 +23,16 @@ const SCATTER_TICK_VALUES = [
   'HAB Line'
 ]
 
+const tickValuesToProps = {
+  'Tech Foul': 'techFouls',
+  'Climb': 'climb',
+  '[S] RT Panel': 'sandstorm.panelToRocket',
+  '[S] RT Cargo': 'sandstomr.cargoToRocket',
+  '[S] CS Panel': 'sandstorm.panelToCargoShip',
+  '[S] CS Cargo': 'sandstorm.cargoToCargoShip',
+  'HAB Line': 'sandstorm.habLine'
+}
+
 const ticksStyle = {
   tickLabels: {
     fontFamily: '-apple-system, BlinkMacSystemFont, \'Helvetica Neue\', \'Roboto\', Arial, sans-serif'
@@ -33,6 +44,28 @@ class ReportsGraph extends Component {
     const {
       matches
     } = this.props
+
+    const getMatchID = matchKey => matchKey.split('_')[1].toUpperCase()
+
+    const scatters = SCATTER_TICK_VALUES.filter(t => !/climb/.test(t)).map((tick, i) => {
+      const prop = tickValuesToProps[tick]
+
+      return (
+        <VictoryScatter
+          key={tick}
+          name={tick}
+          data={matches.map(match => {
+            const symbol = (!prop.includes('sandstorm') ? match[prop] : match['sandstorm'][prop.split('.')[1]]) ? 'square' : 'triangleDown'
+            console.log(prop, i)
+            return {
+              x: getMatchID(match.matchKey),
+              y: i,
+              symbol
+            }
+          })}
+        />
+      )
+    })
 
     return (
       <div style={{ width: '85%', height: '370px', margin: '0 auto' }}>
@@ -50,7 +83,9 @@ class ReportsGraph extends Component {
             domain={[0, 8]}
             style={ticksStyle}
           />
-          <VictoryScatter width={window.innerWidth * 0.6} />
+          <VictoryStack colorScale={'blue'}>
+            {scatters}
+          </VictoryStack>
         </VictoryChart>
       </div>
     )
