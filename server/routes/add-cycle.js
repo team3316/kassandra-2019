@@ -16,7 +16,7 @@ module.exports = ({ body }, res) => {
     sandstorm_panel_to_cargo_ship: body.sandstorm.panelToCargoShip,
     sandstorm_panel_to_rocket: body.sandstorm.panelToRocket,
 
-    teleop_cargo_to_ship: body.teleop.cargo.cargoShip,
+    teleop_cargo_to_cargo_ship: body.teleop.cargo.cargoShip,
     teleop_cargo_to_level1: body.teleop.cargo.level1,
     teleop_cargo_to_level2: body.teleop.cargo.level2,
     teleop_cargo_to_level3: body.teleop.cargo.level3,
