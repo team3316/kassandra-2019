@@ -386,7 +386,7 @@ export default (state = scouting, action) => {
             comp_level: 'PM',
             number: state.match.number + 1,
             name: `Practice ${state.match.number + 1}`,
-            match_key: `${action.matches[0].event_key}_${state.match.number + 1}`
+            key: `${state.match.event_key}_${state.match.number + 1}`
           },
 
         /**
