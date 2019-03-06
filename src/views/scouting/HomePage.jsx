@@ -30,7 +30,7 @@ class HomePage extends Component {
     /**
      * Flags if you should be fetching for matches
      */
-    const shouldFetchMatches = isFetchingMatches || matches.length === 0
+    const shouldFetchMatches = isFetchingMatches || matches == null
 
     return (
       <div>
@@ -66,8 +66,9 @@ class HomePage extends Component {
                 <MatchDropdown
                   matches={matches}
                   selectMatch={selectMatch}
-                  disabled={isFetchingMatches || matches.length === 0}
+                  disabled={shouldFetchMatches}
                   match={match}
+                  eventKey={event.key}
                 />
                 {
                   /**

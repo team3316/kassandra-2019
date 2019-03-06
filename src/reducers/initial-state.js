@@ -9,7 +9,7 @@ export const matchlist = {
   districtKey: '',
   event: {},
   events: [],
-  matches: [],
+  matches: null,
   team: ''
 }
 

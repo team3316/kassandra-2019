@@ -8,15 +8,25 @@ class MatchDropdown extends Component {
       selectMatch,
       disabled,
       match,
-      matches
+      matches,
+      eventKey
     } = this.props
 
     /**
     * Items for the ComboBox
     * Practice matches support
     * Adds option 'Practice match' to enable entering a custom number
+    * If the matches are an empty array, append to the first element
     */
-    if (matches[0].comp_level !== 'PM') {
+    if (matches.length === 0) {
+      matches.unshift({
+        name: 'Practice 1',
+        event_key: eventKey,
+        key: `${eventKey}_pm1`,
+        comp_level: 'PM',
+        number: 1
+      })
+    } else if (matches[0].comp_level !== 'PM') {
       matches.unshift({
         name: 'Practice 1',
         event_key: matches[0].event_key,
