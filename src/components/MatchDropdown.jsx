@@ -57,7 +57,8 @@ MatchDropdown.propTypes = {
   selectMatch: PropTypes.func.isRequired,
   matches: PropTypes.array.isRequired,
   disabled: PropTypes.bool.isRequired,
-  match: PropTypes.object
+  match: PropTypes.object,
+  eventKey: PropTypes.string.isRequired
 }
 
 export default MatchDropdown
