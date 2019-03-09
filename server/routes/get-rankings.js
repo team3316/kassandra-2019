@@ -8,7 +8,7 @@ AVG(CASE climb
   WHEN 'level2' THEN 6
   WHEN 'level3' THEN 12
 END) as climb
-FROM cycles WHERE visible = true GROUP BY team_number
+FROM ${process.env.DB_SCHEMA != null ? `${process.env.DB_SCHEMA}.` : ''}cycles WHERE visible = true GROUP BY team_number
 ORDER BY AVG(CASE climb
   WHEN 'nothing' THEN 0
   WHEN 'failed' THEN 0
@@ -28,7 +28,7 @@ AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2
     WHEN 'false' THEN 0
   END
 ) as "cargoPerGame"
-FROM cycles WHERE visible = true ${
+FROM ${process.env.DB_SCHEMA != null ? `${process.env.DB_SCHEMA}.` : ''}cycles WHERE visible = true ${
   /**
    * If NODE_ENV === 'production count from ISDE2 QM28'
    * This was done to fix a bug with the cargo to cargo ship data in averages
@@ -59,7 +59,7 @@ AVG(teleop_panels_to_cargo_ship + teleop_panels_to_level1 + teleop_panels_to_lev
     WHEN 'false' THEN 0
   END
 ) as "panelsPerGame"
-FROM kassandra.cycles
+FROM ${process.env.DB_SCHEMA != null ? `${process.env.DB_SCHEMA}.` : ''}cycles
 WHERE visible = true
 GROUP BY team_number
 ORDER BY

@@ -157,34 +157,6 @@ const Cycle = sequelize.define('cycles', {
   }
 })
 
-// console.log(`==> ${'DELETE DATABASE INSERTIONS ON STARTUP'.red.bold}`)
-//
-// for (let i = 1; i <= 15; i++) {
-//   Cycle.create({
-//     match_key: `2019test_qm${i}`,
-//     team_number: 3316,
-//
-//     sandstorm_hab_line: true,
-//     sandstorm_cargo_to_cargo_ship: i % 2 === 0,
-//     sandstorm_cargo_to_rocket: i % 2 !== 0,
-//     sandstorm_panel_to_cargo_ship: i % 2 !== 0,
-//     sandstorm_panel_to_rocket: i % 2 === 0,
-//
-//     teleop_cargo_to_cargo_ship: Math.round(Math.random() * 4),
-//     teleop_cargo_to_level1: Math.round(Math.random() * 2),
-//     teleop_cargo_to_level2: Math.round(Math.random() * 2),
-//     teleop_cargo_to_level3: Math.round(Math.random() * 2),
-//     teleop_panels_to_cargo_ship: Math.round(Math.random() * 4),
-//     teleop_panels_to_level1: Math.round(Math.random() * 2),
-//     teleop_panels_to_level2: Math.round(Math.random() * 2),
-//     teleop_panels_to_level3: Math.round(Math.random() * 2),
-//
-//     climb: 'level3',
-//     comment: `gay ${i}`,
-//     tech_fouls: i % 2 === 0
-//   })
-// }
-
 /** Module exports */
 module.exports = {
   Cycle,
