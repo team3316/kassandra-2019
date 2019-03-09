@@ -44,6 +44,18 @@ export const scouting = {
       value: 'nothing'
     },
     comment: '',
+    /**
+     * Describes the defence the team performed/was under
+     * state: Describes if the team performed defence, defended or wasn't effected
+     *   values: 'non', 'defending', 'defended'
+     * comment: If the team performed defence, it describes the team defence
+     * defendingTeam: If the team was under effective defence, shows the team number that defended
+     */
+    defence: {
+      state: '',
+      comment: '',
+      defendingTeam: 0
+    },
     techFouls: false
   },
   isSubmitting: false
