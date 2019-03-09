@@ -47,14 +47,14 @@ export const scouting = {
     /**
      * Describes the defence the team performed/was under
      * state: Describes if the team performed defence, defended or wasn't effected
-     *   values: 'non', 'defending', 'defended'
+     *   values: 'non', 'defending', 'offended'
      * comment: If the team performed defence, it describes the team defence
      * defendingTeam: If the team was under effective defence, shows the team number that defended
      */
     defence: {
       state: '',
       comment: '',
-      defendingTeam: 0
+      offender: 0
     },
     techFouls: false
   },

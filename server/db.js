@@ -145,6 +145,26 @@ const Cycle = sequelize.define('cycles', {
   },
 
   /**
+   * Defence
+   *
+   * defence_status: determines whether the robot was defending, was offended or nothing
+   * defence_comment: the comment the scouter left about the teams defence abilities
+   * offender: the team that performed the defence
+   */
+  defence_status: {
+    type: Sequelize.ENUM,
+    values: ['non', 'defended', 'offended'],
+    defaultValue: 'non',
+    allowNull: false
+  },
+  defence_comment: {
+    type: Sequelize.STRING
+  },
+  offender: {
+    type: Sequelize.INTEGER
+  },
+
+  /**
    * Miscellaneous
    */
   comment: {
