@@ -154,7 +154,7 @@ HomePage.propTypes = {
   isFetchingMatches: PropTypes.bool.isRequired,
   isFetchingEvents: PropTypes.bool.isRequired,
   events: PropTypes.array.isRequired,
-  matches: PropTypes.array.isRequired,
+  matches: PropTypes.array,
   event: PropTypes.object.isRequired,
   match: PropTypes.object,
   team: PropTypes.object,
