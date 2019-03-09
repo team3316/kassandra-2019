@@ -9,7 +9,8 @@ const {
   getCyclesByEventTeam,
   addCycle,
   toggleCycleVisibility,
-  getCycles
+  getCycles,
+  getRankings
 } = require('./routes/index')
 
 /**
@@ -31,8 +32,9 @@ router.get('/cycles/event/:eventKey/team/:teamNumber', getCyclesByEventTeam)
 router.put('/cycles/visibility', toggleCycleVisibility)
 
 /**
- * Get all records from the database
+ * Get rankings
  */
+router.get('/rankings/:orderedBy', getRankings)
 
 /**
  * Views

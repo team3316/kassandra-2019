@@ -10,6 +10,7 @@ const {
   getCyclesByTeam
 } = require('./get-cycles')
 const toggleCycleVisibility = require('./toggle-cycle-visibility')
+const getRankings = require('./get-rankings')
 
 /**
  * Directs to all views
@@ -25,5 +26,6 @@ module.exports = {
   addCycle,
   toggleCycleVisibility,
   getCycles,
+  getRankings,
   views
 }
