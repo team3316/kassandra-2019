@@ -28,7 +28,14 @@ AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2
     WHEN 'false' THEN 0
   END
 ) as "cargoPerGame"
-FROM cycles WHERE visible = true AND id > 178 GROUP BY team_number
+FROM cycles WHERE visible = true ${
+  /**
+   * If NODE_ENV === 'production count from ISDE2 QM28'
+   * This was done to fix a bug with the cargo to cargo ship data in averages
+   */
+  process.env.NODE_ENV === 'production' ? 'AND id > 178 ' : ''
+}
+GROUP BY team_number
 ORDER BY
 AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2 + teleop_cargo_to_level3 +
   CASE sandstorm_cargo_to_rocket
