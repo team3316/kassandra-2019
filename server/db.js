@@ -147,11 +147,11 @@ const Cycle = sequelize.define('cycles', {
   /**
    * Defence
    *
-   * defence_status: determines whether the robot was defending, was offended or nothing
+   * defence_state: determines whether the robot was defending, was offended or nothing
    * defence_comment: the comment the scouter left about the teams defence abilities
    * offender: the team that performed the defence
    */
-  defence_status: {
+  defence_state: {
     type: Sequelize.ENUM,
     values: ['non', 'defended', 'offended'],
     defaultValue: 'non',
@@ -168,7 +168,7 @@ const Cycle = sequelize.define('cycles', {
    * Miscellaneous
    */
   comment: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
   tech_fouls: {
     type: Sequelize.BOOLEAN,

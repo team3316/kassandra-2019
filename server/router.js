@@ -4,6 +4,7 @@ const router = new Router()
 
 const {
   views,
+  tests,
   getCyclesByEvent,
   getCyclesByTeam,
   getCyclesByEventTeam,
@@ -35,6 +36,11 @@ router.put('/cycles/visibility', toggleCycleVisibility)
  * Get rankings
  */
 router.get('/rankings/:orderedBy', getRankings)
+
+/**
+ * Tests
+ */
+router.get('/tests', tests)
 
 /**
  * Views

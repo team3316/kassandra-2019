@@ -25,6 +25,10 @@ module.exports = ({ body }, res) => {
     teleop_panels_to_level2: body.teleop.panels.level2,
     teleop_panels_to_level3: body.teleop.panels.level3,
 
+    defence_state: body.defence.state,
+    defence_comment: body.defence.comment,
+    offender: body.defence.offender,
+
     climb: body.climb,
     comment: body.comment,
     tech_fouls: body.techFouls

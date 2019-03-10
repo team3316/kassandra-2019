@@ -19,6 +19,13 @@ const views = (req, res) => {
   res.sendFile(join(process.cwd(), 'public', 'index.html'))
 }
 
+/**
+ * Directs to HTML file testing
+ */
+const tests = (req, res) => {
+  res.sendFile(join(process.cwd(), 'tests', 'tests.html'))
+}
+
 module.exports = {
   getCyclesByEvent,
   getCyclesByTeam,
@@ -27,5 +34,6 @@ module.exports = {
   toggleCycleVisibility,
   getCycles,
   getRankings,
+  tests,
   views
 }

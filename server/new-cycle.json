@@ -22,6 +22,11 @@
       "level3": 0
     }
   },
+  "defence" :{
+    "state": "",
+    "comment": "",
+    "offender": 0
+  },
   "climb": "",
   "comment": "",
   "techFouls": false
