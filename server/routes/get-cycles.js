@@ -35,6 +35,11 @@ const formatCycle = cycle => ({
       level3: cycle.teleop_panels_to_level3
     }
   },
+  defence: {
+    state: cycle.defence_state,
+    comment: cycle.defence_comment,
+    offender: cycle.offender
+  },
   comment: cycle.comment,
   climb: cycle.climb,
   techFouls: cycle.tech_fouls
