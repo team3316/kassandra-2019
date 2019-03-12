@@ -13,6 +13,7 @@ import {
   climb,
   techFouls,
   comment,
+  defence,
   postForm,
   nextMatch
 } from '../actions/scouting.js'
@@ -106,6 +107,7 @@ class Scouting extends Component {
       techFouls,
       isSubmitting,
       districtKey,
+      defence,
       path
     } = this.props
 
@@ -163,6 +165,7 @@ class Scouting extends Component {
             submit={submit}
             nextMatch={nextMatch}
             isSubmitting={isSubmitting}
+            defenceActions={defence}
           />} />
       </Switch>
     )
@@ -191,6 +194,7 @@ Scouting.propTypes = {
   setIncrement: PropTypes.func.isRequired,
   endgameState: PropTypes.object.isRequired,
   climb: PropTypes.func.isRequired,
+  defence: PropTypes.func.isRequired,
   comment: PropTypes.func.isRequired,
   techFouls: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
@@ -229,6 +233,7 @@ const mapDispatchToProps = dispatch => {
     setIncrement: () => dispatch(setIncrement),
     climb: level => dispatch(climb(level)),
     comment: text => dispatch(comment(text)),
+    defence: (action, value) => dispatch(defence(action, value)),
     techFouls: () => dispatch(techFouls),
     postForm: (match, team, sandstorm, teleop, endgame) =>
       dispatch(postForm(match, team, sandstorm, teleop, endgame)),

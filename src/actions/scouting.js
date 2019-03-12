@@ -127,6 +127,29 @@ export const postForm = (match, team, sandstorm, teleop, endgame) => dispatch =>
   })
 }
 
+const defenceState = state => ({
+  type: 'DEFENCE_STATE',
+  state
+})
+
+const defenceComment = comment => ({
+  type: 'DEFENCE_COMMENT',
+  comment
+})
+
+const offender = offender => ({
+  type: 'OFFENDER',
+  offender
+})
+
+const defenceActions = {
+  state: defenceState,
+  comment: defenceComment,
+  offender
+}
+
+export const defence = (action, value) => dispatch => dispatch(defenceActions[action](value))
+
 /**
  * Move the state to the next match
  */

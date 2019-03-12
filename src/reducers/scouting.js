@@ -334,6 +334,54 @@ export default (state = scouting, action) => {
       }
 
     /**
+     * Defence
+     *
+     * Setting defence type
+     * @param {String} action.state The defence type
+     * Permitted values: ['nothing', 'failed', 'level1', 'level2', 'level3']
+     *
+     * Commenting
+     * @param {String} action.comment The comment for the defence
+     *
+     * Offender
+     * @param {Number} action.offender The offending team
+     */
+    case 'DEFENCE_STATE':
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          defence: {
+            state: action.state
+          }
+        }
+      }
+
+    case 'DEFENCE_COMMENT':
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          defence: {
+            state: 'defended',
+            comment: action.comment
+          }
+        }
+      }
+
+    case 'OFFENDER':
+      return {
+        ...state,
+        endgame: {
+          ...state.endgame,
+          defence: {
+            state: 'offended',
+            offender: action.offender
+          }
+        }
+      }
+
+    /**
      * Commenting
      * @param {String} action.comment The comments for the match
      */

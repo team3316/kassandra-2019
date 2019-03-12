@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { ScoutingHeader, Footer } from 'components'
+import { ScoutingHeader, Footer, Defence } from 'components'
 import {
   DropdownV2 as Dropdown,
   Checkbox,
@@ -40,6 +40,7 @@ class Endgame extends Component {
       isSubmitting,
       submit,
       nextMatch,
+      defenceActions,
       history
     } = this.props
 
@@ -60,7 +61,6 @@ class Endgame extends Component {
               onChange={() => techFouls()}
               checked={state.techFouls}
             />
-
             <Dropdown
               onChange={({ selectedItem }) => climb(selectedItem)}
               titleText='Climb'
@@ -70,7 +70,10 @@ class Endgame extends Component {
               items={climbLevels}
               itemToString={item => item.label}
             />
-            <br />
+            <Defence
+              actions={defenceActions}
+              state={state.defence}
+            />
             <TextArea
               light
               labelText='Comments'
@@ -112,6 +115,7 @@ Endgame.propTypes = {
   isSubmitting: PropTypes.bool.isRequired,
   submit: PropTypes.func.isRequired,
   nextMatch: PropTypes.func.isRequired,
+  defenceActions: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
 }
 
