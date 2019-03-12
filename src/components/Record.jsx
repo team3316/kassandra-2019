@@ -57,12 +57,22 @@ const Defence = ({ defence }) => {
         state === 'non'
           ? <div className='empty' />
           : <div>
-          <span className='title'> <Shield /> Defence </span>
+            <span className='title'> <Shield /> Defence </span>
+            {
+              state === 'defended'
+                ? <div>
+                  <p> The robot performed defence for this match </p>
+                  <p> Defence comments: { comment } </p>
+                </div>
+                : <p> The robot was under defence this match by <b> { offender } </b> </p>
+            }
           </div>
       }
     </div>
   )
 }
+
+Defence.propTypes = { defence: PropTypes.object.isRequired }
 
 /**
  * A component that visualises in a paragraph the record data
@@ -112,7 +122,7 @@ class Record extends React.Component {
 
         <p> Event: {match.eventKey} </p>
 
-        <p> <SightDisabled /> Sandstorm </p>
+        <span className='title'> <SightDisabled /> Sandstorm </span>
 
         <p style={showSandstorm(match.sandstorm.cargoToCargoShip)}>
           <Cargo /> Cargo to <Sailboat /> cargo ship
@@ -130,13 +140,15 @@ class Record extends React.Component {
           <Panel /> Panel to <Rocket /> rocket
         </p>
 
-        <p> <Controller /> Teleop </p>
+        <span className='title'> <Controller /> Teleop </span>
 
         <p> <Cargo /> Cargo: </p>
         <Installations match={match} gameObject='cargo' />
 
         <p> <Panel /> Panels: </p>
         <Installations match={match} gameObject='panels' />
+
+        <Defence defence={match.defence} />
 
         <p> <Stairs /> Climb: {match.climb} </p>
 
