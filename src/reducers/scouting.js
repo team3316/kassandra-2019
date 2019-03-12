@@ -353,6 +353,7 @@ export default (state = scouting, action) => {
           ...state.endgame,
           defence: {
             state: action.state,
+            comment: '',
             offender: 0
           }
         }
@@ -378,6 +379,7 @@ export default (state = scouting, action) => {
           ...state.endgame,
           defence: {
             state: 'offended',
+            comment: action.comment,
             offender: action.offender
           }
         }

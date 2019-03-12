@@ -13,18 +13,31 @@ import { IoIosRocket as Rocket } from 'react-icons/io'
 
 /**
  * A component to list teleop game installations of a game object
+ * Shows number of installations if it's greater than one
  * @param  {Object} match      The record object
  * @param  {String} gameObject The game object to show
  */
 const Installations = ({ match, gameObject }) => {
+  /**
+   * An array containing the amount of installs of single game piece to all places on the field
+   * @type {Array}
+   */
   const installs = match.teleop[gameObject]
+  /**
+   * A function that returns styling for each installation place
+   * If the robot installed to that place it sets display: 'block'
+   * If not, it sets display: 'none'
+   * @param  {Number} amount Amount of installations to that level
+   * @return {Object}        Stylings for the row containing installation number
+   */
+  const showInstalls = amount => amount > 0 ? { display: 'block' } : { display: 'none' }
 
   return (
     <div className={gameObject}>
-      <p> <Sailboat /> Cargoship: { installs.cargoShip } </p>
-      <p> Level I: { installs.level1 } </p>
-      <p> Level II: { installs.level2 } </p>
-      <p> Level III: { installs.level3 } </p>
+      <p style={showInstalls(installs.cargoShip)}> <Sailboat /> Cargoship: { installs.cargoShip } </p>
+      <p style={showInstalls(installs.level1)}> Level I: { installs.level1 } </p>
+      <p style={showInstalls(installs.level2)}> Level II: { installs.level2 } </p>
+      <p style={showInstalls(installs.level3)}> Level III: { installs.level3 } </p>
     </div>
   )
 }
@@ -40,11 +53,19 @@ Installations.propTypes = {
 class Record extends React.Component {
   constructor (props) {
     super(props)
+    /** The visibility state is fetched from the database */
     this.state = { visible: this.props.match.visible }
   }
 
   render () {
     const { match } = this.props
+
+    /**
+     * Determines whether or not the sandstorm installation should be shown
+     * @param  {Boolean} object Whether or not the team installed
+     * @return {Object}         A stylings object setting whether or not its should be shown
+     */
+    const showSandstorm = object => object ? { display: 'block', color: '#2ecc71' } : { display: 'none' }
 
     const getTitle = isVisible => match.matchKey.toUpperCase().replace('_', ' ') + (!isVisible
       ? ' [HIDDEN]' : ''
@@ -76,20 +97,20 @@ class Record extends React.Component {
 
         <p> <SightDisabled /> Sandstorm </p>
 
-        <p style={{ color: match.sandstorm.cargoToCargoShip ? '#2ecc71' : '#e74c3c' }}>
-          <Cargo /> Cargo to <Sailboat /> cargo ship: { match.sandstorm.cargoToCargoShip ? 'true' : 'false'}
+        <p style={showSandstorm(match.sandstorm.cargoToCargoShip)}>
+          <Cargo /> Cargo to <Sailboat /> cargo ship
         </p>
 
-        <p style={{ color: match.sandstorm.cargoToRocket ? '#2ecc71' : '#e74c3c' }}>
-          <Cargo /> Cargo to <Rocket /> rocket: { match.sandstorm.cargoToRocket ? 'true' : 'false'}
+        <p style={showSandstorm(match.sandstorm.cargoToRocket)}>
+          <Cargo /> Cargo to <Rocket /> rocket
         </p>
 
-        <p style={{ color: match.sandstorm.panelToCargoShip ? '#2ecc71' : '#e74c3c' }}>
-          <Panel /> Panel to <Sailboat /> cargo ship: { match.sandstorm.panelToCargoShip ? 'true' : 'false'}
+        <p style={showSandstorm(match.sandstorm.panelToCargoShip)}>
+          <Panel /> Panel to <Sailboat /> cargo ship
         </p>
 
-        <p style={{ color: match.sandstorm.panelToRocket ? '#2ecc71' : '#e74c3c' }}>
-          <Panel /> Panel to <Rocket /> rocket: { match.sandstorm.panelToRocket ? 'true' : 'false'}
+        <p style={showSandstorm(match.sandstorm.panelToRocket)}>
+          <Panel /> Panel to <Rocket /> rocket
         </p>
 
         <p> <Controller /> Teleop </p>
@@ -102,14 +123,14 @@ class Record extends React.Component {
 
         <p> <Stairs /> Climb: {match.climb} </p>
 
-        <p style={{ color: match.techFouls ? '#e74c3c' : '#2ecc71' }}>
-          Tech fouls: {match.techFouls ? 'true' : 'false'} </p>
+        <p style={{
+          display: match.techFouls ? 'block' : 'none',
+          color: '#e74c3c'
+        }}>
+          The team has comitted a foul in this match </p>
 
-        {
-          match.comment === ''
-            ? <span />
-            : <p> Comments: {match.comment} </p>
-        }
+        <p style={{ display: match.comment === '' || match.comment == null ? 'none' : 'block' }}>
+          Comments: {match.comment} </p>
 
       </AccordionItem>
     )
