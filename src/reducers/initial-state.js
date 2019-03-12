@@ -52,7 +52,7 @@ export const scouting = {
      * defendingTeam: If the team was under effective defence, shows the team number that defended
      */
     defence: {
-      state: '',
+      state: 'non',
       comment: '',
       offender: 0
     },

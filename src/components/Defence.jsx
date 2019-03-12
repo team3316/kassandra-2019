@@ -31,7 +31,7 @@ const Defence = ({ state, actions }) => {
           : state.state === 'offended'
             ? <TeamInput
               onChange={team => actions('offender', team)}
-              value={state.offedner}
+              value={Number(state.offender)}
               id={'offender'}
             />
             : <div className='empty' />
@@ -42,7 +42,7 @@ const Defence = ({ state, actions }) => {
 
 Defence.propTypes = {
   state: PropTypes.object.isRequired,
-  actions: PropTypes.function.isRequired
+  actions: PropTypes.func.isRequired
 }
 
 export default Defence
