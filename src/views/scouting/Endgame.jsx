@@ -70,6 +70,7 @@ class Endgame extends Component {
               items={climbLevels}
               itemToString={item => item.label}
             />
+            <br />
             <Defence
               actions={defenceActions}
               state={state.defence}

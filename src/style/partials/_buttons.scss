@@ -19,6 +19,7 @@
   left: 0;
   .title {
     display: flex;
+    align-items: center;
     flex-direction: row;
     margin-bottom: 0px;
     flex-grow: 1;
@@ -29,6 +30,21 @@
       height: 1.125rem;
       width: 1.125rem;
     }
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 0px;
+  flex-grow: 1;
+  flex-basis: 0;
+  &:not(:first-child) { margin-left: 8px; }
+  svg {
+    margin-right: 4px;
+    height: 1.125rem;
+    width: 1.125rem;
   }
 }
 
@@ -60,22 +76,13 @@
   }
 }
 
-.bx--btn--primary {
-  &.red {
-    background-color: $team-red !important;
-    &:hover { background-color: $team-red-hover !important; }
-  }
-  &.blue {
-    background-color: $team-blue !important;
-    &:hover { background-color: $team-blue-hover !important; }
-  }
-  height: 50px;
-  flex-grow: 1;
-}
-
 /**
- * Styles for toggling buttons
+ * Stylings for toggling buttons
  */
+.activated {
+  &.bx--btn--primary { background-color: $increment !important; }
+  &.bx--btn--primary:hover { background-color: $increment !important; }
+}
 .disabled {
   &.bx--btn--primary { background-color: $disabled-button !important; }
   &.bx--btn--primary:hover { background-color: $disabled-button-hover !important; }

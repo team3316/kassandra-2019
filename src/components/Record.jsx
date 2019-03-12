@@ -9,6 +9,7 @@ import {
   GiCompactDisc as Panel,
   GiStairsGoal as Stairs
 } from 'react-icons/gi'
+import { FiShield as Shield } from 'react-icons/fi'
 import { IoIosRocket as Rocket } from 'react-icons/io'
 
 /**
@@ -45,6 +46,22 @@ const Installations = ({ match, gameObject }) => {
 Installations.propTypes = {
   match: PropTypes.object.isRequired,
   gameObject: PropTypes.string.isRequired
+}
+
+const Defence = ({ defence }) => {
+  const { state, comment, offender } = defence
+
+  return (
+    <div className='defence'>
+      {
+        state === 'non'
+          ? <div className='empty' />
+          : <div>
+          <span className='title'> <Shield /> Defence </span>
+          </div>
+      }
+    </div>
+  )
 }
 
 /**

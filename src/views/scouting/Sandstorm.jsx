@@ -49,13 +49,13 @@ class Sandstorm extends Component {
             <div className='buttons'>
               <div className='column'>
                 <Button
-                  className={state.cargoToCargoShip ? team.color : ' disabled'}
+                  className={state.cargoToCargoShip ? 'activated' : ' disabled'}
                   onClick={() => actions('toggleCargoToCargoShip')}
                 >
                   <Sailboat /> Cargo Ship
                 </Button>
                 <Button
-                  className={state.cargoToRocket ? team.color : ' disabled'}
+                  className={state.cargoToRocket ? 'activated' : ' disabled'}
                   onClick={() => actions('toggleCargoToRocket')}
                 >
                   <Rocket /> Rocket
@@ -64,13 +64,13 @@ class Sandstorm extends Component {
 
               <div className='column'>
                 <Button
-                  className={state.panelToCargoShip ? team.color : ' disabled'}
+                  className={state.panelToCargoShip ? 'activated' : ' disabled'}
                   onClick={() => actions('togglePanelToCargoShip')}
                 >
                   <Sailboat /> Cargo Ship
                 </Button>
                 <Button
-                  className={state.panelToRocket ? team.color : ' disabled'}
+                  className={state.panelToRocket ? 'activated' : ' disabled'}
                   onClick={() => actions('togglePanelToRocket')}
                 >
                   <Rocket /> <span> Rocket </span>
