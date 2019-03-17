@@ -11,6 +11,7 @@ const {
   addCycle,
   toggleCycleVisibility,
   getCycles,
+  getEvents,
   getRankings
 } = require('./routes/index')
 
@@ -36,6 +37,11 @@ router.put('/cycles/visibility', toggleCycleVisibility)
  * Get rankings
  */
 router.get('/rankings/:orderedBy', getRankings)
+
+/**
+ * Get events
+ */
+router.get('/events', getEvents)
 
 /**
  * Tests
