@@ -7,4 +7,5 @@ import Teleop from './scouting/Teleop.jsx'
 import Endgame from './scouting/Endgame.jsx'
 import Graphs from './strategy/Graphs.jsx'
 import TeamData from './strategy/TeamData.jsx'
-export { HomePage, Sandstorm, Teleop, Endgame, Graphs, TeamData }
+import Rankings from './strategy/Rankings.jsx'
+export { HomePage, Sandstorm, Teleop, Endgame, Graphs, TeamData, Rankings }

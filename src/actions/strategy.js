@@ -43,3 +43,17 @@ export const requestByTeam = team => dispatch => {
   fetch(`/cycles/team/${team}`).then(res => res.json())
     .then(records => dispatch(recieveRecords(records)))
 }
+
+export const rankBy = gameObject => ({
+  action: 'RANK_BY',
+  rankBy: gameObject
+})
+
+export const recieveRankings = rankings => ({
+  action: 'RECIEVE_RANKINGS',
+  rankings
+})
+
+export const getRankings = gameObject => dispatch => {
+  dispatch(rankBy(gameObject)))
+}

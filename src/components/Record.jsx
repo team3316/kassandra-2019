@@ -48,6 +48,10 @@ Installations.propTypes = {
   gameObject: PropTypes.string.isRequired
 }
 
+/**
+ * This component shows the data about the team's defence in this match
+ * @param {[type]} defence [description]
+ */
 const Defence = ({ defence }) => {
   const { state, comment, offender } = defence
 

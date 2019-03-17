@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Graphs, TeamData } from 'views'
+import { Graphs, TeamData, Rankings } from 'views'
 import { getAll, filterByTeam, requestByTeam } from 'actions/strategy.js'
 import { Switch, Route } from 'react-router-dom'
 
@@ -35,6 +35,12 @@ class Strategy extends Component {
             matches={filteredMatches}
             filterByTeam={this.props.filterByTeam}
             getAll={getAll}
+          />}
+        />
+        <Route path={`${this.props.match.path}/rankings`} render={props =>
+          <Rankings
+            {...props}
+            {...this.props.state}
           />}
         />
       </Switch>

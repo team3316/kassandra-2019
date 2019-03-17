@@ -36,7 +36,9 @@ END) as climb_score_average
 FROM cycles WHERE visible = true
 GROUP BY team_number ORDER BY team_number ASC;
 
-/* Panels, including sandstorm */
+/*
+  Panels, including sandstorm
+ */
 SELECT team_number, COUNT(visible = true) AS number_of_matches,
 /* Averaging game objects to specific columns */
 AVG(teleop_panels_to_cargo_ship + teleop_panels_to_level1 + teleop_panels_to_level2 + teleop_panels_to_level3 +
@@ -49,7 +51,7 @@ AVG(teleop_panels_to_cargo_ship + teleop_panels_to_level1 + teleop_panels_to_lev
     WHEN 'false' THEN 0
   END
 ) as average_panels_per_game
-FROM cycles WHERE visible = true
+FROM cycles WHERE visible = true AND match_key ~ '2019isde4'
 GROUP BY team_number
 
 ORDER BY
@@ -64,7 +66,9 @@ AVG(teleop_panels_to_cargo_ship + teleop_panels_to_level1 + teleop_panels_to_lev
   END
 ) DESC;
 
-/* Cargo, including sandstorm */
+/*
+  Cargo, including sandstorm
+ */
 SELECT team_number, COUNT(visible = true) AS number_of_matches,
 /* Averaging game objects to specific columns */
 AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2 + teleop_cargo_to_level3 +
@@ -77,8 +81,7 @@ AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2
     WHEN 'false' THEN 0
   END
 ) as average_cargo_per_game
-/* Climb */
-FROM cycles WHERE visible = true AND id > 178 GROUP BY team_number
+FROM cycles WHERE visible = true AND id > 178 AND match_key ~ '2019isde4' GROUP BY team_number
 ORDER BY
 AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2 + teleop_cargo_to_level3 +
   CASE sandstorm_cargo_to_rocket
@@ -100,7 +103,7 @@ AVG(CASE climb
   WHEN 'level2' THEN 6
   WHEN 'level3' THEN 12
 END) as climb_score_average
-FROM cycles WHERE visible = true GROUP BY team_number
+FROM cycles WHERE visible = true AND match_key ~ '2019isde4' GROUP BY team_number
 ORDER BY AVG(CASE climb
   WHEN 'nothing' THEN 0
   WHEN 'failed' THEN 0
@@ -108,3 +111,10 @@ ORDER BY AVG(CASE climb
   WHEN 'level2' THEN 6
   WHEN 'level3' THEN 12
 END) DESC;
+
+/*
+  Defencive robots
+ */
+SELECT team_number, COUNT(visible = true) AS number_of_matches,
+  defence_comment
+FROM cycles WHERE visible = true AND defence_state = 'defended' GROUP BY team_number;
