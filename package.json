@@ -4,7 +4,7 @@
   "description": "D-Bug's generic scounting system",
   "engines": {
     "node": "11.6.0",
-    "npm": "6.8"
+    "npm": "6.9"
   },
   "scripts": {
     "lint": "eslint --ext .jsx,.js --fix .",
