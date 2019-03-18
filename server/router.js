@@ -12,6 +12,7 @@ const {
   toggleCycleVisibility,
   getCycles,
   getEvents,
+  getAverage,
   getTeamsByEvent,
   getRankings,
   getTeamDataByEvent
@@ -54,6 +55,11 @@ router.get('/teams/event/:eventKey', getTeamsByEvent)
  * Team data
  */
 router.get('/team/:teamNumber/event/:eventKey', getTeamDataByEvent)
+
+/**
+ * Get averages
+ */
+router.get('/team/:teamNumber/event/:eventKey/average', getAverage)
 
 /**
  * Tests

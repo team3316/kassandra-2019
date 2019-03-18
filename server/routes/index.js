@@ -14,6 +14,7 @@ const getRankings = require('./get-rankings')
 const getEvents = require('./get-events')
 const { getTeamsByEvent } = require('./get-teams')
 const { getTeamDataByEvent } = require('./get-team-data')
+const getAverage = require('./get-average')
 
 /**
  * Directs to all views
@@ -40,6 +41,7 @@ module.exports = {
   getEvents,
   getTeamsByEvent,
   getTeamDataByEvent,
+  getAverage,
   tests,
   views
 }
