@@ -13,7 +13,8 @@ const {
   getCycles,
   getEvents,
   getTeamsByEvent,
-  getRankings
+  getRankings,
+  getTeamDataByEvent
 } = require('./routes/index')
 
 /**
@@ -45,9 +46,14 @@ router.get('/rankings/:orderedBy', getRankings)
 router.get('/events', getEvents)
 
 /**
- * Get teamas
+ * Get teams
  */
 router.get('/teams/event/:eventKey', getTeamsByEvent)
+
+/**
+ * Team data
+ */
+router.get('/team/:teamNumber/event/:eventKey', getTeamDataByEvent)
 
 /**
  * Tests
