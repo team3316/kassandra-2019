@@ -1,17 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {
-  VictoryAxis,
-  VictoryTheme,
-  VictoryChart,
-  VictoryStack,
-  VictoryArea,
-  VictoryLabel
-} from 'victory'
-
-const graphTheme = {
-  ...VictoryTheme.material
-}
 
 class GameObjectGraph extends Component {
   render () {
