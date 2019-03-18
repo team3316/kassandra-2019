@@ -38,7 +38,7 @@ router.put('/cycles/visibility', toggleCycleVisibility)
 /**
  * Get rankings
  */
-router.get('/rankings/:orderedBy', getRankings)
+router.get('/rankings/:orderedBy/event/:eventKey', getRankings)
 
 /**
  * Get events
