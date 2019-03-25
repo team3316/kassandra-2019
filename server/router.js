@@ -11,7 +11,11 @@ const {
   addCycle,
   toggleCycleVisibility,
   getCycles,
-  getRankings
+  getEvents,
+  getAverage,
+  getTeamsByEvent,
+  getRankings,
+  getTeamDataByEvent
 } = require('./routes/index')
 
 /**
@@ -35,7 +39,27 @@ router.put('/cycles/visibility', toggleCycleVisibility)
 /**
  * Get rankings
  */
-router.get('/rankings/:orderedBy', getRankings)
+router.get('/rankings/:orderedBy/event/:eventKey', getRankings)
+
+/**
+ * Get events
+ */
+router.get('/events', getEvents)
+
+/**
+ * Get teams
+ */
+router.get('/teams/event/:eventKey', getTeamsByEvent)
+
+/**
+ * Team data
+ */
+router.get('/team/:teamNumber/event/:eventKey', getTeamDataByEvent)
+
+/**
+ * Get averages
+ */
+router.get('/team/:teamNumber/event/:eventKey/average', getAverage)
 
 /**
  * Tests
