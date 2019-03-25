@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { GameObjectGraph, ReportsGraph, Footer } from 'components'
+import { GameObjectGraph, Footer } from 'components'
 import { ComboBox, Button } from 'carbon-components-react'
 import {
   GiPlainCircle as Cargo,
@@ -64,7 +64,6 @@ class Graphs extends Component {
       <div className='content col'>
         <ObjectGraphsRow matches={matches} />
         <GraphsLegend />
-        <ReportsGraph matches={matches} />
       </div>
     )
 
