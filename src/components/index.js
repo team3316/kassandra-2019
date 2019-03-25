@@ -8,7 +8,6 @@ import TeamSelect from './TeamSelect.jsx'
 import ScoutingHeader from './ScoutingHeader.jsx'
 import TeamInput from './TeamInput.jsx'
 import GameObjectGraph from './GameObjectGraph.jsx'
-import ReportsGraph from './ReportsGraph.jsx'
 import Record from './Record.jsx'
 import Defence from './Defence.jsx'
 
@@ -23,7 +22,6 @@ export {
   ScoutingHeader,
   TeamInput,
   GameObjectGraph,
-  ReportsGraph,
   Defence,
   Record
 }

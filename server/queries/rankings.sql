@@ -4,7 +4,6 @@
   Shows only visible matches
  */
 SELECT team_number, COUNT(visible = true) AS number_of_matches,
-/* Averaging game objects to specific columns */
 AVG(teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 + teleop_cargo_to_level2 + teleop_cargo_to_level3 +
   CASE sandstorm_cargo_to_rocket
     WHEN 'true' THEN 1
@@ -20,7 +19,7 @@ AVG(teleop_panels_to_cargo_ship + teleop_panels_to_level1 + teleop_panels_to_lev
     WHEN 'true' THEN 1
     WHEN 'false' THEN 0
   END +
-  CASE sandstorm_panel_to_panel_ship
+  CASE sandstorm_panel_to_cargo_ship
     WHEN 'true' THEN 1
     WHEN 'false' THEN 0
   END
@@ -33,7 +32,7 @@ AVG(CASE climb
   WHEN 'level2' THEN 6
   WHEN 'level3' THEN 12
 END) as climb_score_average
-FROM cycles WHERE visible = true
+FROM cycles WHERE visible = true AND match_key ~ '2019isde4'
 GROUP BY team_number ORDER BY team_number ASC;
 
 /*

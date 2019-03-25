@@ -63,18 +63,17 @@ export default (state = strategy, action) => {
         event: action.event
       }
 
-    case 'RANK_BY':
+    case 'REQUEST_RANKINGS':
       return {
         ...state,
-        rankBy: action.rankBy,
         isFetchingRankings: true
       }
 
-    case 'GET_RANKINGS':
+    case 'RECIEVE_RANKINGS':
       return {
         ...state,
         rankings: action.rankings,
-        isFetchingRankings: action.false
+        isFetchingRankings: false
       }
 
     default:

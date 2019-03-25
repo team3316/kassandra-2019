@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Graphs, TeamData, Rankings } from 'views'
-import { getAll, filterByTeam, requestByTeam } from 'actions/strategy.js'
+import { getAll, filterByTeam, requestByTeam, getRankings } from 'actions/strategy.js'
 import { Switch, Route } from 'react-router-dom'
 
 class Strategy extends Component {
@@ -41,6 +41,8 @@ class Strategy extends Component {
           <Rankings
             {...props}
             {...this.props.state}
+            getRankings={this.props.getRankings}
+            event={this.props.event}
           />}
         />
       </Switch>
@@ -52,15 +54,21 @@ Strategy.propTypes = {
   state: PropTypes.object.isRequired,
   getAll: PropTypes.func.isRequired,
   filterByTeam: PropTypes.func.isRequired,
-  match: PropTypes.object.isRequired
+  getRankings: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  event: PropTypes.string.isRequired
 }
 
-const mapStateToProps = ({ strategy }) => ({ state: strategy })
+const mapStateToProps = state => ({
+  event: state.matchlist.currentEventKey,
+  state: state.strategy
+})
 
 const mapDispatchToProps = dispatch => ({
   getAll: () => dispatch(getAll()),
   filterByTeam: team => dispatch(filterByTeam(team)),
-  requestByTeam: team => dispatch(requestByTeam(team))
+  requestByTeam: team => dispatch(requestByTeam(team)),
+  getRankings: event => dispatch(getRankings(event))
 })
 
 export default connect(

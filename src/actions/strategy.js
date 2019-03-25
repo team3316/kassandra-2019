@@ -44,16 +44,27 @@ export const requestByTeam = team => dispatch => {
     .then(records => dispatch(recieveRecords(records)))
 }
 
+// DEPRECATED
 export const rankBy = gameObject => ({
-  action: 'RANK_BY',
+  type: 'RANK_BY',
   rankBy: gameObject
 })
 
+/**
+ * Requesting and recieving rankings
+ */
+export const requestRankings = { type: 'REQUEST_RANKINGS' }
 export const recieveRankings = rankings => ({
-  action: 'RECIEVE_RANKINGS',
+  type: 'RECIEVE_RANKINGS',
   rankings
 })
 
-export const getRankings = gameObject => dispatch => {
-  dispatch(rankBy(gameObject)))
+export const getRankings = event => dispatch => {
+  dispatch(requestRecords)
+  fetch(`/rankings/stats/event/${event}`).then(res => res.json())
+    .then(data => {
+      const rankings = data.map(datum =>
+        Object.assign({}, datum, { id: datum.team_number }))
+      dispatch(recieveRankings(rankings))
+    })
 }
