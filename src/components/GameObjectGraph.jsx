@@ -9,7 +9,7 @@ import 'echarts/lib/chart/line'
  * @param {[type]} data [description]
  */
 const GameObjectGraph = ({ data }) => {
-  const { sandstorm, teleop } = data
+  const { highCargo, lowCargo, highPanels, lowPanels } = data
 }
 
 export default GameObjectGraph
