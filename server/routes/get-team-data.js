@@ -1,7 +1,8 @@
 const { sequelize } = require('../db')
 
 const getTeamDataByEvent = ({ params }, res) => sequelize.query(
-  `SELECT teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 +
+  `SELECT match_key AS matchKey,
+  teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 +
   CASE sandstorm_cargo_to_cargo_ship
     WHEN 'true' THEN 1
     WHEN 'false' THEN 0
@@ -21,7 +22,12 @@ const getTeamDataByEvent = ({ params }, res) => sequelize.query(
   CASE sandstorm_panel_to_cargo_ship
     WHEN 'true' THEN 1
     WHEN 'false' THEN 0
-  END AS "highPanels"
+  END AS "highPanels",
+
+  sandstorm_cargo_to_cargo_ship, sandstorm_cargo_to_rocket,
+  sandstorm_panel_to_cargo_ship, sandstorm_panel_to_rocket,
+
+  defence_state AS "defenceState"
 
   FROM ${process.env.DB_SCHEMA != null ? `${process.env.DB_SCHEMA}.` : ''}cycles
   WHERE team_number = ${params.teamNumber} AND match_key ~ '${params.eventKey}'

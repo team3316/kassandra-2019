@@ -6,6 +6,7 @@ SELECT
   Returns the sum of installations to level 1 and cargo ship,
   includes sandstorm installation
  */
+match_key AS matchKey,
 teleop_cargo_to_cargo_ship + teleop_cargo_to_level1 +
 CASE sandstorm_cargo_to_cargo_ship
   WHEN 'true' THEN 1
