@@ -2,50 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { GameObjectGraph, Footer } from 'components'
 import { ComboBox, Button } from 'carbon-components-react'
-import {
-  GiPlainCircle as Cargo,
-  GiCompactDisc as Panel
-} from 'react-icons/gi'
-
-const GraphsLegend = () => (
-  <div className='legend'>
-    <span>Cargo Ship</span>
-    <span>Level 1</span>
-    <span>Level 2</span>
-    <span>Level 3</span>
-  </div>
-)
-
-const ObjectGraphsRow = ({ matches }) => (
-  <div className='row'>
-    <div>
-      <span className='title'>
-        <Cargo /> Cargo
-      </span>
-      <GameObjectGraph
-        matches={matches}
-        gameObject={'cargo'}
-        height={200}
-        width={400}
-      />
-    </div>
-    <div>
-      <span className='title'>
-        <Panel /> Panels
-      </span>
-      <GameObjectGraph
-        matches={matches}
-        gameObject={'panels'}
-        height={200}
-        width={400}
-      />
-    </div>
-  </div>
-)
-
-ObjectGraphsRow.propTypes = {
-  matches: PropTypes.array.isRequired
-}
 
 class Graphs extends Component {
   render () {
@@ -53,19 +9,12 @@ class Graphs extends Component {
       teams,
       filterByTeam,
       team,
-      matches,
+      graphData,
       isFetchingRecords
     } = this.props
 
     /** If a team is selected show its number at the page title */
     document.title = `Team ${team != null ? team : 'data'}`
-
-    const PageContent = ({ matches }) => (
-      <div className='content col'>
-        <ObjectGraphsRow matches={matches} />
-        <GraphsLegend />
-      </div>
-    )
 
     /**
      * Filtered matches by team number, event number, and if they should be visible
@@ -83,8 +32,8 @@ class Graphs extends Component {
         />
 
         {
-          !isFetchingRecords && matches.length !== 0 && team != null
-            ? <PageContent matches={matches} />
+          !isFetchingRecords && graphData.length !== 0 && team != null
+            ? <GameObjectGraph data={graphData} />
             : <div />
         }
 
@@ -99,10 +48,9 @@ class Graphs extends Component {
 }
 
 Graphs.propTypes = {
-  event: PropTypes.string.isRequired,
   teams: PropTypes.array.isRequired,
   team: PropTypes.string,
-  matches: PropTypes.array.isRequired,
+  graphData: PropTypes.array.isRequired,
   isFetchingRecords: PropTypes.bool.isRequired,
   filterByTeam: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired
