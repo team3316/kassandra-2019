@@ -47,7 +47,7 @@ const GameObjectGraph = ({ data }) => {
       type: 'category',
       boundryGap: false,
       data: data.map(datum => {
-        const matchKey = { value: datum.matchKey.replace('_', '').toUpperCase() }
+        const matchKey = { value: datum.matchKey.replace('_', ' ').toUpperCase() }
 
         /**
          * Switches text color according to defence state
@@ -62,11 +62,15 @@ const GameObjectGraph = ({ data }) => {
               ...matchKey,
               textStyle: { color: 'red' }
             }
+
           case 'defended':
             return {
               ...matchKey,
               textStyle: { color: 'blue' }
             }
+
+          default:
+            return matchKey
         }
       })
     },
