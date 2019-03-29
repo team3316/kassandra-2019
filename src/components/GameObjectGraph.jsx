@@ -47,7 +47,7 @@ const GameObjectGraph = ({ data }) => {
       type: 'category',
       boundryGap: false,
       data: data.map(datum => {
-        const matchKey = { value: datum.matchKey }
+        const matchKey = { value: datum.matchKey.replace('_', '').toUpperCase() }
 
         /**
          * Switches text color according to defence state
@@ -76,24 +76,48 @@ const GameObjectGraph = ({ data }) => {
       type: 'line',
       stack: 'teleop',
       areaStyle: {},
+      label: {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      },
       data: data.map(datum => datum.lowCargo)
     }, {
       name: 'High Cargo',
       type: 'line',
       stack: 'teleop',
       areaStyle: {},
+      label: {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      },
       data: data.map(datum => datum.highCargo)
     }, {
       name: 'Low Panels',
       type: 'line',
       stack: 'teleop',
       areaStyle: {},
+      label: {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      },
       data: data.map(datum => datum.lowPanels)
     }, {
       name: 'High Panels',
       type: 'line',
       stack: 'teleop',
       areaStyle: {},
+      label: {
+        normal: {
+          show: true,
+          position: 'top'
+        }
+      },
       data: data.map(datum => datum.highPanels)
     }]
   }
