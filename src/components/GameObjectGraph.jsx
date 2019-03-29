@@ -10,6 +10,17 @@ import 'echarts/lib/chart/line'
  */
 const GameObjectGraph = ({ data }) => {
   /**
+   * This functions formats the datapoint value for the label
+   * If the value is bigger than 0 then show a label
+   * @param  {Number} value The value of the data point
+   * @return {Object}       The data point object
+   */
+  const label = value => ({
+    value,
+    label: { normal: { show: value > 0 } }
+  })
+
+  /**
    * The eCharts options parameter.
    * Contains the data for the graph and configuration for visualisation
    * @type {Object}
@@ -47,7 +58,11 @@ const GameObjectGraph = ({ data }) => {
       type: 'category',
       boundryGap: false,
       data: data.map(datum => {
-        const matchKey = { value: datum.matchKey.replace('_', ' ').toUpperCase() }
+        // Removing the event key from the match key
+        // Initiating the object for the x axis value
+        const matchKey = {
+          value: datum.matchKey.replace(/\d{4}.*_/, '').toUpperCase()
+        }
 
         /**
          * Switches text color according to defence state
@@ -86,7 +101,7 @@ const GameObjectGraph = ({ data }) => {
           position: 'top'
         }
       },
-      data: data.map(datum => datum.lowCargo)
+      data: data.map(datum => label(datum.lowCargo))
     }, {
       name: 'High Cargo',
       type: 'line',
@@ -98,7 +113,7 @@ const GameObjectGraph = ({ data }) => {
           position: 'top'
         }
       },
-      data: data.map(datum => datum.highCargo)
+      data: data.map(datum => label(datum.highCargo))
     }, {
       name: 'Low Panels',
       type: 'line',
@@ -110,7 +125,7 @@ const GameObjectGraph = ({ data }) => {
           position: 'top'
         }
       },
-      data: data.map(datum => datum.lowPanels)
+      data: data.map(datum => label(datum.lowPanels))
     }, {
       name: 'High Panels',
       type: 'line',
@@ -122,7 +137,7 @@ const GameObjectGraph = ({ data }) => {
           position: 'top'
         }
       },
-      data: data.map(datum => datum.highPanels)
+      data: data.map(datum => label(datum.highPanels))
     }]
   }
 
