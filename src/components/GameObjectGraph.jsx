@@ -39,7 +39,9 @@ const GameObjectGraph = ({ data }) => {
     },
 
     // Graph legend
-    legend: { data: ['Low Cargo', 'High Cargo', 'Low Panels', 'High Panels'] },
+    legend: {
+      type: 'plain'
+    },
 
     // Graph grid
     grid: {
@@ -94,7 +96,8 @@ const GameObjectGraph = ({ data }) => {
       name: 'Low Cargo',
       type: 'line',
       stack: 'teleop',
-      areaStyle: {},
+      lineStyle: { color: '#ff9933' },
+      areaStyle: { color: '#ff9933' },
       label: {
         normal: {
           show: true,
@@ -106,7 +109,8 @@ const GameObjectGraph = ({ data }) => {
       name: 'High Cargo',
       type: 'line',
       stack: 'teleop',
-      areaStyle: {},
+      lineStyle: { color: '#ff7a00' },
+      areaStyle: { color: '#ff7a00' },
       label: {
         normal: {
           show: true,
@@ -118,7 +122,8 @@ const GameObjectGraph = ({ data }) => {
       name: 'Low Panels',
       type: 'line',
       stack: 'teleop',
-      areaStyle: {},
+      lineStyle: { color: '#ffdd59' },
+      areaStyle: { color: '#ffdd59' },
       label: {
         normal: {
           show: true,
@@ -130,7 +135,8 @@ const GameObjectGraph = ({ data }) => {
       name: 'High Panels',
       type: 'line',
       stack: 'teleop',
-      areaStyle: {},
+      lineStyle: { color: '#ffd32a' },
+      areaStyle: { color: '#ffd32a' },
       label: {
         normal: {
           show: true,
