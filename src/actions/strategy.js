@@ -59,6 +59,10 @@ export const recieveRankings = rankings => ({
   rankings
 })
 
+/**
+ * Fetches the rankings of the current event from the database
+ * @param  {String} event The event to get the rankings of
+ */
 export const getRankings = event => dispatch => {
   dispatch(requestRecords)
   fetch(`/rankings/stats/event/${event}`).then(res => res.json())
@@ -67,4 +71,40 @@ export const getRankings = event => dispatch => {
         Object.assign({}, datum, { id: datum.team_number }))
       dispatch(recieveRankings(rankings))
     })
+}
+
+/**
+ * Changing the state to indicate that it's currently requesting graph data
+ * @param  {Number} team  The team to get the data of
+ * @param  {String} event The event to get the data of
+ * @return {Object}       The action, of type 'REQUEST_GRAPHS'
+ */
+export const requestGraphData = (team, event) => ({
+  type: 'REQUEST_GRAPHS',
+  team,
+  event
+})
+
+/**
+ * Recieving the graph data from the server
+ * @param  {Array}  graphData The data to display in the graphs
+ * @return {Object}           D
+ */
+export const recieveGraphData = graphData => ({
+  type: 'RECIEVE_GRAPHS',
+  graphData
+})
+
+/**
+ * Fetching the graph data from the database according to team and event
+ * @param  {Number} team  The team to get the graph data of
+ * @param  {String} event The event to fetch the data from
+ */
+export const getGraphData = (team, event) => dispatch => {
+  // Indicating the graph data is being fetched for
+  dispatch(requestGraphData(team, event))
+
+  // Fetching for events and dispatching them to the store
+  fetch(`/team/${team}/event/${event}`).then(res => res.json())
+    .then(data => dispatch(recieveGraphData(data)))
 }

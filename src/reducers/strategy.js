@@ -76,6 +76,27 @@ export default (state = strategy, action) => {
         isFetchingRankings: false
       }
 
+    /**
+     * Indicating graph data is being fetched for
+     */
+    case 'REQUEST_GRAPHS':
+      return {
+        ...state,
+        team: action.team,
+        event: action.event,
+        isFetchingGraphData: true
+      }
+
+    /**
+     * Storing the recieved graph data and showing it isn't fetched for anymore
+     */
+    case 'RECIEVE_GRAPHS':
+      return {
+        ...state,
+        graphData: action.graphData,
+        isFetchingGraphData: false
+      }
+
     default:
       return state
   }

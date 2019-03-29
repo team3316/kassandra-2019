@@ -68,6 +68,8 @@ export const strategy = {
   team: null,
   isFetchingRecords: false,
   matches: [],
+  graphData: [],
+  isFetchingGraphData: [],
   rankings: [],
   isFecthingRankings: false
 }
