@@ -10,6 +10,7 @@ class Graphs extends Component {
       filterByTeam,
       team,
       graphData,
+      requestGraphs,
       isFetchingRecords
     } = this.props
 
@@ -22,6 +23,7 @@ class Graphs extends Component {
      */
     return (
       <div className='strategy' id='graphs'>
+      // On change, dispatches team to the state
         <ComboBox
           onChange={({ selectedItem }) => filterByTeam(selectedItem)}
           placeholder='Select team'
@@ -30,6 +32,7 @@ class Graphs extends Component {
           items={teams}
           itemToString={team => team}
         />
+        <Button onClick={() => requestGraphs(team, event)}> Fetch graphs </Button>
 
         {
           !isFetchingRecords && graphData.length !== 0 && team != null
@@ -51,6 +54,7 @@ Graphs.propTypes = {
   teams: PropTypes.array.isRequired,
   team: PropTypes.string,
   graphData: PropTypes.array.isRequired,
+  requestGraphs: PropTypes.func.isRequired,
   isFetchingRecords: PropTypes.bool.isRequired,
   filterByTeam: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired

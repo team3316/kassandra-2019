@@ -41,6 +41,7 @@ const GameObjectGraph = ({ data }) => {
     /**
      * x Axis
      * Values are match id
+     * Text color changes according to defence state
      */
     xAxis: {
       type: 'category',
@@ -49,8 +50,10 @@ const GameObjectGraph = ({ data }) => {
         const matchKey = { value: datum.matchKey }
 
         /**
-         *
-         * @type {Object}
+         * Switches text color according to defence state
+         * No defence: black
+         * Performed defence: blue
+         * Was under defencce: red
          */
         const { defenceState } = datum
         switch (defenceState) {
@@ -66,7 +69,33 @@ const GameObjectGraph = ({ data }) => {
             }
         }
       })
-    }
+    },
+    yAxis: { type: 'value' },
+    series: [{
+      name: 'Low Cargo',
+      type: 'line',
+      stack: 'teleop',
+      areaStyle: {},
+      data: data.map(datum => datum.lowCargo)
+    }, {
+      name: 'High Cargo',
+      type: 'line',
+      stack: 'teleop',
+      areaStyle: {},
+      data: data.map(datum => datum.highCargo)
+    }, {
+      name: 'Low Panels',
+      type: 'line',
+      stack: 'teleop',
+      areaStyle: {},
+      data: data.map(datum => datum.lowPanels)
+    }, {
+      name: 'High Panels',
+      type: 'line',
+      stack: 'teleop',
+      areaStyle: {},
+      data: data.map(datum => datum.highPanels)
+    }]
   }
 
   return (
