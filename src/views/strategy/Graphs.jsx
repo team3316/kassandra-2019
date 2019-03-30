@@ -11,7 +11,8 @@ class Graphs extends Component {
       team,
       graphData,
       requestGraphs,
-      isFetchingRecords
+      isFetchingRecords,
+      event
     } = this.props
 
     /** If a team is selected show its number at the page title */
@@ -52,6 +53,7 @@ class Graphs extends Component {
 
 Graphs.propTypes = {
   teams: PropTypes.array.isRequired,
+  event: PropTypes.string.isRequired,
   team: PropTypes.string,
   graphData: PropTypes.array.isRequired,
   requestGraphs: PropTypes.func.isRequired,
