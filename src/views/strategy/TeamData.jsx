@@ -33,12 +33,6 @@ class TeamData extends React.Component {
             </div>
             : <div />
         }
-
-        <Footer>
-          <Button onClick={() => this.props.history.push(`/strategy/graphs`)}>
-            Team graphs
-          </Button>
-        </Footer>
       </div>
     )
   }
