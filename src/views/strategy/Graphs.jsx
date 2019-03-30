@@ -24,7 +24,8 @@ class Graphs extends Component {
      */
     return (
       <div className='strategy' id='graphs'>
-      // On change, dispatches team to the state
+        <br />
+        <br />
         <ComboBox
           onChange={({ selectedItem }) => filterByTeam(selectedItem)}
           placeholder='Select team'
