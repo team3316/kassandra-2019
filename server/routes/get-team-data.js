@@ -8,7 +8,7 @@ const getTeamDataByEvent = ({ params }, res) => sequelize.query(
     WHEN 'false' THEN 0
   END AS "lowCargo",
   teleop_cargo_to_level2 + teleop_cargo_to_level3 +
-  CASE sandstorm_cargo_to_cargo_ship
+  CASE sandstorm_cargo_to_rocket
     WHEN 'true' THEN 1
     WHEN 'false' THEN 0
   END AS "highCargo",
@@ -19,7 +19,7 @@ const getTeamDataByEvent = ({ params }, res) => sequelize.query(
     WHEN 'false' THEN 0
   END AS "lowPanels",
   teleop_panels_to_level2 + teleop_panels_to_level3 +
-  CASE sandstorm_panel_to_cargo_ship
+  CASE sandstorm_panel_to_rocket
     WHEN 'true' THEN 1
     WHEN 'false' THEN 0
   END AS "highPanels",
