@@ -96,12 +96,13 @@ const GameObjectGraph = ({ data }) => {
       name: 'Low Cargo',
       type: 'line',
       stack: 'teleop',
-      lineStyle: { color: '#ff9933' },
-      areaStyle: { color: '#ff9933' },
+      lineStyle: { color: '#d35400' },
+      areaStyle: { color: '#d35400' },
       label: {
         normal: {
           show: true,
-          position: 'top'
+          position: 'top',
+          color: '#d35400'
         }
       },
       data: data.map(datum => label(datum.lowCargo))
@@ -114,7 +115,8 @@ const GameObjectGraph = ({ data }) => {
       label: {
         normal: {
           show: true,
-          position: 'top'
+          position: 'top',
+          color: '#ff7a00'
         }
       },
       data: data.map(datum => label(datum.highCargo))
@@ -122,12 +124,13 @@ const GameObjectGraph = ({ data }) => {
       name: 'Low Panels',
       type: 'line',
       stack: 'teleop',
-      lineStyle: { color: '#ffdd59' },
-      areaStyle: { color: '#ffdd59' },
+      lineStyle: { color: '#273c75' },
+      areaStyle: { color: '#273c75' },
       label: {
         normal: {
           show: true,
-          position: 'top'
+          position: 'top',
+          color: '#273c75'
         }
       },
       data: data.map(datum => label(datum.lowPanels))
@@ -135,12 +138,13 @@ const GameObjectGraph = ({ data }) => {
       name: 'High Panels',
       type: 'line',
       stack: 'teleop',
-      lineStyle: { color: '#ffd32a' },
-      areaStyle: { color: '#ffd32a' },
+      lineStyle: { color: '#1e90ff' },
+      areaStyle: { color: '#1e90ff' },
       label: {
         normal: {
           show: true,
-          position: 'top'
+          position: 'top',
+          color: '#1e90ff'
         }
       },
       data: data.map(datum => label(datum.highPanels))
@@ -151,6 +155,7 @@ const GameObjectGraph = ({ data }) => {
     <ReactEchartsCore
       echarts={echarts}
       option={option}
+      theme='light'
     />
   )
 }
