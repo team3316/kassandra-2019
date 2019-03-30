@@ -42,8 +42,7 @@ TeamData.propTypes = {
   matches: PropTypes.array.isRequired,
   teams: PropTypes.array.isRequired,
   isFetchingRecords: PropTypes.bool.isRequired,
-  filterByTeam: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired
+  filterByTeam: PropTypes.func.isRequired
 }
 
 export default TeamData

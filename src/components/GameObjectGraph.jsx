@@ -91,7 +91,10 @@ const GameObjectGraph = ({ data }) => {
         }
       })
     },
-    yAxis: { type: 'value' },
+    yAxis: {
+      type: 'value',
+      max: 15
+    },
     series: [{
       name: 'Low Cargo',
       type: 'line',
@@ -155,7 +158,7 @@ const GameObjectGraph = ({ data }) => {
     <ReactEchartsCore
       echarts={echarts}
       option={option}
-      theme='light'
+      style={{ height: '400px' }}
     />
   )
 }
