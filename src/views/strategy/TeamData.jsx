@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Record, Footer } from 'components'
-import { ComboBox, Button, Accordion } from 'carbon-components-react'
+import { Record } from 'components'
+import { ComboBox, Accordion } from 'carbon-components-react'
 
 class TeamData extends React.Component {
   render () {
