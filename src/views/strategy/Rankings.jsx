@@ -9,6 +9,8 @@ class Rankings extends React.Component {
   }
 
   render () {
+    document.title = 'Rankings'
+
     const { rankings } = this.props
 
     return (
