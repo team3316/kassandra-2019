@@ -12,6 +12,9 @@ class TeamData extends React.Component {
       filterByTeam
     } = this.props
 
+    // Sorts matches by descending id, to show newest matches firt
+    const sortedMatches = matches.sort((a, b) => b - a)
+
     return (
       <div>
         {
@@ -27,7 +30,7 @@ class TeamData extends React.Component {
               />
               <div className='content'>
                 <Accordion>
-                  {matches.map(match => <Record match={match} />)}
+                  {sortedMatches.map(match => <Record match={match} />)}
                 </Accordion>
               </div>
             </div>
