@@ -38,11 +38,6 @@ class Teleop extends Component {
         <ScoutingHeader match={match} team={team} />
 
         <div className='content noselect'>
-          <div className={`pageTitle
-            ${team.color == null ? '' : `${team.color}Team`}`}
-          >
-            <Controller /> <h1>Teleop</h1>
-          </div>
           <div className='form'>
             <span className='titles'>
               <span className='title'> <Cargo /> Cargo </span>
