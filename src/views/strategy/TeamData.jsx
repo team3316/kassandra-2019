@@ -37,6 +37,26 @@ class TeamData extends React.Component {
                   highPanels: match.teleop.panels.level2 + match.teleop.panels.level3,
                   defenceState: match.defence.state
                 }))} />
+                <div className='summary'>
+                  {
+                    // Defence
+                    matches.filter(match => match.defence.state === 'defended').length !== 0
+                      ? <p> Defence amount: { matches.filter(match => match.defence.state === 'defended').length } </p>
+                      : <div />
+                  }
+                  {
+                    // Climbs to level 3
+                    matches.filter(match => match.climb === 'level3').length !== 0
+                      ? <p> Level 3 climb amount: { matches.filter(match => match.climb === 'level3').length } </p>
+                      : <div />
+                  }
+                  {
+                    // Climbs to level 3
+                    matches.filter(match => match.climb === 'level2').length !== 0
+                      ? <p> Level 2 climb amount: { matches.filter(match => match.climb === 'level2').length } </p>
+                      : <div />
+                  }
+                </div>
                 <Accordion>
                   {sortedMatches.map(match => <Record match={match} />)}
                 </Accordion>
