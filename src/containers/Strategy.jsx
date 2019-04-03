@@ -23,7 +23,7 @@ class Strategy extends Component {
     const { event } = this.props
 
     const filteredMatches = matches.sort((a, b) => a.id - b.id).filter(match =>
-      match.teamNumber === team && match.event === event)
+      match.teamNumber === team && match.eventKey === event)
 
     return (
       <Switch>

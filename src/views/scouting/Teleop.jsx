@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { ScoutingHeader, Footer } from 'components'
 import { Button } from 'carbon-components-react'
 import {
-  GiJoystick as Controller,
   GiSailboat as Sailboat,
   GiCompactDisc as Panel,
   GiPlainCircle as Cargo
