@@ -49,20 +49,19 @@ class TeamData extends React.Component {
                   {
                     // Defence
                     matches.filter(match => match.defence.state === 'defended').length !== 0
-                      ? <p> Defence amount: {matches.filter(match => match.defence.state === 'defended').length / matches.length * 100}%
-                      ({matches.filter(match => match.defence.state === 'defended').length} / {matches.length}) </p>
+                      ? <p> Defence amount: {matches.filter(match => match.defence.state === 'defended').length} / {matches.length} ({matches.filter(match => match.defence.state === 'defended').length / matches.length * 100}%) </p>
                       : <div />
                   }
                   {
                     // Climbs to level 3
                     matches.filter(match => match.climb === 'level3').length !== 0
-                      ? <p> Level 3 climb amount: {matches.filter(match => match.climb === 'level3').length} / {matches.length} </p>
+                      ? <p> Level 3 climb amount: {matches.filter(match => match.climb === 'level3').length} / {matches.length} ({matches.filter(match => match.climb === 'level3').length / matches.length * 100}%) </p>
                       : <div />
                   }
                   {
                     // Climbs to level 3
                     matches.filter(match => match.climb === 'level2').length !== 0
-                      ? <p> Level 2 climb amount: {matches.filter(match => match.climb === 'level2').length} / {matches.length} </p>
+                      ? <p> Level 2 climb amount: {matches.filter(match => match.climb === 'level2').length} / {matches.length} ({matches.filter(match => match.climb === 'level2').length / matches.length * 100}%)</p>
                       : <div />
                   }
                 </div>
