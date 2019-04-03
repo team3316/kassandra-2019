@@ -7,6 +7,7 @@ import 'echarts/lib/chart/line'
 /**
  * This component renders a stacked areas graph to show how many
  * @param {Object} data The data for the graphs
+ * data = { matchKey, defenceState, lowCargo, highCargo, lowPanels, highPanels }
  */
 const GameObjectGraph = ({ data }) => {
   /**

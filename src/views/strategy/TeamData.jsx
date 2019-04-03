@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Record } from 'components'
+import { Record, GameObjectGraph } from 'components'
 import { ComboBox, Accordion } from 'carbon-components-react'
 
 class TeamData extends React.Component {
@@ -28,7 +28,15 @@ class TeamData extends React.Component {
                 items={teams}
                 itemToString={team => team}
               />
-              <div className='content'>
+              <div>
+                <GameObjectGraph data={matches.map(match => ({
+                  ...match,
+                  lowCargo: match.teleop.cargo.cargoShip + match.teleop.cargo.level1,
+                  highCargo: match.teleop.cargo.level2 + match.teleop.cargo.level3,
+                  lowPanels: match.teleop.panels.cargoShip + match.teleop.panels.level1,
+                  highPanels: match.teleop.panels.level2 + match.teleop.panels.level3,
+                  defenceState: match.defence.state
+                }))} />
                 <Accordion>
                   {sortedMatches.map(match => <Record match={match} />)}
                 </Accordion>
