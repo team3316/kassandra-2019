@@ -20,7 +20,7 @@ class Strategy extends Component {
 
   render () {
     const { matches, team } = this.props.state
-    const { event } = this.props
+    const { event, getAll } = this.props
 
     const filteredMatches = matches.sort((a, b) => a.id - b.id).filter(match =>
       match.teamNumber === team && match.eventKey === event)
