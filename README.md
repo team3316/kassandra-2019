@@ -8,13 +8,13 @@
 
 ## Setup
 
-Kassandra is built using **Node.js**, and uses a **PostgreSQL** server as a database.
+Kassandra is built using **Node.js**, and uses a **PostgreSQL** server as its database.
 
 If you want to use a different SQL-based database you need to install the corresponding node module and configure Sequelize accordingly.
 
 ### Configuration
 
-Make a `.env` file at the root folder with the same fields as `template.env` and fill the fields according to your enviorment.
+Make a `.env` file at the root folder with the same fields as `template.env` and fill the fields according to your environment.
 
 ### Deployment
 
