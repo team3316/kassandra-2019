@@ -2,8 +2,8 @@
 
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![docstring style](https://img.shields.io/badge/docstring%20style-jsdocs-brightgreen.svg)](http://usejsdoc.org/)
-[![dependencies Status](https://img.shields.io/david/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra)
-[![devDependencies Status](https://img.shields.io/david/dev/Team3316/kassandra.svg)](https://david-dm.org/Team3316/kassandra?type=dev)
+[![dependencies Status](https://img.shields.io/david/Team3316/kassandra.svg)](https://david-dm.org/team3316/kassandra-2019)
+[![devDependencies Status](https://img.shields.io/david/dev/Team3316/kassandra.svg)](https://david-dm.org/team3316/kassandra-2019?type=dev)
 >D-Bug's scouting system, built using React, Redux, Express and Sequelize
 
 ## Setup
@@ -20,7 +20,7 @@ Make a `.env` file at the root folder with the same fields as `template.env` and
 
 ```Bash
 # Clone the repository and change directory
-git clone https://github.com/Team3316/kassandra.git && cd kassandra
+git clone https://github.com/team3316/kassandra-2019.git && cd kassandra-2019
 # Install the node dependencies
 npm install
 # Build the code
