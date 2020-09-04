@@ -29,7 +29,7 @@
     "echarts-for-react": "^2.0.15-beta.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
     "prop-types": "^15.7.2",
